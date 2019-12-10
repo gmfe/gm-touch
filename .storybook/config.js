@@ -7,15 +7,7 @@ import { LayoutRoot } from '../src'
 // 引入 react-gm 样式
 import '../src/index.less'
 
-const reqs = [
-  require.context('../src', true, /stories\.js$/),
-]
-
-// function loadStories() {
-//   reqs.forEach(req => {
-//     req.keys().forEach(filename => req(filename))
-//   })
-// }
+const reqs = [require.context('../src', true, /stories\.js$/)]
 
 addDecorator(
   withInfo({
@@ -38,11 +30,11 @@ addDecorator(
   })
 )
 
-// addDecorator(storeFn => (
-//   <React.Fragment>
-//     <Observer>{() => storeFn()}</Observer>
-//     <LayoutRoot />
-//   </React.Fragment>
-// ))
+addDecorator(storeFn => (
+  <React.Fragment>
+    <Observer>{() => storeFn()}</Observer>
+    <LayoutRoot />
+  </React.Fragment>
+))
 
 configure(reqs, module)

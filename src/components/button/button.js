@@ -1,30 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import { is } from 'gm-util'
+import Loading from '../loading'
 
-const Button = ({ type, className, children, ...rest }) => {
+const Button = ({
+  onClick,
+  type,
+  size,
+  disabled,
+  className,
+  children,
+  ...rest
+}) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = e => {
+    const result = onClick(e)
+    if (!is.promise(result)) {
+      return
+    }
+
+    setLoading(true)
+    Promise.resolve(result).finally(() => {
+      setLoading(false)
+    })
+  }
   return (
-    <div
+    <button
       {...rest}
-      classNames={classNames(
+      onClick={handleClick}
+      disabled={loading || disabled}
+      className={classNames(
         't-btn',
         {
-          [`t-btn-${type}`]: true
+          [`t-btn-${type}`]: type,
+          [`t-btn-${size}`]: size
         },
         className
       )}
     >
+      {loading && <Loading className='t-inline-block t-text' />}
       {children}
-    </div>
+    </button>
   )
 }
 
 Button.propTypes = {
-  type: PropTypes.oneOf(['primary', 'default'])
-}
-
-Button.defaultProps = {
-  type: 'default'
+  onClick: PropTypes.func,
+  type: PropTypes.oneOf(['primary']),
+  size: PropTypes.oneOf(['lg']),
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 
 export default Button

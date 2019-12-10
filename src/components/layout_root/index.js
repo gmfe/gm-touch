@@ -38,7 +38,7 @@ class LayerRoot extends React.Component {
   }
 
   render() {
-    const { drawer, _popup, modal, _tip, fullloading, nprogress } = this.state
+    const { drawer, _popup, modal, _tip, full_loading, n_progress } = this.state
     // 有层级关系
     return (
       <div>
@@ -77,9 +77,9 @@ class LayerRoot extends React.Component {
           </div>
         )}
 
-        {fullloading && <div>{fullloading}</div>}
+        {full_loading && <div>{full_loading}</div>}
 
-        {nprogress && <div>{nprogress}</div>}
+        {n_progress && <div>{n_progress}</div>}
       </div>
     )
   }

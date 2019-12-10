@@ -3,12 +3,19 @@
 
 html,
 body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: var(--size-font-default);
   color: var(--color-first);
 }
 
 .t-svg-icon {
   font-size: var(--size-font-default);
+}
+
+.t-body-scroll-disabled {
+  overflow: hidden;
 }
 
 @import 'less/bg';
@@ -19,3 +26,6 @@ body {
 @import 'less/position';
 @import 'less/rotate';
 @import 'less/text';
+
+@import './components/button/style';
+@import './components/loading/style';

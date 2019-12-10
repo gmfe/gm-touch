@@ -3,43 +3,21 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Loading from './index'
 
-class LoadingChunk extends React.Component {
-  render() {
-    const {
-      loading,
-      style,
-      size,
-      text,
-      className,
-      children,
-      ...rest
-    } = this.props
-
-    return (
-      <div
-        {...rest}
-        className={classNames(className, {
-          'gm-loading-chunk': loading
-        })}
-      >
-        {children || <div style={{ height: (size || 50) + 'px' }} />}
-        {loading && (
-          <div className='gm-loading-mask'>
-            <Loading
-              style={{
-                ...style,
-                width: size + 'px',
-                height: size + 'px'
-              }}
-              text={text}
-              size={size}
-              className='gm-loading-position'
-            />
-          </div>
-        )}
-      </div>
-    )
-  }
+const LoadingChunk = ({ loading, size, text, children }) => {
+  return (
+    <div
+      className={classNames({
+        't-loading-chunk': loading
+      })}
+    >
+      {children || <div style={{ height: size + 'px' }} />}
+      {loading && (
+        <div className='t-loading-mask'>
+          <Loading text={text} size={size} className='t-loading-position' />
+        </div>
+      )}
+    </div>
+  )
 }
 
 LoadingChunk.propTypes = {
@@ -52,8 +30,7 @@ LoadingChunk.propTypes = {
 }
 
 LoadingChunk.defaultProps = {
-  size: 50,
-  loading: false
+  size: 50
 }
 
 export default LoadingChunk
