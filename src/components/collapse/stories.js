@@ -1,6 +1,7 @@
 import React from 'react'
 import Collapse from './index'
 import { observable } from 'mobx'
+import Button from '../button'
 
 const store = observable({
   active: true,
@@ -11,7 +12,7 @@ const store = observable({
 
 export const active = () => (
   <div>
-    <button onClick={() => store.setActive()}>toggle</button>
+    <Button onClick={() => store.setActive()}>toggle</Button>
     <Collapse active={store.active}>啦啦啦啦</Collapse>
   </div>
 )

@@ -6,7 +6,7 @@ const Collapse = ({ children, className, active, style, ...rest }) => {
   return (
     <div
       {...rest}
-      className={classNames('gm-collapse', className)}
+      className={classNames('b-collapse', className)}
       style={Object.assign(
         {
           transition: active ? '0.5s ease all' : 'inherit',

@@ -31,12 +31,12 @@ module.exports = ({ config }) => {
 
   config.module.rules[0] = rulesOne
 
-  // config.module.rules[3] = {
-  //   test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/,
-  //   loader:
-  //     './node_modules/@storybook/core/node_modules/file-loader/dist/cjs.js',
-  //   query: { name: 'static/media/[name].[hash:8].[ext]' }
-  // }
+  config.module.rules[3] = {
+    test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/,
+    loader:
+      './node_modules/@storybook/core/node_modules/file-loader/dist/cjs.js',
+    query: { name: 'static/media/[name].[hash:8].[ext]' }
+  }
 
   config.module.rules.push({
     test: /\.less$/,
@@ -63,7 +63,7 @@ module.exports = ({ config }) => {
           expandProps: 'start',
           svgProps: {
             fill: 'currentColor',
-            className: "{'gm-svg-icon ' + (props.className || '')}"
+            className: "{'t-svg-icon ' + (props.className || '')}"
           }
         }
       }

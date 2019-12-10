@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import IconDownUp from './'
 import { observable } from 'mobx'
+import Button from '../button'
 
 const store = observable({
   active: false,
@@ -10,9 +11,15 @@ const store = observable({
   }
 })
 
-storiesOf('IconDownUp', module).add('default', () => (
-  <div>
-    <IconDownUp active={store.active} />
-    <button onClick={() => store.toggle()}>click</button>
-  </div>
-))
+export const active = () => {
+  return (
+    <>
+      <Button onClick={() => store.toggle()}>click</Button>
+      <IconDownUp active={store.active} />
+    </>
+  )
+}
+
+export default {
+  title: 'IconDownUp'
+}

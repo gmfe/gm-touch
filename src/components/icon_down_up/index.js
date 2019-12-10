@@ -3,15 +3,14 @@ import PropTypes from 'prop-types'
 import SVGDown from '../../../svg/down.svg'
 import classNames from 'classnames'
 
-const IconDownUp = props => {
-  const { active, className, ...rest } = props
+const IconDownUp = ({ active, className, ...rest }) => {
   return (
     <SVGDown
       {...rest}
       className={classNames(
-        'gm-icon-down-up',
+        't-icon-down-up',
         {
-          active: props.active
+          active
         },
         className
       )}
