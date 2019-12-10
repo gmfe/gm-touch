@@ -1,0 +1,93 @@
+.generate-gap(@num, @name, @i: 0) when (@i =< @num) {
+  .@{name}-@{i} {
+      @{name}: 1px*@i !important;
+  }
+
+  .generate-gap(@num, @name, (@i + 5));
+}
+
+.generate-gap-more-direction(@num, @name, @direction1, @direction2, @i: 0) when (@i =< @num) {
+  .@{name}-@{i} {
+      @{direction1}: 1px*@i !important;
+      @{direction2}: 1px*@i !important;
+  }
+
+  .generate-gap-more-direction(@num, @name, @direction1, @direction2, (@i + 4));
+}
+
+@size: {
+  none: 0;
+  one: var(--size-one);
+  two: var(--size-two);
+  there: var(--size-there);
+  four: var(--size-four);
+  five: var(--size-five);
+}
+
+@selectors: padding, margin;
+
+each(@size, {
+  .t-gap-@{key} {
+    display: inline-block !important;
+    height: @value !important;
+    width: @value !important;
+  }
+
+  .t-padding-@{key} {
+    padding: @value !important;
+  }
+
+  .t-padding-top-@{key} {
+    padding-top: @value !important;
+  }
+
+  .t-padding-bottom-@{key} {
+    padding-bottom: @value !important;
+  }
+  .t-padding-left-@{key} {
+    padding-left: @value !important;
+  }
+
+  .t-padding-right-@{key} {
+    padding-right: @value !important;
+  }
+
+  .t-padding-lr-@{key} {
+    padding-left: @value !important;
+    padding-right: @value !important;
+  }
+
+  .t-padding-tb-@{key} {
+    padding-top: @value !important;
+    padding-bottom: @value !important;
+  }
+
+  .t-margin-@{key} {
+    margin: @value !important;
+  }
+
+  .t-margin-top-@{key} {
+    margin-top: @value !important;
+  }
+
+  .t-margin-bottom-@{key} {
+    margin-bottom: @value !important;
+  }
+  .t-margin-left-@{key} {
+    margin-left: @value !important;
+  }
+
+  .t-margin-right-@{key} {
+    margin-right: @value !important;
+  }
+
+  .t-margin-lr-@{key} {
+    margin-left: @value !important;
+    margin-right: @value !important;
+  }
+
+  .t-margin-tb-@{key} {
+    margin-top: @value !important;
+    margin-bottom: @value !important;
+  }
+})
