@@ -1,73 +1,158 @@
+import _ from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
+
+function processPropsValue(value) {
+  if (value === null) {
+    return ''
+  }
+  return value + ''
+}
+
+function text2Number(value) {
+  if (value === '') {
+    return null
+  }
+  return _.isNaN(parseFloat(value)) ? null : parseFloat(value)
+}
+
+function checkValue(value, precision) {
+  // 正则说明：前置无限【1-9】的数字加小数点加精度个数字，前置为「0」加小数点加精度个数字
+  const reg = new RegExp(
+    '(^[1-9]\\d*(\\.\\d{0,' +
+      precision +
+      '})?$)|(^0(\\.\\d{0,' +
+      precision +
+      '})?$)'
+  )
+
+  if (value.startsWith('-')) {
+    value = value.slice(1)
+  }
+
+  if (value === '') {
+    return true
+  }
+
+  return reg.test(value)
+}
+
+function fixNumber(value, min, max) {
+  if (value !== null) {
+    if (max !== undefined && value > max) {
+      value = max
+    } else if (min !== undefined && value < min) {
+      value = min
+    }
+  }
+
+  return value
+}
 
 class InputNumber extends React.Component {
-  handleChange = e => {
-    const { max, min, precision, minus } = this.props
-    const value = e.target.value.replace(/。/g, '.')
+  constructor(props) {
+    super(props)
 
-    let figure = value
+    this.refInput = React.createRef()
+    this.__isUnmount = false
 
-    const reg = new RegExp(
-      '(^[1-9]\\d*(\\.\\d{0,' +
-        precision +
-        '})?$)|(^0(\\.\\d{0,' +
-        precision +
-        '})?$)'
-    )
+    this.state = {
+      value: processPropsValue(props.value)
+    }
+  }
 
-    if (minus && value.indexOf('-') === 0) {
-      // 去掉减号，然后去匹配正则
-      figure = value.slice(1)
+  apiDoFocus() {
+    if (this.__isUnmount) {
+      return
     }
 
-    if (reg.test(figure) || figure === '' || /^0[1-9]/.test(value)) {
-      const currentValue = Number(value)
-      if (max !== undefined && currentValue > max) {
-        this.props.onChange(max)
-      } else if (min !== undefined && currentValue < min) {
-        this.props.onChange(min)
-      } else {
-        // 如果第一个数字是0，第二个是1-9，则选取第二个数字
-        this.props.onChange(/^0[1-9]/.test(value) ? value.slice(1) : value)
+    this.refInput.current.focus()
+  }
+
+  componentWillUnmount() {
+    this.__isUnmount = true
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    // 一旦不一致就应该改，要比较 number 形式
+    if (props.value !== text2Number(state.value)) {
+      return {
+        value: processPropsValue(props.value)
       }
-    } else if (
-      value.length < this.props.value.toString().length &&
-      reg.test(value)
-    ) {
-      // 有默认值，且不符合以上的规则，但是是一个删减字符的操作
-      this.props.onChange(value)
     }
+
+    return null
+  }
+
+  handleChange = e => {
+    const { min, max, precision, onChange } = this.props
+
+    const eValue = e.target.value
+
+    // 检测是否合法输入
+    if (!checkValue(eValue, precision)) {
+      return
+    }
+
+    const newValue = text2Number(eValue)
+
+    const newFixValue = fixNumber(newValue, min, max)
+
+    // 如果数据有被修正，则同步下修改的值到 state
+    if (newFixValue !== newValue) {
+      this.setState({
+        value: processPropsValue(newFixValue)
+      })
+    } else {
+      this.setState({
+        value: eValue
+      })
+    }
+
+    onChange(newFixValue)
   }
 
   render() {
     const {
+      value,
+      onChange,
+      max,
+      min,
       precision,
-      minus, // eslint-disable-line
+      className,
       ...rest
     } = this.props
 
-    return <input {...rest} type='text' onChange={this.handleChange} />
+    return (
+      <input
+        {...rest}
+        type='text'
+        ref={this.refInput}
+        value={this.state.value}
+        className={classNames('gm-input-number', className)}
+        onChange={this.handleChange}
+      />
+    )
   }
 }
 
 InputNumber.displayName = 'InputNumber'
 
 InputNumber.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   max: PropTypes.number,
   min: PropTypes.number,
-  precision: PropTypes.number, // 精确度，保留几位小数
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.number,
   placeholder: PropTypes.string,
-  minus: PropTypes.bool, // 是否支持输入负数,
+  onChange: PropTypes.func.isRequired,
+  precision: PropTypes.number, // 精确度，保留几位小数
   className: PropTypes.string,
   style: PropTypes.object
 }
 
 InputNumber.defaultProps = {
-  precision: 2,
-  minus: false
+  value: null,
+  precision: 2
 }
 
 export default InputNumber

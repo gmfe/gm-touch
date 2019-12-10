@@ -5,5 +5,26 @@ import Flex from './components/flex'
 import Collapse from './components/collapse'
 import IconDownUp from './components/icon_down_up'
 import Switch from './components/switch'
+import InputNumber from './components/input_number'
+import Tip from './components/tip'
+import Storage from './components/storage'
+// import Checkbox from './components/checkbox/checkbox'
+// import Dialog from './components/dialog'
+// import List from './components/list'
+// import Modal from './components/modal'
+// import Popover from './components/popover'
+// import Select from './components/select/select'
+// import TransferGroup from './components/transfer/transfer_group'
 
-export { LayoutRoot, Loading, Button, Flex, Collapse, IconDownUp, Switch }
+export {
+  LayoutRoot,
+  Loading,
+  Button,
+  Flex,
+  Collapse,
+  IconDownUp,
+  Switch,
+  InputNumber,
+  Tip,
+  Storage
+}

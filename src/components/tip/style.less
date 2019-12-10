@@ -1,27 +1,32 @@
-.gm-tip {
+.t-tip {
   position: relative;
-  display: inline-block;
   min-width: 250px;
-  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  background: var(--color-bg);
+
+  & + .t-tip {
+    margin-top: 20px;
+  }
+
+  &.t-tip-info {
+    background: var(--color-info);
+  }
+
+  &.t-tip-success {
+    background: var(--color-success);
+  }
+
+  &.t-tip-warning {
+    background: var(--color-warning);
+  }
+
+  &.t-tip-danger {
+    background: var(--color-danger);
+  }
 }
 
-.gm-tip .panel-body {
-  padding-left: 40px;
-}
-
-.gm-tip .close {
-  margin-right: 5px;
-}
-
-.gm-tip i {
-  top: 50%;
-  position: absolute;
-  margin-top: -0.5em;
-  margin-left: 10px;
-  font-size: 2em;
-}
-
-.gm-tips {
+.t-tips {
   position: fixed;
   right: 10px;
   top: 10px;
@@ -29,13 +34,7 @@
   max-width: 450px;
 }
 
-.gm-tips-cell {
+.t-tips-cell {
   float: right;
   clear: both;
-}
-
-@media print {
-  .gm-tip {
-    display: none;
-  }
 }

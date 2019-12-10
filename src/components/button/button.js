@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { is } from 'gm-util'
 import Loading from '../loading'
+import _ from 'lodash'
 
 const Button = ({
   onClick,
@@ -53,6 +54,10 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object
+}
+
+Button.defaultProps = {
+  onClick: _.noop
 }
 
 export default Button

@@ -5,7 +5,7 @@ const TYPE = {
   DRAWER: 'drawer',
   _POPUP: '_popup',
   MODAL: 'modal',
-  _TIP: '_tip',
+  TIPS: 'tips',
   FULL_LOADING: 'full_loading',
   N_PROGRESS: 'n_progress'
 }
@@ -18,7 +18,7 @@ class LayerRoot extends React.Component {
     this.state = {
       _popup: null,
       modal: null,
-      _tip: null,
+      tips: null,
       full_loading: null,
       n_progress: null,
       drawer: null
@@ -38,7 +38,7 @@ class LayerRoot extends React.Component {
   }
 
   render() {
-    const { drawer, _popup, modal, _tip, full_loading, n_progress } = this.state
+    const { drawer, _popup, modal, tips, full_loading, n_progress } = this.state
     // 有层级关系
     return (
       <div>
@@ -61,9 +61,9 @@ class LayerRoot extends React.Component {
         {drawer && <div>{drawer}</div>}
         {modal && <div>{modal}</div>}
 
-        {_tip && _tip.length > 0 && (
+        {tips && tips.length > 0 && (
           <div className='t-tips'>
-            {_.map(_tip, v =>
+            {_.map(tips, v =>
               React.cloneElement(
                 v.com,
                 Object.assign(
@@ -132,15 +132,15 @@ LayerRoot._removeComponentPopup = id => {
 }
 
 LayerRoot._setComponentTip = (id, com) => {
-  _setComponentArray(LayerRoot.TYPE._TIP, id, com)
+  _setComponentArray(LayerRoot.TYPE.TIPS, id, com)
 }
 
 LayerRoot._removeComponentTip = id => {
-  _removeComponentArray(LayerRoot.TYPE._TIP, id)
+  _removeComponentArray(LayerRoot.TYPE.TIPS, id)
 }
 
 LayerRoot._removeComponentTipAll = () => {
-  setComponentFunc(LayerRoot.TYPE._TIP, [])
+  setComponentFunc(LayerRoot.TYPE.TIPS, [])
 }
 
 LayerRoot.setComponent = (type, com) => {

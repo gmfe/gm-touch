@@ -185,7 +185,7 @@ class Popover extends React.Component {
           pureContainer={pureContainer}
           className={classNames(
             {
-              'gm-popover-is-in-popup': isInPopup
+              't-popover-is-in-popup': isInPopup
             },
             className
           )}
@@ -240,7 +240,7 @@ class Popover extends React.Component {
         return (
           node === $this ||
           node === $popup ||
-          (node.classList && node.classList.contains('gm-popover-is-in-popup'))
+          (node.classList && node.classList.contains('t-popover-is-in-popup'))
         )
       })
     ) {
@@ -320,7 +320,7 @@ class Popover extends React.Component {
     return React.cloneElement(child, {
       ...p,
       className: classNames(child.props.className, {
-        'gm-popover-active': active
+        't-popover-active': active
       })
     })
   }

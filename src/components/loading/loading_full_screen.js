@@ -7,7 +7,7 @@ import { setBodyCanScroll } from '../../util'
 const LoadingFullScreen = ({ size, text }) => {
   return (
     <div className='t-loading-full-screen'>
-      <Loading size={size} text={text} className='t-loading-spinner' />
+      <Loading size={size} text={text} className='t-loading-position' />
     </div>
   )
 }

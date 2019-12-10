@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import _ from 'lodash'
+
 const Switch = props => {
   const [checked, setChecked] = useState(props.checked)
   const [labelWidth, setLabelWidth] = useState(null)

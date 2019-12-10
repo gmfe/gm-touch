@@ -38,7 +38,7 @@ storiesOf('Loading', module)
         })
         setTimeout(() => {
           LoadingFullScreen.hide()
-        }, 3000)
+        }, 30000)
       }}
     >
       整页加载
