@@ -1,9 +1,9 @@
 import { getLocale } from '../../locales'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
 import { pinYinFilter } from 'gm-util'
-import { getLeaf, getUnLeafValues, filterGroupList } from './util'
+import { getUnLeafValues, filterGroupList, getValues } from './util'
 import _ from 'lodash'
 import classNames from 'classnames'
 import Bottom from './bottom'
@@ -14,7 +14,7 @@ const filterWithQuery = (list, query, withFilter) => {
   let processList
   if (withFilter === true) {
     processList = filterGroupList(list, v => {
-      return pinYinFilter([v], query, v => v.name).length > 0
+      return pinYinFilter([v], query, v => v.text).length > 0
     })
   } else if (withFilter) {
     processList = withFilter(list, query)
@@ -38,13 +38,19 @@ const Tree = ({
 }) => {
   const [query, setQuery] = useState('')
   const [filterList, setFilterList] = useState(list)
+  const [listHeight, setListHeight] = useState(null)
+  const refList = useRef(null)
+
+  useEffect(() => {
+    setListHeight(refList.current.offsetHeight)
+  }, [])
 
   // 区分正常的 展开收起 和 搜索导致的展开收起
   const [queryGroupSelected, setQueryGroupSelected] = useState([])
   const [groupSelected, setGroupSelected] = useState([])
 
   const handleSelectAll = checked => {
-    onSelectValues(checked ? _.map(getLeaf(list), v => v.value) : [])
+    onSelectValues(checked ? getValues(list) : [])
   }
 
   const handleQueryFilter = query => {
@@ -73,11 +79,6 @@ const Tree = ({
     setGroupSelected(groupSelected)
   }
 
-  const leafList = getLeaf(list)
-
-  const checkedAll =
-    leafList.length !== 0 && leafList.length === selectedValues.length
-
   const newGS = query ? queryGroupSelected : groupSelected
 
   return (
@@ -99,21 +100,23 @@ const Tree = ({
         </div>
       )}
 
-      <Flex flex column className='t-overflow-y'>
-        <List
-          list={filterList}
-          groupSelected={newGS}
-          onGroupSelect={handleGroupSelect}
-          selectedValues={selectedValues}
-          onSelectValues={onSelectValues}
-        />
-      </Flex>
+      <div className='t-flex-flex' ref={refList}>
+        {!!listHeight && (
+          <List
+            list={filterList}
+            listHeight={listHeight}
+            groupSelected={newGS}
+            onGroupSelect={handleGroupSelect}
+            selectedValues={selectedValues}
+            onSelectValues={onSelectValues}
+          />
+        )}
+      </div>
 
       <Bottom
-        checkedAll={checkedAll}
-        onChange={() => handleSelectAll(!checkedAll)}
-        selectValuesLength={selectedValues.length}
-        leafListLength={leafList.length}
+        list={list}
+        selectedValues={selectedValues}
+        onChange={handleSelectAll}
       />
     </Flex>
   )
@@ -135,10 +138,6 @@ Tree.propTypes = {
 }
 
 Tree.defaultProps = {
-  style: {
-    width: '400px',
-    height: '500px'
-  },
   withFilter: true,
   placeholder: getLocale('搜索')
 }

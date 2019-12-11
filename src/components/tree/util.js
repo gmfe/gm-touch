@@ -76,7 +76,40 @@ function getUnLeafValues(list) {
     () => true
   )
 
-  return _.map(flat, item => item.data)
+  return _.map(flat, item => item.data.value)
+}
+
+function getValues(list) {
+  const flat = listToFlat(
+    list,
+    () => true,
+    () => true
+  )
+
+  return _.map(flat, item => item.data.value)
+}
+
+function getLeafValues(list) {
+  const flat = listToFlat(
+    list,
+    item => !item.children,
+    () => true
+  )
+
+  return _.map(flat, item => item.data.value)
+}
+
+function unSelectAll(list, selectedValues) {
+  // 用find，高效
+  const unSelected = _.find(list, item => {
+    if (item.children) {
+      return unSelectAll(item.children, selectedValues)
+    } else {
+      return !selectedValues.includes(item.value)
+    }
+  })
+
+  return !!unSelected
 }
 
 export {
@@ -84,5 +117,8 @@ export {
   getUnLeafValues,
   filterGroupList,
   listToFlat,
-  listToFlatFilterWithGroup
+  listToFlatFilterWithGroup,
+  getValues,
+  getLeafValues,
+  unSelectAll
 }
