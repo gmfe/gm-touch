@@ -14,8 +14,8 @@ import List from './components/list'
 import Modal from './components/modal'
 import Popover from './components/popover'
 import Select from './components/select'
-// import TransferGroup from './components/transfer/transfer_group'
 import Input from './components/input'
+import Tree from './components/tree'
 export {
   LayoutRoot,
   Loading,
@@ -33,5 +33,6 @@ export {
   Modal,
   Dialog,
   Radio,
-  Input
+  Input,
+  Tree
 }
