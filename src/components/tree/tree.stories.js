@@ -82,8 +82,8 @@ const store = observable({
 
 storiesOf('Tree', module).add('default', () => (
   <Tree
-    list={store.data}
-    selectedValues={store.selectedValues}
+    list={store.data.slice()}
+    selectedValues={store.selectedValues.slice()}
     onSelectValues={values => store.setSelectedValues(values)}
   />
 ))

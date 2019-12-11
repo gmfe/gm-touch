@@ -58,8 +58,7 @@ const Tree = ({
 
     setFilterList(processList)
 
-    const newGroupSelected = []
-    getUnLeafValues(processList, newGroupSelected)
+    const newGroupSelected = getUnLeafValues(processList)
     setQueryGroupSelected(newGroupSelected)
   }
   const debounceHandleQueryFilter = _.debounce(handleQueryFilter, 300)

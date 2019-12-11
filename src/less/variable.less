@@ -46,8 +46,14 @@
 
   --size-form-height: 40px;
   --size-form-height-lg: 52px;
-  --size-form-padding: 10px 15px;
-  --size-form-padding-lg: 15px 20px;
+  --size-form-padding-top: 10px;
+  --size-form-padding-left: 15px;
+  --size-form-padding-top-lg: 15px;
+  --size-form-padding-left-lg: 20px;
+  --size-form-padding: var(--size-form-padding-top)
+    var(--size-form-padding-left);
+  --size-form-padding-lg: var(--size-form-padding-top-lg)
+    var(--size-form-padding-left-lg);
 
   // modal
   --modal-size-title-height: var(--size-form-height);

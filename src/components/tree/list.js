@@ -5,7 +5,7 @@ import Flex from '../flex'
 import Radio from '../radio'
 import SVGPlus from '../../../svg/plus.svg'
 import SVGMinus from '../../../svg/minus.svg'
-import { listToFlat } from './util'
+import { listToFlatFilterWithGroup } from './util'
 
 const Item = ({
   isGroup,
@@ -62,7 +62,7 @@ const List = ({
   onSelectValues
 }) => {
   const flatList = useMemo(() => {
-    return listToFlat(list, groupSelected)
+    return listToFlatFilterWithGroup(list, groupSelected)
   }, [list, groupSelected])
 
   const handleGroup = value => {
