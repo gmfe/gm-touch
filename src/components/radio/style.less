@@ -1,0 +1,24 @@
+.t-radio {
+  cursor: pointer;
+
+  svg {
+    padding: var(--size-form-padding);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &.t-radio-lg {
+    font-size: var(--size-text-lg);
+
+    svg {
+      padding: var(--size-form-padding-lg);
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

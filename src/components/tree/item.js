@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Checkbox } from '../checkbox'
+import { Checkbox } from '../radio'
 import Flex from '../flex'
 import classNames from 'classnames'
 import SVGPlus from '../../../svg/plus.svg'
@@ -32,8 +32,8 @@ const LeafItem = props => {
   return (
     <Flex
       className={classNames(
-        'gm-hover-bg gm-tree-list-item gm-cursor ',
-        `gm-level-${_level}`,
+        't-hover-bg t-tree-list-item t-cursor ',
+        `t-level-${_level}`,
         {
           disabled
         }
@@ -44,7 +44,7 @@ const LeafItem = props => {
         value={leaf.value}
         checked={checked}
         onChange={handleChange}
-        className='gm-padding-0'
+        className='t-padding-0'
         disabled={disabled}
       />
       <Flex flex column onClick={handleName}>
@@ -104,22 +104,22 @@ const GroupItem = props => {
     <>
       <Flex
         className={classNames(
-          'gm-tree-group-item gm-cursor gm-hover-bg',
-          `gm-level-${_level}`,
+          't-tree-group-item t-cursor t-hover-bg',
+          `t-level-${_level}`,
           {
             disabled
           }
         )}
         data-level={_level}
       >
-        <div className='gm-tree-group-item-expand' onClick={handleGroup}>
+        <div className='t-tree-group-item-expand' onClick={handleGroup}>
           {isOpen ? <SVGMinus /> : <SVGPlus />}
         </div>
         {hasCheckbox && (
           <Checkbox
             value
             checked={checked}
-            className='gm-padding-0'
+            className='t-padding-0'
             onChange={handleChange}
             disabled={disabled}
           />
@@ -128,7 +128,7 @@ const GroupItem = props => {
           {renderGroupItem(group, handleGroup)}
         </Flex>
       </Flex>
-      {isOpen && <div className='gm-tree-group-list'>{children}</div>}
+      {isOpen && <div className='t-tree-group-list'>{children}</div>}
     </>
   )
 }

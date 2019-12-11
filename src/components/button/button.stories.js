@@ -25,16 +25,30 @@ export const Default = () => {
 
 export const loading = () => {
   return (
-    <Button
-      onClick={() => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            // resolve()
-          }, 3000)
-        })
-      }}
-    >
-      Loading
-    </Button>
+    <>
+      <Button
+        onClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              // resolve()
+            }, 3000)
+          })
+        }}
+      >
+        Loading
+      </Button>
+      <Button
+        size={'lg'}
+        onClick={() => {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              // resolve()
+            }, 3000)
+          })
+        }}
+      >
+        Loading
+      </Button>
+    </>
   )
 }

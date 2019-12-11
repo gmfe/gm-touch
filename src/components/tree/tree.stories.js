@@ -216,7 +216,7 @@ storiesOf('Tree', module)
           </Flex>
           <div>
             <a href='void(0)'>新建二级分类</a>
-            &nbsp;&nbsp;<span className='gm-text-desc'>|</span>&nbsp;&nbsp;
+            &nbsp;&nbsp;<span className='t-text-desc'>|</span>&nbsp;&nbsp;
             <a href='void(0)'>删除</a>
           </div>
         </Flex>

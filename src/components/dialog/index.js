@@ -1,224 +1,150 @@
 import { getLocale } from '../../locales'
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import Modal from '../modal'
 import _ from 'lodash'
 import classNames from 'classnames'
 import LayoutRoot from '../layout_root'
-import EVENT_TYPE from '../../event_type'
+import Button from '../button'
+import { is } from 'gm-util'
+import { calendarFormat } from 'moment'
 
-let DialogStatics = {}
-DialogStatics = {
+let DialogStatics = {
   alert(options) {
-    options.type = 'alert'
-    options.size = options.size || 'sm'
-    return DialogStatics.dialog(options)
+    return DialogStatics.dialog(options, 'alert')
   },
   confirm(options) {
-    options.type = 'confirm'
-    options.size = options.size || 'sm'
-    return DialogStatics.dialog(options)
+    return DialogStatics.dialog(options, 'confirm')
   },
   prompt(options) {
-    options.type = 'prompt'
-    options.size = options.size || 'sm'
-    return DialogStatics.dialog(options)
+    return DialogStatics.dialog(options, 'prompt')
   },
-  dialog(options) {
-    options = Object.assign(
-      {
-        _from: 'DialogStatics',
-        size: 'sm'
-      },
-      options
-    )
+  dialog(options, type) {
+    if (typeof options === 'string') {
+      options = {
+        children: options
+      }
+    }
+    options.type = type
+
     return new Promise((resolve, reject) => {
       const _OK = options.onOK
       options.onOK = value => {
         const result = _OK && _OK(value)
 
-        if (result && result.then) {
-          // 简单判断是否promise
-          return result.then(v => {
-            LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-            window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
+        if (result === false) {
+          return
+        }
 
-            return v
-          })
-        } else if (result !== false) {
+        if (!is.promise(result)) {
           resolve(value)
-        }
-
-        if (result !== false) {
           LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-          window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
+          return
         }
 
-        return result
+        return Promise.resolve(result)
+          .then(
+            () => {
+              resolve(value)
+            },
+            () => {
+              reject()
+            }
+          )
+          .finally(() => {
+            LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
+          })
       }
+
       options.onCancel = () => {
-        reject(new Error('cancel'))
-
         LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-        window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
+        reject()
       }
 
-      LayoutRoot.setComponent(
-        LayoutRoot.TYPE.MODAL,
-        <Dialog show {...options} />
-      )
-      window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
+      LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...options} />)
     })
   }
 }
 
-class Dialog extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      show: props.show,
-      isLoading: false
-    }
-    this.handleCancel = ::this.handleCancel
-    this.handleOk = ::this.handleOk
-    this.handleEnter = ::this.handleEnter
-    this.______isMounted = false
+const Dialog = ({
+  size,
+  title,
+  children,
+  type,
+  promptDefaultValue,
+  promptPlaceholder,
+  onOK,
+  onCancel,
+  cancelBtn,
+  OKBtn,
+  disableMaskClose
+}) => {
+  const refInput = useRef(null)
+
+  const handleCancel = () => {
+    onCancel()
   }
 
-  componentWillReceiveProps(nextProps) {
-    if ('show' in nextProps) {
-      this.setState({
-        show: nextProps.show
-      })
-    }
+  const handleOK = () => {
+    const result = onOK(type === 'prompt' ? refInput.current.value : undefined)
+
+    return Promise.resolve(result)
   }
 
-  componentDidMount() {
-    if (this.props._from !== 'DialogStatics') {
-      console.warn('Use Dialog Static instead of Component')
-    }
-  }
-
-  componentWillUnmount() {
-    this.______isMounted = true
-  }
-
-  handleCancel() {
-    this.props.onCancel()
-    this.setState({
-      show: false
-    })
-  }
-
-  handleOk() {
-    const result = this.props.onOK(
-      this.props.type === 'prompt' ? this.refInput.value : undefined
-    )
-    if (result === false) {
-      return
-    }
-
-    this.setState({
-      isLoading: true
-    })
-
-    Promise.resolve(result)
-      .then(() => {
-        if (!this.______isMounted) {
-          this.setState({
-            show: false,
-            isLoading: false
-          })
-        }
-      })
-      .catch(() => {
-        this.setState({
-          isLoading: false
-        })
-      })
-  }
-
-  handleEnter(event) {
-    if (event.keyCode === 13) {
-      this.handleOk()
+  const handleEnter = e => {
+    if (e.keyCode === 13) {
+      handleOK()
     }
   }
 
-  render() {
-    const { isLoading } = this.state
-    const {
-      size,
-      title,
-      children,
-      type,
-      promptDefaultValue,
-      promptPlaceholder,
-      cancelBtn,
-      OKBtn,
-      disableMaskClose
-    } = this.props
-    const modalProps = {
-      show: this.state.show,
-      onHide: this.handleCancel,
-      disableMaskClose
-    }
-    if (size !== 'md') {
-      modalProps.size = size
-    }
-    return (
-      <Modal
-        {...modalProps}
-        className={classNames('gm-dialog', {
-          ['gm-dialog-' + type]: type
-        })}
-        size={modalProps.size}
-        title={title}
-      >
-        <div>
-          {children}
-          {type === 'prompt' && (
-            <input
-              autoFocus
-              defaultValue={promptDefaultValue}
-              placeholder={promptPlaceholder}
-              ref={ref => (this.refInput = ref)}
-              type='text'
-              style={{ display: 'block', width: '100%' }}
-              onKeyDown={this.handleEnter}
-            />
-          )}
-        </div>
-        <div className='gm-gap-two' />
-        <div className='text-right'>
-          {type !== 'alert' && cancelBtn && !isLoading && (
-            <button className='btn btn-default' onClick={this.handleCancel}>
-              {cancelBtn}
-            </button>
-          )}
-          <div className='gm-gap-two' />
-          {OKBtn && (
-            <button
-              className='btn btn-primary'
-              disabled={isLoading}
-              onClick={!isLoading ? this.handleOk : null}
-            >
-              {isLoading ? (
-                <i className='glyphicon glyphicon-refresh glyphicon-spin' />
-              ) : (
-                OKBtn
-              )}
-            </button>
-          )}
-        </div>
-      </Modal>
-    )
+  const modalProps = {
+    onHide: handleCancel,
+    disableMaskClose,
+    size
   }
+
+  return (
+    <Modal
+      {...modalProps}
+      className={classNames('gm-dialog', {
+        ['gm-dialog-' + type]: type
+      })}
+      size={modalProps.size}
+      title={title}
+    >
+      <div>
+        {children}
+        {type === 'prompt' && (
+          <input
+            autoFocus
+            defaultValue={promptDefaultValue}
+            placeholder={promptPlaceholder}
+            ref={refInput}
+            type='text'
+            style={{ display: 'block', width: '100%' }}
+            onKeyDown={handleEnter}
+          />
+        )}
+      </div>
+      <div className='t-gap-two' />
+      <div className='t-text-right'>
+        {type !== 'alert' && cancelBtn && (
+          <Button onClick={handleCancel}>{cancelBtn}</Button>
+        )}
+        <span className='t-gap-two' />
+        {OKBtn && (
+          <Button type='primary' onClick={handleOK}>
+            OKBtn
+          </Button>
+        )}
+      </div>
+    </Modal>
+  )
 }
 
 Object.assign(Dialog, DialogStatics)
 
 Dialog.propTypes = {
-  show: PropTypes.bool.isRequired,
   title: PropTypes.string,
   type: PropTypes.string,
   onCancel: PropTypes.func,
@@ -229,16 +155,13 @@ Dialog.propTypes = {
   cancelBtn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   OKBtn: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   disableMaskClose: PropTypes.bool,
-  children: PropTypes.any,
-  _from: PropTypes.string
+  children: PropTypes.any
 }
 Dialog.defaultProps = {
-  show: false,
   title: getLocale('提示'),
-  type: 'confirm',
   onCancel: _.noop,
   onOK: _.noop,
-  size: 'md',
+  size: 'sm',
   cancelBtn: getLocale('取消'),
   OKBtn: getLocale('确定'),
   disableMaskClose: false

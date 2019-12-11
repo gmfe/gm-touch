@@ -51,7 +51,7 @@ storiesOf('Dialog', module)
               return new Promise(resolve => {
                 setTimeout(() => {
                   resolve('a')
-                }, 1000)
+                }, 3000)
               })
             }
           }).then(() => {
@@ -107,7 +107,7 @@ storiesOf('Dialog', module)
             setTimeout(() => {
               // 必须加setTimeout
               openDialog2()
-            })
+            }, 100)
           })
         }
       })

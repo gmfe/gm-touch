@@ -37,6 +37,7 @@ const Flex = ({
 
   className,
   style,
+  children,
 
   ...rest
 }) => {
@@ -89,7 +90,7 @@ const Flex = ({
 
   return (
     <div {...rest} className={cn} style={s}>
-      {this.props.children}
+      {children}
     </div>
   )
 }

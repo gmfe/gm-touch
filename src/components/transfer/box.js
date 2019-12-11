@@ -2,7 +2,7 @@ import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
-import { Checkbox, CheckboxGroup } from '../checkbox'
+import { Checkbox, CheckboxGroup } from '../radio'
 import { pinYinFilter } from 'gm-util'
 import _ from 'lodash'
 

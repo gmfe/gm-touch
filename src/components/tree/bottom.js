@@ -2,28 +2,20 @@ import { getLocale } from '../../locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
-import { Checkbox } from '../checkbox'
+import Radio from '../radio'
 
-const Bottom = props => {
-  const {
-    checkedAll,
-    onChange,
-    selectValuesLength,
-    leafListLength,
-    disabled
-  } = props
-
+const Bottom = ({
+  checkedAll,
+  onChange,
+  selectValuesLength,
+  leafListLength
+}) => {
   return (
-    <Flex justifyBetween alignCenter className='gm-border-top gm-padding-one'>
-      <Checkbox
-        value
-        checked={checkedAll}
-        onChange={onChange}
-        disabled={disabled}
-      >
+    <Flex justifyBetween alignCenter className='t-border-top t-padding-one'>
+      <Radio checked={checkedAll} onChange={onChange}>
         {getLocale('全选')}
-      </Checkbox>
-      <div className='gm-padding-lr-one gm-text-desc'>
+      </Radio>
+      <div className='t-padding-lr-one t-text-desc'>
         {selectValuesLength}/{leafListLength}
       </div>
     </Flex>
@@ -34,8 +26,7 @@ Bottom.propTypes = {
   checkedAll: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   selectValuesLength: PropTypes.number.isRequired,
-  leafListLength: PropTypes.number.isRequired,
-  disabled: PropTypes.bool
+  leafListLength: PropTypes.number.isRequired
 }
 
 export default Bottom

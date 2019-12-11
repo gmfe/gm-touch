@@ -62,7 +62,7 @@ class List extends React.Component {
 
     if (isGroupData) {
       return (
-        <div className='gm-tree-group'>
+        <div className='t-tree-group'>
           {_.map(list, group => {
             const isOpen = _.includes(groupSelected, group.value)
 
