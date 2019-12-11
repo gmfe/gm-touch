@@ -1,151 +1,104 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { getLeaf } from './util'
-import { GroupItem, LeafItem } from './item'
+import Flex from '../flex'
+import Radio from '../radio'
+import SVGPlus from '../../../svg/plus.svg'
+import SVGMinus from '../../../svg/minus.svg'
+import { listToFlat } from './util'
 
-class List extends React.Component {
-  handleChange = (leaf, checked) => {
-    const { onSelectValues, selectedValues, onClickCheckbox } = this.props
-    onSelectValues(_.xor([leaf.value], selectedValues))
-
-    if (onClickCheckbox) {
-      onClickCheckbox(leaf, checked)
-    }
-  }
-
-  handleSelectGroup = (group, isSelectGroup) => {
-    const { onClickCheckbox, selectedValues, onSelectValues } = this.props
-
-    const leafValues = _.map(getLeaf(group.children), item => item.value)
-    onSelectValues(
-      isSelectGroup
-        ? _.union(selectedValues, leafValues)
-        : _.difference(selectedValues, leafValues)
-    )
-
-    if (onClickCheckbox) {
-      onClickCheckbox(group, isSelectGroup)
-    }
-  }
-
-  handleGroup = group => {
-    const { groupSelected, onGroupSelect, onClickExpand } = this.props
-
-    onGroupSelect(_.xor(groupSelected, [group.value]))
-
-    if (onClickExpand) {
-      onClickExpand(group, !groupSelected.includes(group.value))
-    }
-  }
-
-  render() {
-    const {
-      disabled,
-      groupSelected,
-      list,
-      selectedValues,
-      showGroupCheckbox,
-      onClickLeafName,
-      onClickGroupName,
-      renderLeafItem,
-      renderGroupItem,
-
-      _level
-    } = this.props
-
-    if (list.length === 0) {
-      return null
-    }
-
-    const isGroupData = !!list[0].children
-
-    if (isGroupData) {
-      return (
-        <div className='t-tree-group'>
-          {_.map(list, group => {
-            const isOpen = _.includes(groupSelected, group.value)
-
-            const leafValues = _.map(
-              getLeaf(group.children),
-              item => item.value
-            )
-            let isSelectGroup = false
-            if (leafValues.length > 0) {
-              isSelectGroup =
-                _.filter(leafValues, value => _.includes(selectedValues, value))
-                  .length === leafValues.length
-            }
-
-            return (
-              <GroupItem
-                key={group.value}
-                group={group}
-                isOpen={isOpen}
-                hasCheckbox={showGroupCheckbox(group)}
-                checked={isSelectGroup}
-                onChange={this.handleSelectGroup}
-                onGroup={this.handleGroup}
-                onClickName={onClickGroupName}
-                renderGroupItem={renderGroupItem}
-                disabled={disabled}
-                _level={_level}
-              >
-                <List
-                  {...this.props}
-                  list={group.children}
-                  _level={_level + 1}
-                />
-              </GroupItem>
-            )
-          })}
+const Item = ({
+  isGroup,
+  onGroup,
+  isSelected,
+  onSelect,
+  flatData: { isLeaf, level, data }
+}) => {
+  return (
+    <Flex
+      alignCenter
+      className='t-tree-list-item'
+      style={{
+        paddingLeft: `calc(${level}em + 10px)`
+      }}
+    >
+      {!isLeaf ? (
+        <div className='t-padding-10' onClick={() => onGroup(data.value)}>
+          {isGroup ? <SVGMinus /> : <SVGPlus />}
         </div>
-      )
-    }
+      ) : (
+        <div style={{ width: '1em' }} />
+      )}
+      <Radio checked={isSelected} onChange={() => onSelect(data.value)} />
+      <Flex
+        flex
+        column
+        block
+        onClick={isLeaf ? () => onSelect(data.value) : _.noop}
+      >
+        {data.text}
+      </Flex>
+    </Flex>
+  )
+}
 
-    return (
-      <>
-        {_.map(list, v => (
-          <LeafItem
-            key={v.value}
-            leaf={v}
-            checked={_.includes(selectedValues, v.value)}
-            onChange={this.handleChange}
-            onClickName={onClickLeafName}
-            renderLeafItem={renderLeafItem}
-            disabled={disabled}
-            _level={_level}
-          />
-        ))}
-      </>
-    )
+Item.propTypes = {
+  isGroup: PropTypes.bool.isRequired,
+  onGroup: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  flatData: PropTypes.shape({
+    isLeaf: PropTypes.bool.isRequired,
+    level: PropTypes.number.isRequired,
+    data: PropTypes.object.isRequired
+  })
+}
+
+const List = ({
+  list,
+  groupSelected,
+  onGroupSelect,
+  selectedValues,
+  onSelectValues
+}) => {
+  const flatList = useMemo(() => {
+    return listToFlat(list, groupSelected)
+  }, [list, groupSelected])
+
+  const handleGroup = value => {
+    onGroupSelect(_.xor(groupSelected, [value]))
   }
+
+  const handleSelect = value => {
+    onSelectValues(_.xor(selectedValues, [value]))
+  }
+
+  return (
+    <div>
+      {_.map(flatList, v => {
+        const isGroup = groupSelected.includes(v.data.value)
+        const isSelected = selectedValues.includes(v.data.value)
+        return (
+          <Item
+            key={v.data.value}
+            isGroup={isGroup}
+            onGroup={handleGroup}
+            onSelect={handleSelect}
+            isSelected={isSelected}
+            flatData={v}
+          />
+        )
+      })}
+    </div>
+  )
 }
 
 List.propTypes = {
-  disabled: PropTypes.bool,
+  list: PropTypes.array.isRequired,
   groupSelected: PropTypes.array.isRequired,
   onGroupSelect: PropTypes.func.isRequired,
-
-  list: PropTypes.array.isRequired,
   selectedValues: PropTypes.array.isRequired,
-  onSelectValues: PropTypes.func.isRequired,
-  showGroupCheckbox: PropTypes.func.isRequired,
-
-  onClickLeafName: PropTypes.func,
-  onClickGroupName: PropTypes.func,
-  onClickCheckbox: PropTypes.func,
-  onClickExpand: PropTypes.func,
-
-  // 自定义 leaf 渲染格式
-  renderLeafItem: PropTypes.func,
-  renderGroupItem: PropTypes.func,
-
-  _level: PropTypes.number
-}
-
-List.defaultProps = {
-  _level: 0
+  onSelectValues: PropTypes.func.isRequired
 }
 
 export default List

@@ -84,7 +84,7 @@ const Tree = ({
   return (
     <Flex {...rest} column className={classNames('t-tree', className)}>
       {title && (
-        <div className='t-padding-one t-back-bg t-text-center t-border-bottom'>
+        <div className='t-padding-one t-text-center t-border-bottom'>
           {title}
         </div>
       )}
@@ -100,14 +100,14 @@ const Tree = ({
         </div>
       )}
 
-      <Flex flex column className='t-bg t-overflow-y'>
-        {/*<List*/}
-        {/*  groupSelected={newGS}*/}
-        {/*  onGroupSelect={handleGroupSelect}*/}
-        {/*  list={filterList}*/}
-        {/*  selectedValues={selectedValues}*/}
-        {/*  onSelectValues={onSelectValues}*/}
-        {/*/>*/}
+      <Flex flex column className='t-overflow-y'>
+        <List
+          list={filterList}
+          groupSelected={newGS}
+          onGroupSelect={handleGroupSelect}
+          selectedValues={selectedValues}
+          onSelectValues={onSelectValues}
+        />
       </Flex>
 
       <Bottom

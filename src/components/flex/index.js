@@ -35,6 +35,8 @@ const Flex = ({
   alignContentAround,
   alignContentStretch,
 
+  block,
+
   className,
   style,
   children,
@@ -71,7 +73,9 @@ const Flex = ({
       't-flex-align-content-center': alignContentCenter,
       't-flex-align-content-between': alignContentBetween,
       't-flex-align-content-around': alignContentAround,
-      't-flex-align-content-stretch': alignContentStretch
+      't-flex-align-content-stretch': alignContentStretch,
+
+      't-block': block
     },
     className
   )
@@ -121,6 +125,7 @@ Flex.propTypes = {
   alignContentBetween: PropTypes.bool,
   alignContentAround: PropTypes.bool,
   alignContentStretch: PropTypes.bool,
+  block: PropTypes.bool,
   children: PropTypes.any,
   className: PropTypes.string,
   style: PropTypes.object

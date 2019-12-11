@@ -40,4 +40,55 @@ function filterGroupList(list, what) {
   return filterGroupListLeaf(_.cloneDeep(list), what)
 }
 
-export { getLeaf, getUnLeafValues, filterGroupList }
+function listToFlat(list, groupSelected) {
+  const result = []
+
+  // 我就不信你层级这么多，4层够用了。懒(bu)得(hui)写递归
+  _.each(list, one => {
+    result.push({
+      isLeaf: !one.children,
+      level: 0,
+      data: one
+    })
+
+    if (!groupSelected.includes(one.value)) {
+      return
+    }
+
+    _.each(one.children, two => {
+      result.push({
+        isLeaf: !two.children,
+        level: 1,
+        data: two
+      })
+
+      if (!groupSelected.includes(two.value)) {
+        return
+      }
+
+      _.each(two.children, there => {
+        result.push({
+          isLeaf: !there.children,
+          level: 2,
+          data: there
+        })
+
+        if (!groupSelected.includes(there.value)) {
+          return
+        }
+
+        _.each(there.children, four => {
+          result.push({
+            isLeaf: !four.children,
+            level: 3,
+            data: four
+          })
+        })
+      })
+    })
+  })
+
+  return result
+}
+
+export { getLeaf, getUnLeafValues, filterGroupList, listToFlat }

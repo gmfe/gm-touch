@@ -15,7 +15,7 @@ const Bottom = ({
       <Radio checked={checkedAll} onChange={onChange}>
         {getLocale('全选')}
       </Radio>
-      <div className='t-padding-lr-one t-text-desc'>
+      <div className='t-padding-lr-one'>
         {selectValuesLength}/{leafListLength}
       </div>
     </Flex>
