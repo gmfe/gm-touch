@@ -95,7 +95,7 @@ class Transfer extends React.Component {
             disabled={disabled}
           />
 
-          <div className='gm-gap-5' />
+          <div className='gm-gap-one' />
           <Flex
             column
             justifyCenter
@@ -105,7 +105,7 @@ class Transfer extends React.Component {
             <button
               type='button'
               disabled={disabled || leftSelectedValues.length === 0}
-              className='btn btn-default btn-block gm-margin-bottom-5'
+              className='btn btn-default btn-block gm-margin-bottom-one'
               onClick={this.handleToRightClick}
             >
               &gt;
@@ -119,7 +119,7 @@ class Transfer extends React.Component {
               &lt;
             </button>
           </Flex>
-          <div className='gm-gap-5' />
+          <div className='gm-gap-one' />
 
           <Box
             list={rightList}

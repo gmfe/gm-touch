@@ -56,7 +56,7 @@ class Box extends React.Component {
     return (
       <Flex column className='gm-transfer-box gm-border gm-bg' style={style}>
         {title && (
-          <div className='gm-transfer-box-title gm-padding-5 gm-back-bg text-center gm-border-bottom'>
+          <div className='gm-transfer-box-title gm-padding-one gm-back-bg text-center gm-border-bottom'>
             {title}
           </div>
         )}
@@ -76,7 +76,7 @@ class Box extends React.Component {
         ) : null}
         <Flex flex column className='gm-bg gm-transfer-box-list gm-overflow-y'>
           <CheckboxGroup
-            className='gm-margin-0'
+            className='gm-margin-none'
             name={'transferBox' + Math.random()}
             value={selectedValues}
             onChange={this.handleChange}
@@ -98,7 +98,7 @@ class Box extends React.Component {
         <Flex justifyBetween alignCenter className='gm-border-top'>
           <CheckboxGroup
             name='transferBoxBottom'
-            className='gm-margin-0 gm-padding-5'
+            className='gm-margin-none gm-padding-one'
             value={[list.length !== 0 && list.length === selectedValues.length]}
             onChange={this.handleSelectAll}
           >
@@ -106,7 +106,7 @@ class Box extends React.Component {
               {getLocale('全选')}
             </Checkbox>
           </CheckboxGroup>
-          <div className='gm-padding-lr-5 gm-text-desc'>
+          <div className='gm-padding-lr-one gm-text-desc'>
             {selectedValues.length}/{list.length}
           </div>
         </Flex>

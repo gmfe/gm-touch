@@ -14,7 +14,7 @@ const Bottom = props => {
   } = props
 
   return (
-    <Flex justifyBetween alignCenter className='gm-border-top gm-padding-5'>
+    <Flex justifyBetween alignCenter className='gm-border-top gm-padding-one'>
       <Checkbox
         value
         checked={checkedAll}
@@ -23,7 +23,7 @@ const Bottom = props => {
       >
         {getLocale('全选')}
       </Checkbox>
-      <div className='gm-padding-lr-5 gm-text-desc'>
+      <div className='gm-padding-lr-one gm-text-desc'>
         {selectValuesLength}/{leafListLength}
       </div>
     </Flex>

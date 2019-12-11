@@ -10,6 +10,7 @@ const Button = ({
   type,
   size,
   disabled,
+  block,
   className,
   children,
   ...rest
@@ -36,7 +37,8 @@ const Button = ({
         't-btn',
         {
           [`t-btn-${type}`]: type,
-          [`t-btn-${size}`]: size
+          [`t-btn-${size}`]: size,
+          't-btn-block': block
         },
         className
       )}
@@ -51,6 +53,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['primary']),
   size: PropTypes.oneOf(['lg']),
+  block: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object

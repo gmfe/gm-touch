@@ -110,7 +110,7 @@ const Tree = ({
       )}
     >
       {title && (
-        <div className='gm-padding-5 gm-back-bg text-center gm-border-bottom'>
+        <div className='gm-padding-one gm-back-bg text-center gm-border-bottom'>
           {title}
         </div>
       )}

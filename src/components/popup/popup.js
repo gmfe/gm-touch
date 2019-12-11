@@ -76,12 +76,12 @@ class Popup extends React.Component {
 
     return (
       <div
-        className={classNames('gm-popup-arrow', {
-          'gm-popup-arrow-top': top,
-          'gm-popup-arrow-bottom': !top,
-          'gm-popup-arrow-right': !center && right,
-          'gm-popup-arrow-left': !center && !right,
-          'gm-popup-arrow-center': center
+        className={classNames('t-popup-arrow', {
+          't-popup-arrow-top': top,
+          't-popup-arrow-bottom': !top,
+          't-popup-arrow-right': !center && right,
+          't-popup-arrow-left': !center && !right,
+          't-popup-arrow-center': center
         })}
         style={style}
       />
@@ -144,12 +144,12 @@ class Popup extends React.Component {
         {...rest}
         style={Object.assign(sStyle, style)}
         className={classNames(
-          'gm-popup',
+          't-popup',
           {
-            'gm-popup-pure': pureContainer,
+            't-popup-pure': pureContainer,
             // 在计算的时候不能出现动画，否则会偏差
-            'gm-animated': isInit && animate,
-            [`gm-animated-${animate}`]: isInit && animate
+            't-animated': isInit && animate,
+            [`t-animated-${animate}`]: isInit && animate
           },
           className
         )}

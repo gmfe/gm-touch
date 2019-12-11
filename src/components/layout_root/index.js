@@ -41,7 +41,7 @@ class LayerRoot extends React.Component {
     const { drawer, _popup, modal, tips, full_loading, n_progress } = this.state
     // 有层级关系
     return (
-      <div>
+      <div className='t-layout-root'>
         {_popup && _popup.length > 0 && (
           <div>
             {_.map(_popup, v =>

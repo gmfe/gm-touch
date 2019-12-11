@@ -1,17 +1,17 @@
 input.t-switch {
   position: relative;
   -webkit-appearance: none;
-  height: var(--switch-size-height);
-  border-radius: calc(var(--switch-size-height) / 2);
-  background-color: var(--switch-color-bg);
+  height: var(--size-form-height);
+  border-radius: calc(var(--size-form-height) / 2);
+  background-color: var(--color-bg-second);
 
   &::before {
     position: absolute;
     content: '';
     top: 2px;
     left: 2px;
-    width: calc(var(--switch-size-height) - 4px);
-    height: calc(var(--switch-size-height) - 4px);
+    width: calc(var(--size-form-height) - 4px);
+    height: calc(var(--size-form-height) - 4px);
     border-radius: 50%;
     background-color: var(--color-bg);
     transition: all 0.35s;
@@ -20,23 +20,23 @@ input.t-switch {
   &::after {
     content: attr(data-text);
     color: var(--color-white);
-    padding-left: var(--switch-size-height);
-    line-height: var(--switch-size-height);
+    padding-left: var(--size-form-height);
+    line-height: var(--size-form-height);
     transition: all 0.35s;
   }
 
   &.t-switch-lg {
     font-size: var(--size-text-lg);
-    height: var(--switch-size-height-lg);
-    border-radius: calc(var(--switch-size-height-lg) / 2);
+    height: var(--size-form-height-lg);
+    border-radius: calc(var(--size-form-height-lg) / 2);
 
     &::before {
-      width: calc(var(--switch-size-height-lg) - 4px);
-      height: calc(var(--switch-size-height-lg) - 4px);
+      width: calc(var(--size-form-height-lg) - 4px);
+      height: calc(var(--size-form-height-lg) - 4px);
     }
     &::after {
-      padding-left: var(--switch-size-height-lg);
-      line-height: var(--switch-size-height-lg);
+      padding-left: var(--size-form-height-lg);
+      line-height: var(--size-form-height-lg);
     }
   }
 

@@ -1,4 +1,69 @@
-import Select from './select'
-import Option from './option'
+import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import _ from 'lodash'
+import Popover from '../popover'
+import Selection from '../selection'
+import List from '../list'
 
-export { Select, Option }
+const Select = ({
+  data,
+  value,
+  onChange,
+  children,
+  disabled,
+  className,
+  ...rest
+}) => {
+  const refPopup = useRef(null)
+
+  const handleChange = value => {
+    refPopup.current.apiDoSetActive(false)
+
+    onChange(value)
+  }
+
+  let selected
+  let newData
+
+  newData = data
+  selected = _.find(newData, v => v.value === value)
+
+  const popup = (
+    <List
+      data={newData}
+      selected={value}
+      onSelect={handleChange}
+      className={'t-border-none'}
+      style={{
+        maxHeight: '250px'
+      }}
+    />
+  )
+
+  return (
+    <Popover ref={refPopup} type='focus' popup={popup} disabled={disabled}>
+      <Selection
+        {...rest}
+        selected={selected}
+        onSelect={onChange}
+        disabled={disabled}
+        className={classNames(`t-select t-inline-block`, className)}
+      />
+    </Popover>
+  )
+}
+
+Select.displayName = 'Select'
+
+Select.propTypes = {
+  /** [{text, value, disabled}, {text, value}] */
+  data: PropTypes.array.isRequired,
+  value: PropTypes.any.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object
+}
+
+export default Select

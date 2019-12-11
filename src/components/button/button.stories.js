@@ -9,15 +9,16 @@ export const Default = () => {
   return (
     <>
       <Button>按钮</Button>
-      <Button type='primary'>按钮</Button>
-      <Button size='lg'>按钮</Button>
-      <Button disabled>按钮</Button>
+      <Button type='primary'>Primary</Button>
+      <Button size='lg'>按钮 lg</Button>
+      <Button disabled>Primary lg</Button>
       <Button type='primary' disabled>
-        按钮
+        按钮 disabled
       </Button>
       <Button size='lg' disabled>
-        按钮
+        按钮 disabled lg
       </Button>
+      <Button block>block</Button>
     </>
   )
 }
@@ -32,6 +33,8 @@ export const loading = () => {
           }, 3000)
         })
       }}
-    >Loading</Button>
+    >
+      Loading
+    </Button>
   )
 }

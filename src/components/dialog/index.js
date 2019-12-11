@@ -188,14 +188,14 @@ class Dialog extends React.Component {
             />
           )}
         </div>
-        <div className='gm-gap-10' />
+        <div className='gm-gap-two' />
         <div className='text-right'>
           {type !== 'alert' && cancelBtn && !isLoading && (
             <button className='btn btn-default' onClick={this.handleCancel}>
               {cancelBtn}
             </button>
           )}
-          <div className='gm-gap-10' />
+          <div className='gm-gap-two' />
           {OKBtn && (
             <button
               className='btn btn-primary'

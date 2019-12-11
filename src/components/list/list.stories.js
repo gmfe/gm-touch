@@ -44,15 +44,6 @@ storiesOf('List', module)
       />
     </div>
   ))
-  .add('disabled', () => (
-    <div className='gm-inline-block'>
-      <List
-        data={data}
-        selected={store.selected}
-        onSelect={selected => store.setSelected(selected)}
-      />
-    </div>
-  ))
   .add('multiple', () => (
     <div className='gm-inline-block'>
       <List

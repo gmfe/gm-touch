@@ -1,41 +1,28 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Selection from './'
 
-storiesOf('内部|Selection', module)
-  .add('default', () => (
+export const Default = () => (
+  <div style={{ width: '300px' }}>
+    <div>常规</div>
     <Selection
       onSelect={selected => console.log(selected)}
       placeholder='请选择'
     />
-  ))
-  .add('disabled', () => (
+    <div>disabled</div>
     <Selection
       disabled
       onSelect={selected => console.log(selected)}
       placeholder='请选择'
     />
-  ))
-  .add('自定义选中项', () => (
+    <div>自定义选中项</div>
     <Selection
       selected={{ value: 0, text: '选中项' }}
       onSelect={selected => console.log(selected)}
       renderSelected={item => item.text + 'lalala'}
     />
-  ))
-  .add('clean', () => (
-    <Selection
-      clean
-      selected={{ value: 0, text: '选中项' }}
-      onSelect={selected => console.log(selected)}
-      placeholder='请选择'
-    />
-  ))
-  .add('disabledClose', () => (
-    <Selection
-      disabledClose
-      selected={{ value: 0, text: '选中项' }}
-      onSelect={selected => console.log(selected)}
-      placeholder='请选择'
-    />
-  ))
+  </div>
+)
+
+export default {
+  title: 'Selection'
+}

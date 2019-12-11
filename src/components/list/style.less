@@ -1,55 +1,42 @@
-// 注意注意
-// gm-list gm-list-item.active 被 Select 使用
-.gm-list {
-  border: 1px solid @gm-border-color;
-  background: white;
-  // 注意，overflow-y 会被 FunctionSet 覆盖
+.t-list {
   overflow-y: auto;
-  min-width: 80px;
+  min-width: 150px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
 
-  .gm-list-item {
-    cursor: pointer;
-    padding: 5px 10px;
-    background: #fff;
+  .t-list-item {
+    height: var(--size-form-height);
+    line-height: var(--size-form-height);
+    padding: var(--size-form-padding);
+    background: var(--color-bg);
 
     &.active {
-      color: @brand-primary;
+      color: var(--color-primary);
     }
 
     &.disabled {
-      cursor: not-allowed;
-      color: @gm-color-fourth;
-    }
-
-    &.will-active {
-      background-color: @gm-list-bg-hover;
-    }
-
-    &:hover {
-      background-color: @gm-list-bg-hover;
-
-      &.disabled {
-        color: @gm-color-third;
-      }
+      opacity: 0.5;
     }
   }
 
-  &.gm-list-group {
-    .gm-list-group-item {
-      border-bottom: 1px solid @gm-border-color;
+  &.t-list-group {
+    .t-list-group-item {
+      border-bottom: 1px solid var(--color-border);
 
       &:last-child {
         border-bottom: none;
       }
     }
 
-    .gm-list-label {
-      color: @gm-color-second;
-      padding: 5px 10px;
+    .t-list-label {
+      color: var(--color-second);
+      height: var(--size-form-height);
+      line-height: var(--size-form-height);
+      padding: var(--size-form-padding);
     }
 
-    .gm-list-item {
-      padding: 5px 10px 5px 22px;
+    .t-list-item {
+      padding-left: calc(10px + 1em);
     }
   }
 }

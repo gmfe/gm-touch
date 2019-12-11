@@ -10,10 +10,10 @@ import Tip from './components/tip'
 import Storage from './components/storage'
 // import Checkbox from './components/checkbox/checkbox'
 // import Dialog from './components/dialog'
-// import List from './components/list'
-// import Modal from './components/modal'
-// import Popover from './components/popover'
-// import Select from './components/select/select'
+import List from './components/list'
+import Modal from './components/modal'
+import Popover from './components/popover'
+import Select from './components/select'
 // import TransferGroup from './components/transfer/transfer_group'
 
 export {
@@ -26,5 +26,9 @@ export {
   Switch,
   InputNumber,
   Tip,
-  Storage
+  Storage,
+  Popover,
+  Select,
+  List,
+  Modal
 }

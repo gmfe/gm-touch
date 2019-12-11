@@ -71,7 +71,7 @@ storiesOf('Modal', module)
       className='btn btn-primary'
       onClick={() => {
         CleanModal.render({
-          children: <div className='gm-text-white'>啦啦啦</div>,
+          children: <div className='t-text-white'>啦啦啦</div>,
           onHide: Modal.hide
         })
       }}

@@ -2,14 +2,22 @@
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid var(--color-border);
   white-space: nowrap;
-  padding: var(--btn-size-padding);
-  font-size: var(--size-text-default);
-  line-height: 1.5;
   font-weight: normal;
+
+  font-size: var(--size-text-default);
+  padding: var(--size-form-padding);
+  height: var(--size-form-height);
+  line-height: var(--size-form-height);
+
+  border: 1px solid var(--color-border);
   color: var(--color-first);
   background: var(--color-bg);
+
+  &.t-btn-block {
+    display: inline-block;
+    width: 100%;
+  }
 
   &.t-btn-primary {
     color: var(--color-white);
@@ -19,7 +27,9 @@
 
   &.t-btn-lg {
     font-size: var(--size-text-lg);
-    padding: var(--btn-size-padding-lg);
+    padding: var(--size-form-padding-lg);
+    height: var(--size-form-height-lg);
+    line-height: var(--size-form-height-lg);
   }
 
   &:disabled {

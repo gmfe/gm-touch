@@ -19,19 +19,19 @@ const PopupContentConfirm = props => {
   return (
     <div
       {...rest}
-      className={classNames('gm-popup-content-confirm', className)}
+      className={classNames('t-popup-content-confirm', className)}
     >
-      <div className='gm-popup-content-confirm-title-wrap'>
-        <div className='gm-popup-content-confirm-title'>{title}</div>
-        <div className='gm-popup-content-confirm-close' onClick={onCancel}>
+      <div className='t-popup-content-confirm-title-wrap'>
+        <div className='t-popup-content-confirm-title'>{title}</div>
+        <div className='t-popup-content-confirm-close' onClick={onCancel}>
           <SVGRemove />
         </div>
       </div>
-      <div className='gm-popup-content-confirm-content'>
+      <div className='t-popup-content-confirm-content'>
         {children}
-        <div className='gm-popup-content-confirm-button'>
+        <div className='t-popup-content-confirm-button'>
           <button
-            className='btn btn-default gm-margin-right-5'
+            className='btn btn-default t-margin-right-one'
             onClick={onCancel}
           >
             取消

@@ -6,16 +6,16 @@
 */
 
 :root {
+  // 有层级关系，所以 first second
+  --color-first: #000923;
+  --color-second: #798294;
+
   // 颜色相关
   --color-primary: #56a3f2;
   --color-success: #b7eb8f;
   --color-info: #91d5ff;
   --color-warning: #ffe58f;
   --color-danger: #ffa39e;
-
-  // 有层级关系，所以 first second
-  --color-first: #333;
-  --color-second: #798294;
 
   // 更抽象的颜色
   --color-desc: var(--color-second);
@@ -26,7 +26,11 @@
 
   --color-bg: white;
   --color-bg-back: #f7f8fa;
+  --color-bg-second: var(--color-second);
   --color-bg-primary: var(--color-primary);
+
+  --color-bg-mask: rgba(0, 0, 0, 0.5);
+  --color-bg-mask-white: rgba(255, 255, 255, 0.8);
 
   --color-border: #d4d8d8;
 
@@ -40,16 +44,11 @@
   --size-four: 20px;
   --size-five: 25px;
 
-  // btn 相关
-  --btn-size-padding: 5px 10px;
-  --btn-size-padding-lg: 10px 15px;
+  --size-form-height: 36px;
+  --size-form-height-lg: 50px;
+  --size-form-padding: 0 10px;
+  --size-form-padding-lg: 0 15px;
 
-  // mask
-  --mask-color-bg: rgba(0, 0, 0, 0.5);
-  --mask-color-bg-white: rgba(255, 255, 255, 0.8);
-
-  // switch
-  --switch-size-height: 36px;
-  --switch-size-height-lg: 49px;
-  --switch-color-bg: #afb5c0; // 暂时不知道如何抽象
+  // modal
+  --modal-size-title-height: var(--size-form-height);
 }

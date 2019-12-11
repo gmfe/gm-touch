@@ -1,9 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import Select from './select'
-import Option from './option'
+import Select from './'
 import { observable } from 'mobx'
-import _ from 'lodash'
 
 const list = [
   {
@@ -24,7 +22,7 @@ const list = [
     disabled: true
   },
   {
-    value: 3,
+    value: 4,
     text: '罗湖'
   }
 ]
@@ -51,29 +49,4 @@ storiesOf('Select', module)
       onChange={value => store.setValue(value)}
       disabled
     />
-  ))
-  .add('canShowClose', () => (
-    <Select
-      data={list}
-      value={store.value}
-      onChange={value => store.setValue(value)}
-      canShowClose
-    />
-  ))
-  .add('clean 模式', () => (
-    <Select
-      clean
-      data={list}
-      value={store.value}
-      onChange={value => store.setValue(value)}
-    />
-  ))
-  .add('兼容老用法', () => (
-    <Select value={store.value} onChange={value => store.setValue(value)}>
-      {_.map(list, v => (
-        <Option key={v.value} value={v.value} disabled={v.disabled}>
-          {v.text}
-        </Option>
-      ))}
-    </Select>
   ))
