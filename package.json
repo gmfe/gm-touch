@@ -1,8 +1,9 @@
 {
   "name": "gm-touch",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
     "start": "start-storybook",
     "build": "build-storybook -c .storybook -o docs",

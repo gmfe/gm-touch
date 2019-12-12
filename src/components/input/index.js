@@ -5,7 +5,6 @@ import classNames from 'classnames'
 const Input = ({ size, block, className, ...rest }) => {
   return (
     <input
-      type='text'
       {...rest}
       className={classNames(
         't-input',
@@ -20,8 +19,13 @@ const Input = ({ size, block, className, ...rest }) => {
 }
 
 Input.propTypes = {
+  type: PropTypes.oneOf(['password', 'text', 'number']),
   size: PropTypes.oneOf(['lg']),
   block: PropTypes.bool
+}
+
+Input.defaultProps = {
+  type: 'text'
 }
 
 export default Input

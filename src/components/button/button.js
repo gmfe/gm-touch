@@ -11,6 +11,7 @@ const Button = ({
   size,
   disabled,
   block,
+  htmlType,
   className,
   children,
   ...rest
@@ -42,6 +43,7 @@ const Button = ({
         },
         className
       )}
+      type={htmlType}
     >
       {loading && <Loading className='t-inline-block t-text' />}
       {children}
@@ -53,6 +55,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['primary']),
   size: PropTypes.oneOf(['lg']),
+  htmlType: PropTypes.oneOf(['submit', 'reset', 'button']),
   block: PropTypes.bool,
   disabled: PropTypes.bool,
   className: PropTypes.string,

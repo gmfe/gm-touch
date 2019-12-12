@@ -1,6 +1,8 @@
 import LayoutRoot from './components/layout_root'
 import Button from './components/button/button'
 import Loading from './components/loading'
+import LoadingChunk from './components/loading/loading_chunk'
+import LoadingFullScreen from './components/loading/loading_full_screen'
 import Flex from './components/flex'
 import Collapse from './components/collapse'
 import IconDownUp from './components/icon_down_up'
@@ -16,9 +18,12 @@ import Popover from './components/popover'
 import Select from './components/select'
 import Input from './components/input'
 import Tree from './components/tree'
+
 export {
   LayoutRoot,
   Loading,
+  LoadingChunk,
+  LoadingFullScreen,
   Button,
   Flex,
   Collapse,

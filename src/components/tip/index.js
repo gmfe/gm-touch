@@ -2,6 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import LayoutRoot from '../layout_root'
 import classNames from 'classnames'
+import SVGSuccess from '../../../svg/success-circle.svg'
+import SVGInfo from '../../../svg/info-circle.svg'
+import SVGWarning from '../../../svg/warning-circle.svg'
+import SVGDanger from '../../../svg/close-circle.svg'
+import Flex from '../flex'
+
+const iconMap = {
+  info: <SVGInfo />,
+  success: <SVGSuccess />,
+  warning: <SVGWarning />,
+  danger: <SVGDanger />
+}
 
 const TipStatics = {
   tip: function(options, type) {
@@ -56,14 +68,16 @@ const TipStatics = {
 
 const Tip = ({ type, onClose, children }) => {
   return (
-    <div
+    <Flex
+      alignCenter
       className={classNames('t-tip t-animated t-animated-fade-in-right-100', {
         [`t-tip-${type}`]: type
       })}
       onClick={onClose}
     >
-      {children}
-    </div>
+      <div className='t-tip-icon'>{iconMap[type]}</div>
+      <Flex flex>{children}</Flex>
+    </Flex>
   )
 }
 
