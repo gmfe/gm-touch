@@ -14,6 +14,8 @@ import Radio from './components/radio'
 import Dialog from './components/dialog'
 import List from './components/list'
 import Modal from './components/modal'
+import CleanModal from './components/modal/clean_modal'
+import RightSideModal from './components/modal/right_side_modal'
 import Popover from './components/popover'
 import Select from './components/select'
 import Input from './components/input'
@@ -36,6 +38,8 @@ export {
   Select,
   List,
   Modal,
+  CleanModal,
+  RightSideModal,
   Dialog,
   Radio,
   Input,
