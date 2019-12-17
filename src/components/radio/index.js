@@ -11,7 +11,6 @@ const Radio = ({
   onChange,
   size,
   disabled,
-  style,
   className,
   children,
   ...rest

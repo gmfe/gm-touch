@@ -69,7 +69,6 @@ const TipStatics = {
 const Tip = ({ type, onClose, children }) => {
   return (
     <Flex
-      alignCenter
       className={classNames('t-tip t-animated t-animated-fade-in-right-100', {
         [`t-tip-${type}`]: type
       })}

@@ -20,6 +20,7 @@ import Popover from './components/popover'
 import Select from './components/select'
 import Input from './components/input'
 import Tree from './components/tree'
+import NProgress from './components/nprogress'
 
 export {
   LayoutRoot,
@@ -43,5 +44,6 @@ export {
   Dialog,
   Radio,
   Input,
-  Tree
+  Tree,
+  NProgress
 }

@@ -3,11 +3,13 @@
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
-    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: 'Segoe UI', 'Lucida Grande', Helvetica, Arial, 'Microsoft YaHei',
+    FreeSans, Arimo, 'Droid Sans', 'wenquanyi micro hei', 'Hiragino Sans GB',
+    'Hiragino Sans GB W3', FontAwesome, sans-serif;
   font-size: var(--size-text);
   color: var(--color-first);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
 }
 
 .t-svg-icon {
@@ -31,6 +33,7 @@ body {
 
 @import './components/selection/style';
 
+@import './components/nprogress/style';
 @import './components/button/style';
 @import './components/loading/style';
 @import './components/flex/style';
