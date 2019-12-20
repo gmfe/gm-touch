@@ -1,0 +1,87 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "semi": [
+      "warn",
+      "never"
+    ],
+    "accessor-pairs": "error",
+    "eqeqeq": "error",
+    "max-classes-per-file": [
+      "error",
+      3
+    ],
+    "no-alert": "warn",
+    "no-empty-function": "warn",
+    "no-empty-pattern": "off",
+    "no-multi-spaces": "error",
+    "require-atomic-updates": "off",
+    "no-self-compare": "error",
+    "camelcase": "error",
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "max-depth": [
+      "error",
+      4
+    ],
+    "no-multiple-empty-lines": "error",
+    "no-nested-ternary": "error",
+    "no-var": "error",
+    "prefer-destructuring": "warn",
+    "prefer-rest-params": "error",
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "interface"
+    ],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/camelcase": "warn",
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/no-require-imports": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.tsx"
+      ],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ]
+}
