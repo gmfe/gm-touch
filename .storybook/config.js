@@ -7,7 +7,10 @@ import { LayoutRoot } from '../src'
 // 引入 react-gm 样式
 import '../src/index.less'
 
-const reqs = [require.context('../src', true, /stories\.js$/)]
+const reqs = [
+  require.context('../src', true, /stories\.js$/),
+  require.context('../sortable', true, /stories\.js$/)
+]
 
 addDecorator(
   withInfo({
