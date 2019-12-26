@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import SortableBase from './base'
 import _ from 'lodash'
 import classNames from 'classnames'
+import { Flex } from '../src/index'
 
 const Sortable = ({
                     data,
@@ -18,6 +19,7 @@ const Sortable = ({
       console.error('group必须提供groupData')
     }
   }, [])
+
   const handleChange = order => {
     order = _.map(order, v => JSON.parse(v))
     let newData = []
@@ -29,7 +31,7 @@ const Sortable = ({
   }
 
   const items = _.map(data, (v, index) => (
-    <div
+    <Flex
       key={v.value}
       data-id={JSON.stringify(v.value)}
       className={classNames({
@@ -37,7 +39,7 @@ const Sortable = ({
       })}
     >
       {renderItem(v, index)}
-    </div>
+    </Flex>
   ))
 
   return (
@@ -64,7 +66,7 @@ Sortable.propTypes = {
   tag: PropTypes.node,
   options: PropTypes.object,
   /** 如果是group，则必传 */
-  groupData: PropTypes.array
+  groupData: PropTypes.array,
 }
 
 Sortable.defaultProps = {

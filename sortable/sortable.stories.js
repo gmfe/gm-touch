@@ -2,6 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { observable } from 'mobx'
 import Sortable  from './sortable'
+import { Flex } from '../src/index'
+import PropTypes from 'prop-types'
 
 const data1 = [
   {
@@ -47,16 +49,55 @@ const data2 = [
     text: '大闸蟹2'
   }
 ]
+const data3 = [
+  {
+    value: 11,
+    text: '大白菜3'
+  },
+  {
+    value: 12,
+    text: '牛肉3'
+  },
+  {
+    value: 13,
+    text: '鸡肉3'
+  },
+  {
+    value: 14,
+    text: '鸭肉3'
+  },
+  {
+    value: 15,
+    text: '大闸蟹3'
+  }
+]
+
+const Wrap = React.forwardRef(({ className, ...rest }, ref) => (
+  <Flex
+    ref={ref}
+    {...rest}
+    wrap
+    className={className}
+  />
+))
+
+Wrap.propTypes = {
+  className: PropTypes.string
+}
 
 const store = observable({
   data1: data1,
   data2: data2,
+  data3: data3,
   disabled: false,
   setData1(data) {
     this.data1 = data
   },
   setData2(data) {
     this.data2 = data
+  },
+  setData3(data) {
+    this.data3 = data
   }
 })
 
@@ -74,7 +115,7 @@ storiesOf('Sortable|Sortable', module).add('single', () => (
         group: "shared"
       }}
       data={store.data1}
-      // groupData={[...data1, ...data2]}
+      groupData={[...data1, ...data2]}
       onChange={data => store.setData1(data)}
     />
     =====================================
@@ -83,6 +124,43 @@ storiesOf('Sortable|Sortable', module).add('single', () => (
       data={store.data2}
       groupData={[...data1, ...data2]}
       onChange={data => store.setData2(data)}
+      options={{
+        group: "shared"
+      }}
+    />
+  </div>
+)).add('group & grid', () => (
+  <div>
+    <Sortable
+      key='data1'
+      tag={Wrap}
+      options={{
+        group: "shared"
+      }}
+      data={store.data1}
+      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
+      groupData={[...data1, ...data2, ...data3]}
+      onChange={data => store.setData1(data)}
+    />
+    =====================================
+    <Sortable
+      key='data2'
+      tag={Wrap}
+      data={store.data2}
+      groupData={[...data1, ...data2, ...data3]}
+      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
+      onChange={data => store.setData2(data)}
+      options={{
+        group: "shared"
+      }}
+    />=====================================
+    <Sortable
+      key='data3'
+      tag={Wrap}
+      data={store.data3}
+      groupData={[...data1, ...data2, ...data3]}
+      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
+      onChange={data => store.setData3(data)}
       options={{
         group: "shared"
       }}
