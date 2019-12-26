@@ -2,102 +2,107 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Flex = ({
-  flex,
-
-  auto,
-  none,
-  width,
-  height,
-
-  row,
-  column,
-
-  wrap,
-  nowrap,
-
-  justifyStart,
-  justifyEnd,
-  justifyCenter,
-  justifyBetween,
-  justifyAround,
-
-  alignStart,
-  alignEnd,
-  alignCenter,
-  alignBaseline,
-  alignStretch,
-
-  alignContentStart,
-  alignContentEnd,
-  alignContentCenter,
-  alignContentBetween,
-  alignContentAround,
-  alignContentStretch,
-
-  block,
-
-  className,
-  style,
-  children,
-
-  ...rest
-}) => {
-  const cn = classNames(
-    't-flex',
+const Flex = React.forwardRef(
+  (
     {
-      't-flex-flex': flex,
-      't-flex-auto': auto,
-      't-flex-none': none || width || height,
+      flex,
 
-      't-flex-row': row,
-      't-flex-column': column,
+      auto,
+      none,
+      width,
+      height,
 
-      't-flex-wrap': wrap,
-      't-flex-nowrap': nowrap,
+      row,
+      column,
 
-      't-flex-justify-start': justifyStart,
-      't-flex-justify-end': justifyEnd,
-      't-flex-justify-center': justifyCenter,
-      't-flex-justify-between': justifyBetween,
-      't-flex-justify-around': justifyAround,
+      wrap,
+      nowrap,
 
-      't-flex-align-start': alignStart,
-      't-flex-align-end': alignEnd,
-      't-flex-align-center': alignCenter,
-      't-flex-align-baseline': alignBaseline,
-      't-flex-align-stretch': alignStretch,
+      justifyStart,
+      justifyEnd,
+      justifyCenter,
+      justifyBetween,
+      justifyAround,
 
-      't-flex-align-content-start': alignContentStart,
-      't-flex-align-content-end': alignContentEnd,
-      't-flex-align-content-center': alignContentCenter,
-      't-flex-align-content-between': alignContentBetween,
-      't-flex-align-content-around': alignContentAround,
-      't-flex-align-content-stretch': alignContentStretch,
+      alignStart,
+      alignEnd,
+      alignCenter,
+      alignBaseline,
+      alignStretch,
 
-      't-block': block
+      alignContentStart,
+      alignContentEnd,
+      alignContentCenter,
+      alignContentBetween,
+      alignContentAround,
+      alignContentStretch,
+
+      block,
+
+      className,
+      style,
+      children,
+
+      ...rest
     },
-    className
-  )
+    ref
+  ) => {
+    const cn = classNames(
+      't-flex',
+      {
+        't-flex-flex': flex,
+        't-flex-auto': auto,
+        't-flex-none': none || width || height,
 
-  let s = Object.assign({}, style)
-  if (flex) {
-    s.flex = typeof flex === 'boolean' ? 1 : flex
-    s.WebKitFlex = typeof flex === 'boolean' ? 1 : flex
-  }
-  if (height) {
-    s.height = height
-  }
-  if (width) {
-    s.width = width
-  }
+        't-flex-row': row,
+        't-flex-column': column,
 
-  return (
-    <div {...rest} className={cn} style={s}>
-      {children}
-    </div>
-  )
-}
+        't-flex-wrap': wrap,
+        't-flex-nowrap': nowrap,
+
+        't-flex-justify-start': justifyStart,
+        't-flex-justify-end': justifyEnd,
+        't-flex-justify-center': justifyCenter,
+        't-flex-justify-between': justifyBetween,
+        't-flex-justify-around': justifyAround,
+
+        't-flex-align-start': alignStart,
+        't-flex-align-end': alignEnd,
+        't-flex-align-center': alignCenter,
+        't-flex-align-baseline': alignBaseline,
+        't-flex-align-stretch': alignStretch,
+
+        't-flex-align-content-start': alignContentStart,
+        't-flex-align-content-end': alignContentEnd,
+        't-flex-align-content-center': alignContentCenter,
+        't-flex-align-content-between': alignContentBetween,
+        't-flex-align-content-around': alignContentAround,
+        't-flex-align-content-stretch': alignContentStretch,
+
+        't-block': block
+      },
+      className
+    )
+
+    let s = Object.assign({}, style)
+    if (flex) {
+      s.flex = typeof flex === 'boolean' ? 1 : flex
+      s.WebKitFlex = typeof flex === 'boolean' ? 1 : flex
+    }
+    if (height) {
+      s.height = height
+    }
+    if (width) {
+      s.width = width
+    }
+
+    return (
+      <div {...rest} className={cn} style={s} ref={ref}>
+        {children}
+      </div>
+    )
+  }
+)
 
 Flex.propTypes = {
   flex: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
