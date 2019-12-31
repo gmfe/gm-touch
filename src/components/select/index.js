@@ -13,6 +13,7 @@ const Select = ({
   children,
   disabled,
   className,
+  isInPopup,
   ...rest
 }) => {
   const refPopup = useRef(null)
@@ -42,7 +43,13 @@ const Select = ({
   )
 
   return (
-    <Popover ref={refPopup} type='focus' popup={popup} disabled={disabled}>
+    <Popover
+      ref={refPopup}
+      type='focus'
+      popup={popup}
+      disabled={disabled}
+      isInPopup={isInPopup}
+    >
       <Selection
         {...rest}
         selected={selected}
@@ -63,7 +70,8 @@ Select.propTypes = {
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
+  isInPopup: PropTypes.bool
 }
 
 export default Select
