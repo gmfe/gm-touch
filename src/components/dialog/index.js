@@ -131,10 +131,10 @@ const Dialog = ({
         {type !== 'alert' && cancelBtn && (
           <Button onClick={handleCancel}>{cancelBtn}</Button>
         )}
-        <span className='t-gap-two' />
+        <span className='t-gap-30' />
         {OKBtn && (
           <Button type='primary' onClick={handleOK}>
-            OKBtn
+            {OKBtn}
           </Button>
         )}
       </div>
