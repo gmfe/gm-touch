@@ -27,11 +27,11 @@ const TipStatics = {
     options.type = type
 
     let timer = null
-    // if (options.time !== 0) {
-    //   timer = setTimeout(() => {
-    //     LayoutRoot._removeComponentTip(id)
-    //   }, options.time || 3000)
-    // }
+    if (options.time !== 0) {
+      timer = setTimeout(() => {
+        LayoutRoot._removeComponentTip(id)
+      }, options.time || 3000)
+    }
 
     const handleClose = () => {
       LayoutRoot._removeComponentTip(id)
