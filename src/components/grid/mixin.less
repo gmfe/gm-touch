@@ -1,0 +1,50 @@
+@grid-columns: 24;
+
+.t-grid-float-columns(@class) {
+  .col(@index) {
+    // initial
+    @item: ~'.t-grid-col@{class}-@{index}';
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general
+    @item: ~'.t-grid-col@{class}-@{index}';
+    .col((@index + 1), ~'@{list}, @{item}');
+  }
+  .col(@index, @list) when (@index > @grid-columns) {
+    // terminal
+    @{list} {
+      flex: 0 0 auto;
+      float: left;
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.t-grid-loop-columns(@index, @class) when (@index > 0) {
+  .t-grid-col@{class}-@{index} {
+    display: block;
+    box-sizing: border-box;
+    width: percentage((@index / @grid-columns));
+  }
+
+  .t-grid-col@{class}-offset-@{index} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+  .t-grid-loop-columns((@index - 1), @class);
+}
+
+.t-grid-loop-columns(@index, @class) when (@index = 0) {
+  .t-grid-col@{class}-@{index} {
+    display: none;
+  }
+
+  .t-grid-col@{class}-offset-@{index} {
+    margin-left: 0;
+  }
+}
+
+.t-grid(@class: ~'') {
+  .t-grid-float-columns(@class);
+  .t-grid-loop-columns(@grid-columns, @class);
+}

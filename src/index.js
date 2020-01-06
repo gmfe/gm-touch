@@ -21,6 +21,7 @@ import Select from './components/select'
 import Input from './components/input'
 import Tree from './components/tree'
 import NProgress from './components/nprogress'
+import { Col, Row } from './components/grid'
 
 export {
   LayoutRoot,
@@ -45,5 +46,7 @@ export {
   Radio,
   Input,
   Tree,
-  NProgress
+  NProgress,
+  Col,
+  Row
 }

@@ -1,0 +1,22 @@
+@import './mixin';
+
+.t-grid-row {
+  position: relative;
+  height: auto;
+  .t-clear-fix();
+}
+
+.t-grid(); // 不设置size时
+.t-grid(-sm); // 默认的
+
+@media (min-width: var(--size-screen-sm)) {
+  .t-grid(-sm);
+}
+
+@media (min-width: var(--size-screen-md)) {
+  .t-grid(-md);
+}
+
+@media (min-width: var(--size-screen-lg)) {
+  .t-grid(-lg);
+}
