@@ -28,7 +28,6 @@ input.t-switch {
   }
 
   &.t-switch-lg {
-    font-size: var(--size-text-lg);
     height: var(--size-form-height-lg);
     border-radius: calc(var(--size-form-height-lg) / 2);
 
@@ -39,6 +38,21 @@ input.t-switch {
     &::after {
       padding-left: var(--size-form-height-lg);
       line-height: var(--size-form-height-lg);
+    }
+  }
+
+  &.t-switch-small {
+    font-size: var(--size-text-lg);
+    height: var(--size-form-height-small);
+    border-radius: calc(var(--size-form-height-small) / 2);
+
+    &::before {
+      width: calc(var(--size-form-height-small) - 4px);
+      height: calc(var(--size-form-height-small) - 4px);
+    }
+    &::after {
+      padding-left: var(--size-form-height-small);
+      line-height: var(--size-form-height-small);
     }
   }
 

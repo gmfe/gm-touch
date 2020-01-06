@@ -43,6 +43,7 @@ const Switch = props => {
         ref={refOff}
         className={classNames('t-switch', {
           't-switch-lg': size === 'lg',
+          't-switch-small': size === 'small',
           disabled: disabled
         })}
         style={{ width: labelWidth }}
@@ -57,7 +58,8 @@ const Switch = props => {
           data-text={checked ? off : on}
           ref={refOn}
           className={classNames('t-switch', {
-            't-switch-lg': size === 'lg'
+            't-switch-lg': size === 'lg',
+            't-switch-small': size === 'small'
           })}
           type='checkbox'
           style={{ position: 'fixed', visibility: 'hidden' }}
@@ -74,7 +76,7 @@ Switch.propTypes = {
   onChange: PropTypes.func,
   on: PropTypes.any,
   off: PropTypes.any,
-  size: PropTypes.oneOf(['lg']),
+  size: PropTypes.oneOf(['lg', 'small']),
   disabled: PropTypes.bool
 }
 Switch.defaultProps = {
