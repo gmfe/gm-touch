@@ -55,7 +55,7 @@ const Select = ({
         selected={selected}
         onSelect={onChange}
         disabled={disabled}
-        className={classNames(`t-select t-inline-block`, className)}
+        className={classNames(`t-select t-bg t-inline-block`, className)}
       />
     </Popover>
   )
