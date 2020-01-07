@@ -75,7 +75,6 @@ storiesOf('grid', module).add('default', () => (
         sm={{ span: 4, offset: 4 }}
         md={{ span: 5, offset: 1 }}
         lg={{ span: 6, offset: 2 }}
-        xl={8}
         style={{ height: '60px' }}
       >
         Col
@@ -85,7 +84,6 @@ storiesOf('grid', module).add('default', () => (
         sm={{ span: 4, offset: 4 }}
         md={{ span: 11, offset: 1 }}
         lg={{ span: 6, offset: 2 }}
-        xl={8}
         style={{ height: '60px' }}
       >
         Col
@@ -95,7 +93,54 @@ storiesOf('grid', module).add('default', () => (
         sm={{ span: 4, offset: 4 }}
         md={{ span: 5, offset: 1 }}
         lg={{ span: 6, offset: 2 }}
-        xl={8}
+        style={{ height: '60px' }}
+      >
+        Col
+      </Col>
+    </Row><br />
+    响应式 换行
+    <Row className='t-bg-back' style={{ height: '120px' }}>
+      <Col
+        className='t-bg-primary'
+        sm={{span: 10, offset: 2}}
+        md={{span: 8, offset: 2}}
+        lg={{span: 6, offset: 2}}
+        style={{ height: '60px' }}
+      >
+        Col
+      </Col>
+      <Col
+        className='t-bg-primary'
+        sm={{span: 10, offset: 2}}
+        md={{span: 8, offset: 2}}
+        lg={{span: 6, offset: 2}}
+        style={{ height: '60px' }}
+      >
+        Col
+      </Col>
+      <Col
+        className='t-bg-primary'
+        sm={{span: 10, offset: 2}}
+        md={{span: 8, offset: 2}}
+        lg={{span: 6, offset: 2}}
+        style={{ height: '60px' }}
+      >
+        Col
+      </Col>
+      <Col
+        className='t-bg-primary'
+        sm={{span: 10, offset: 2}}
+        md={{span: 8, offset: 2}}
+        lg={{span: 6, offset: 2}}
+        style={{ height: '60px' }}
+      >
+        Col
+      </Col>
+      <Col
+        className='t-bg-primary'
+        sm={{span: 10, offset: 2}}
+        md={{span: 8, offset: 2}}
+        lg={{span: 6, offset: 2}}
         style={{ height: '60px' }}
       >
         Col
