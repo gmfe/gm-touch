@@ -12,6 +12,7 @@ const Sortable = ({
                     tag,
                     groupData,
                     options = {},
+                    renderItemStyle,
                     ...rest
                   }) => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const Sortable = ({
 
   const items = _.map(data, (v, index) => (
     <Flex
+      style={renderItemStyle}
       key={v.value}
       data-id={JSON.stringify(v.value)}
       className={classNames({
@@ -62,11 +64,12 @@ Sortable.propTypes = {
   data: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   renderItem: PropTypes.func,
+  renderItemStyle: PropTypes.object,
   /** 支持 ref */
   tag: PropTypes.node,
   options: PropTypes.object,
   /** 如果是group，则必传 */
-  groupData: PropTypes.array,
+  groupData: PropTypes.array
 }
 
 Sortable.defaultProps = {
