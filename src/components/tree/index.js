@@ -84,7 +84,7 @@ const Tree = ({
   return (
     <Flex {...rest} column className={classNames('t-tree', className)}>
       {title && (
-        <div className='t-padding-one t-text-center t-border-bottom'>
+        <div className='t-padding-5 t-text-center t-border-bottom'>
           {title}
         </div>
       )}

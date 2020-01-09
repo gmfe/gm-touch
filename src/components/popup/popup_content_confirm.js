@@ -31,7 +31,7 @@ const PopupContentConfirm = props => {
         {children}
         <div className='t-popup-content-confirm-button'>
           <button
-            className='btn btn-default t-margin-right-one'
+            className='btn btn-default t-margin-right-5'
             onClick={onCancel}
           >
             取消

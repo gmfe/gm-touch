@@ -14,11 +14,11 @@ const Bottom = ({ list, selectedValues, onChange }) => {
     leafValues.length !== 0 && leafValues.length === selectedValues.length
 
   return (
-    <Flex justifyBetween alignCenter className='t-border-top t-padding-lr-one'>
+    <Flex justifyBetween alignCenter className='t-border-top t-padding-lr-5'>
       <Radio checked={checkedAll} onChange={() => onChange(!checkedAll)}>
         {getLocale('全选')}
       </Radio>
-      <div className='t-padding-lr-one t-text-desc'>
+      <div className='t-padding-lr-5 t-text-desc'>
         {selectedValues.length}/{leafValues.length}
       </div>
     </Flex>

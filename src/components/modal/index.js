@@ -47,7 +47,7 @@ const Modal = ({
           {title && <div className='t-modal-title'>{title}</div>}
           <div
             className={classNames('t-modal-content', {
-              't-padding-none': noContentPadding
+              't-padding-0': noContentPadding
             })}
           >
             {children}

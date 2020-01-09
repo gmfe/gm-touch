@@ -6,7 +6,7 @@ export const className = () => {
       {`
     todo 
   `}
-      <div className='t-gap-one t-gap-two t-margin-none t-margin-lr-one'>
+      <div className='t-gap-5 t-gap-10 t-margin-0 t-margin-lr-5'>
         one two
       </div>
     </div>

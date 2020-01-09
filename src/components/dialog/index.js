@@ -126,7 +126,7 @@ const Dialog = ({
           />
         )}
       </div>
-      <div className='t-gap-two' />
+      <div className='t-gap-10' />
       <div className='t-text-right'>
         {type !== 'alert' && cancelBtn && (
           <Button onClick={handleCancel}>{cancelBtn}</Button>
