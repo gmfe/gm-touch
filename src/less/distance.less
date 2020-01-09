@@ -16,16 +16,14 @@
 }
 
 @size: {
-  '0': 0;
-  '5': var(--size-5);
-  '10': var(--size-10);
-  '15': var(--size-15);
-  '20': var(--size-20);
-  '25': var(--size-25);
-  '30': var(--size-30);
+  0: 0;
+  5: var(--size-5);
+  10: var(--size-10);
+  15: var(--size-15);
+  20: var(--size-20);
+  25: var(--size-25);
+  30: var(--size-30);
 }
-
-@selectors: padding, margin;
 
 each(@size, {
   .t-gap-@{key} {
