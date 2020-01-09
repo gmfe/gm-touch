@@ -2,7 +2,7 @@ import { getLocale } from '../../locales'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
-import { getUnLeafValues, filterWithQuery, getValues } from './util'
+import { getUnLeafValues, filterWithQuery, getLeafValues } from './util'
 import _ from 'lodash'
 import classNames from 'classnames'
 import Bottom from './bottom'
@@ -10,7 +10,6 @@ import List from './list'
 import Input from '../input'
 
 function getFilterList(list, query, withFilter) {
-  console.log('getFilterList', query)
   if (query === '') {
     return list
   }
@@ -19,7 +18,6 @@ function getFilterList(list, query, withFilter) {
 }
 
 function getGroupSelected(filterList, query) {
-  console.log('getGroupSelected', query)
   if (query === '') {
     return []
   }
@@ -47,14 +45,12 @@ const Tree = ({
   const [delayQuery, setDelayQuery] = useState('')
   // 区分正常的 展开收起 和 搜索导致的展开收起
   const [groupSelected, setGroupSelected] = useState([])
-
   // 保存一个函数的引用而已
   const refDebounce = useRef(
     _.debounce(value => {
       setDelayQuery(value)
     }, 300)
   )
-
   // memo list delayQuery 即可， withFilter 不会变
   const filterList = useMemo(() => {
     return getFilterList(list, delayQuery, withFilter)
@@ -69,7 +65,7 @@ const Tree = ({
   }, [])
 
   const handleSelectAll = checked => {
-    onSelectValues(checked ? getValues(list) : [])
+    onSelectValues(checked ? getLeafValues(list) : [])
   }
 
   const handleQuery = e => {
@@ -89,9 +85,7 @@ const Tree = ({
   return (
     <Flex {...rest} column className={classNames('t-tree', className)}>
       {title && (
-        <div className='t-padding-5 t-text-center t-border-bottom'>
-          {title}
-        </div>
+        <div className='t-padding-5 t-text-center t-border-bottom'>{title}</div>
       )}
       {withFilter && (
         <div className='t-tree-filter'>

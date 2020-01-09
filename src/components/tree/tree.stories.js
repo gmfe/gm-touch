@@ -90,7 +90,20 @@ const Wrap = observer(() => {
   )
 })
 
+const NoGroupListWrap = observer(() => {
+  return (
+    <div style={{ height: '500px' }}>
+      <Tree
+        list={store.oneData.slice()}
+        selectedValues={store.selectedValues.slice()}
+        onSelectValues={values => store.setSelectedValues(values)}
+      />
+    </div>
+  )
+})
+
 export const Default = () => <Wrap />
+export const NoGroupList = () => <NoGroupListWrap />
 
 export default {
   title: 'Tree'

@@ -5,24 +5,24 @@ import Flex from '../flex'
 import Radio from '../radio'
 import SVGPlus from '../../../svg/plus.svg'
 import SVGMinus from '../../../svg/minus.svg'
-import { listToFlatFilterWithGroup, getValues, unSelectAll } from './util'
+import { listToFlatFilterWithGroup, getLeafValues, unSelectAll } from './util'
 import { FixedSizeList } from 'react-window'
 import VARIABLE from '../../variable'
 
 const Item = ({
-  isGroup,
+  isGrouped,
   onGroup,
   isSelected,
   onSelect,
-  flatData: { isLeaf, level, data },
+  flatItem: { isLeaf, level, data },
   style
 }) => {
   const handleGroup = e => {
     e.stopPropagation()
-    onGroup(data, !isGroup)
+    onGroup(data, !isGrouped)
   }
 
-  const handleRadio = e => {
+  const handleRadio = () => {
     onSelect(data, !isSelected)
   }
 
@@ -30,7 +30,7 @@ const Item = ({
     if (isLeaf) {
       onSelect(data, !isSelected)
     } else {
-      onGroup(data, !isGroup)
+      onGroup(data, !isGrouped)
     }
   }
 
@@ -40,16 +40,15 @@ const Item = ({
       className='t-tree-list-item'
       style={{
         ...style,
-        paddingLeft: `calc(${level}em + 10px)`
+        paddingLeft: `calc(${level}em + 5px)`
       }}
     >
-      {!isLeaf ? (
+      {!isLeaf && (
         <div className='t-padding-10' onClick={handleGroup}>
-          {isGroup ? <SVGMinus /> : <SVGPlus />}
+          {isGrouped ? <SVGMinus /> : <SVGPlus />}
         </div>
-      ) : (
-        <div style={{ width: '1em' }} />
       )}
+      {level > 0 && isLeaf && <div style={{ width: '3em' }} />}
       <Radio checked={isSelected} onChange={handleRadio} />
       <Flex flex column block onClick={handleName}>
         {data.text}
@@ -59,11 +58,11 @@ const Item = ({
 }
 
 Item.propTypes = {
-  isGroup: PropTypes.bool.isRequired,
+  isGrouped: PropTypes.bool.isRequired,
   onGroup: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired,
-  flatData: PropTypes.shape({
+  flatItem: PropTypes.shape({
     isLeaf: PropTypes.bool.isRequired,
     level: PropTypes.number.isRequired,
     data: PropTypes.object.isRequired
@@ -88,7 +87,7 @@ const List = ({
   }
 
   const handleSelect = (data, isSelected) => {
-    const values = getValues([data])
+    const values = getLeafValues([data])
 
     if (isSelected) {
       onSelectValues(_.uniq(selectedValues.concat(values)))
@@ -98,18 +97,19 @@ const List = ({
   }
 
   const Row = ({ index, style }) => {
-    const item = flatList[index]
-    const isGroup = groupSelected.includes(item.data.value)
-    const isSelected = !unSelectAll([item.data], selectedValues)
+    const flatItem = flatList[index]
+
+    const isGrouped = groupSelected.includes(flatItem.data.value)
+    const isSelected = !unSelectAll([flatItem.data], selectedValues)
 
     return (
       <Item
-        key={item.data.value}
-        isGroup={isGroup}
+        key={flatItem.data.value}
+        isGrouped={isGrouped}
         onGroup={handleGroup}
         onSelect={handleSelect}
         isSelected={isSelected}
-        flatData={item}
+        flatItem={flatItem}
         style={style}
       />
     )

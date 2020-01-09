@@ -102,16 +102,6 @@ function getUnLeafValues(list) {
   return _.map(flat, item => item.data.value)
 }
 
-function getValues(list) {
-  const flat = listToFlat(
-    list,
-    () => true,
-    () => true
-  )
-
-  return _.map(flat, item => item.data.value)
-}
-
 function getLeafValues(list) {
   const flat = listToFlat(
     list,
@@ -140,9 +130,7 @@ export {
   getUnLeafValues,
   filterGroupList,
   filterWithQuery,
-  listToFlat,
   listToFlatFilterWithGroup,
-  getValues,
   getLeafValues,
   unSelectAll
 }
