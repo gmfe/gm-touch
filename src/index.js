@@ -20,6 +20,7 @@ import Popover from './components/popover'
 import Select from './components/select'
 import Input from './components/input'
 import Tree from './components/tree'
+import Transfer from './components/transfer'
 import NProgress from './components/nprogress'
 import { Col, Row } from './components/grid'
 
@@ -46,6 +47,7 @@ export {
   Radio,
   Input,
   Tree,
+  Transfer,
   NProgress,
   Col,
   Row
