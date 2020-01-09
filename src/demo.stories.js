@@ -8,5 +8,5 @@ export const Page = () => {
 
 
 export default {
-  title: 'Demo'
+  title: 'Demo|Demo'
 }

@@ -82,7 +82,7 @@ const Wrap = observer(() => {
   return (
     <div style={{ height: '500px' }}>
       <Tree
-        list={store.data.slice()}
+        list={json.data.slice()}
         selectedValues={store.selectedValues.slice()}
         onSelectValues={values => store.setSelectedValues(values)}
       />

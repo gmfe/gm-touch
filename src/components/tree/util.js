@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { textFilter } from '../../util'
 
-// 过滤叶子
+// 过滤整个 list 的 leaf，predicate 提供断言
 function filterGroupListLeaf(list, predicate) {
   return _.filter(list, function(d) {
     if (d.children) {
@@ -42,6 +42,7 @@ const filterWithQuery = (list, query, withFilter) => {
   return processList
 }
 
+// 把 list 打平，并附加额外数据 isLeaf level 辅助
 function listToFlat(
   list,
   pushCondition,
@@ -72,7 +73,7 @@ function listToFlat(
   return result
 }
 
-function listToFlatFilterWithGroup(list, groupSelected) {
+function listToFlatFilterWithGroupSelected(list, groupSelected) {
   return listToFlat(
     list,
     () => true,
@@ -80,16 +81,6 @@ function listToFlatFilterWithGroup(list, groupSelected) {
       return groupSelected.includes(item.value)
     }
   )
-}
-
-function getLeaf(list) {
-  const flat = listToFlat(
-    list,
-    item => !item.children,
-    () => true
-  )
-
-  return _.map(flat, item => item.data)
 }
 
 function getUnLeafValues(list) {
@@ -112,8 +103,8 @@ function getLeafValues(list) {
   return _.map(flat, item => item.data.value)
 }
 
+// 用find，高效。深度遍历，找到存在没选的就终止遍历。
 function unSelectAll(list, selectedValues) {
-  // 用find，高效
   const unSelected = _.find(list, item => {
     if (item.children) {
       return unSelectAll(item.children, selectedValues)
@@ -126,11 +117,10 @@ function unSelectAll(list, selectedValues) {
 }
 
 export {
-  getLeaf,
   getUnLeafValues,
+  getLeafValues,
   filterGroupList,
   filterWithQuery,
-  listToFlatFilterWithGroup,
-  getLeafValues,
+  listToFlatFilterWithGroupSelected,
   unSelectAll
 }

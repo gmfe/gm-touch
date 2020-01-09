@@ -5,7 +5,7 @@ import Flex from '../flex'
 import Radio from '../radio'
 import SVGPlus from '../../../svg/plus.svg'
 import SVGMinus from '../../../svg/minus.svg'
-import { listToFlatFilterWithGroup, getLeafValues, unSelectAll } from './util'
+import { listToFlatFilterWithGroupSelected, getLeafValues, unSelectAll } from './util'
 import { FixedSizeList } from 'react-window'
 import VARIABLE from '../../variable'
 
@@ -79,7 +79,7 @@ const List = ({
   listHeight
 }) => {
   const flatList = useMemo(() => {
-    return listToFlatFilterWithGroup(list, groupSelected)
+    return listToFlatFilterWithGroupSelected(list, groupSelected)
   }, [list, groupSelected])
 
   const handleGroup = data => {
