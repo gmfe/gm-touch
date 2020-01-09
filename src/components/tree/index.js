@@ -1,29 +1,33 @@
 import { getLocale } from '../../locales'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
-import { pinYinFilter } from 'gm-util'
-import { getUnLeafValues, filterGroupList, getValues } from './util'
+import { getUnLeafValues, filterWithQuery, getValues } from './util'
 import _ from 'lodash'
 import classNames from 'classnames'
 import Bottom from './bottom'
 import List from './list'
 import Input from '../input'
 
-const filterWithQuery = (list, query, withFilter) => {
-  let processList
-  if (withFilter === true) {
-    processList = filterGroupList(list, v => {
-      return pinYinFilter([v], query, v => v.text).length > 0
-    })
-  } else if (withFilter) {
-    processList = withFilter(list, query)
-  } else {
-    processList = list
+function getFilterList(list, query, withFilter) {
+  console.log('getFilterList', query)
+  if (query === '') {
+    return list
   }
 
-  return processList
+  return filterWithQuery(list, query, withFilter)
 }
+
+function getGroupSelected(filterList, query) {
+  console.log('getGroupSelected', query)
+  if (query === '') {
+    return []
+  }
+
+  return getUnLeafValues(filterList)
+}
+
+// 高性能树组件
 
 const Tree = ({
   title,
@@ -36,43 +40,44 @@ const Tree = ({
   className,
   ...rest
 }) => {
-  const [query, setQuery] = useState('')
-  const [filterList, setFilterList] = useState(list)
-  const [listHeight, setListHeight] = useState(null)
   const refList = useRef(null)
+  const [listHeight, setListHeight] = useState(null)
+
+  const [query, setQuery] = useState('')
+  const [delayQuery, setDelayQuery] = useState('')
+  // 区分正常的 展开收起 和 搜索导致的展开收起
+  const [groupSelected, setGroupSelected] = useState([])
+
+  // 保存一个函数的引用而已
+  const refDebounce = useRef(
+    _.debounce(value => {
+      setDelayQuery(value)
+    }, 300)
+  )
+
+  // memo list delayQuery 即可， withFilter 不会变
+  const filterList = useMemo(() => {
+    return getFilterList(list, delayQuery, withFilter)
+  }, [list, delayQuery])
+
+  const queryGroupSelected = useMemo(() => {
+    return getGroupSelected(filterList, delayQuery)
+  }, [filterList, delayQuery])
 
   useEffect(() => {
     setListHeight(refList.current.offsetHeight)
   }, [])
 
-  // 区分正常的 展开收起 和 搜索导致的展开收起
-  const [queryGroupSelected, setQueryGroupSelected] = useState([])
-  const [groupSelected, setGroupSelected] = useState([])
-
   const handleSelectAll = checked => {
     onSelectValues(checked ? getValues(list) : [])
   }
 
-  const handleQueryFilter = query => {
-    if (query === '') {
-      setFilterList(list)
-      setQueryGroupSelected([])
-      return
-    }
-
-    const processList = filterWithQuery(list, query, withFilter)
-
-    setFilterList(processList)
-
-    const newGroupSelected = getUnLeafValues(processList)
-    setQueryGroupSelected(newGroupSelected)
-  }
-  const debounceHandleQueryFilter = _.debounce(handleQueryFilter, 300)
-
   const handleQuery = e => {
     const query = e.target.value
     setQuery(query)
-    debounceHandleQueryFilter(query)
+
+    // 延迟更新 delayQuery
+    refDebounce.current(query)
   }
 
   const handleGroupSelect = groupSelected => {

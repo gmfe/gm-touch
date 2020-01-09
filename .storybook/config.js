@@ -15,21 +15,7 @@ const reqs = [
 addDecorator(
   withInfo({
     inline: true,
-    header: false,
-    styles: stylesheet => {
-      return {
-        ...stylesheet,
-        infoBody: {
-          ...stylesheet.infoBody,
-          padding: '10px',
-          fontWeight: 'normal'
-        },
-        source: {
-          ...stylesheet.source,
-          marginBottom: '10px'
-        }
-      }
-    }
+    header: false
   })
 )
 

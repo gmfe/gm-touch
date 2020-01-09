@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { is } from 'gm-util'
 import Loading from '../loading'
 import _ from 'lodash'
+import { isPromise } from '../../util'
 
 const Button = ({
   onClick,
@@ -20,7 +20,7 @@ const Button = ({
 
   const handleClick = e => {
     const result = onClick(e)
-    if (!is.promise(result)) {
+    if (!isPromise(result)) {
       return
     }
 

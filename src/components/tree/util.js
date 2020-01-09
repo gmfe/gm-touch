@@ -1,22 +1,45 @@
 import _ from 'lodash'
+import { textFilter } from '../../util'
 
 // 过滤叶子
-function filterGroupListLeaf(list, what) {
+function filterGroupListLeaf(list, predicate) {
   return _.filter(list, function(d) {
     if (d.children) {
-      d.children = filterGroupListLeaf(d.children, what)
+      d.children = filterGroupListLeaf(d.children, predicate)
     }
 
     if (d.children) {
       return !!d.children.length
     } else {
-      return what(d)
+      return predicate(d)
     }
   })
 }
 
-function filterGroupList(list, what) {
-  return filterGroupListLeaf(_.cloneDeep(list), what)
+function filterGroupList(list, predicate) {
+  return filterGroupListLeaf(_.cloneDeep(list), predicate)
+}
+
+// 这里做一层 cache
+const _cache = []
+const filterWithQuery = (list, query, withFilter) => {
+  let processList
+  if (withFilter === true) {
+    processList = filterGroupList(list, v => {
+      const field = `${query}______${v.text}`
+      if (_cache[field] === undefined) {
+        _cache[field] = textFilter([v], query, v => v.text).length > 0
+      }
+
+      return _cache[field]
+    })
+  } else if (withFilter) {
+    processList = withFilter(list, query)
+  } else {
+    processList = list
+  }
+
+  return processList
 }
 
 function listToFlat(
@@ -116,6 +139,7 @@ export {
   getLeaf,
   getUnLeafValues,
   filterGroupList,
+  filterWithQuery,
   listToFlat,
   listToFlatFilterWithGroup,
   getValues,

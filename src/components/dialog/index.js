@@ -6,8 +6,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import LayoutRoot from '../layout_root'
 import Button from '../button'
-import { is } from 'gm-util'
-import { calendarFormat } from 'moment'
+import { isPromise } from '../../util'
 
 let DialogStatics = {
   alert(options) {
@@ -36,7 +35,7 @@ let DialogStatics = {
           return
         }
 
-        if (!is.promise(result)) {
+        if (!isPromise(result)) {
           resolve(value)
           LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
           return

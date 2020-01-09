@@ -21,15 +21,11 @@ module.exports = ({ config }) => {
     ],
     include: [path.resolve('./')],
     exclude: function(filepath) {
-      if (filepath.includes('/node_modules/gm-util/')) {
-        return false
-      }
-
       return filepath.includes('/node_modules/')
     }
   }
 
-  config.module.rules[0] = rulesOne
+  // config.module.rules[0] = rulesOne
 
   config.module.rules[3] = {
     test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/,
