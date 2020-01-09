@@ -130,7 +130,7 @@ class InputNumber extends React.Component {
         type='text'
         ref={this.refInput}
         value={this.state.value}
-        className={classNames('gm-input-number', className)}
+        className={classNames('t-input-number', className)}
         onChange={this.handleChange}
       />
     )
