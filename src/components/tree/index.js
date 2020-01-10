@@ -32,7 +32,6 @@ const Tree = ({
   list,
   selectedValues,
   onSelectValues,
-  disabled,
   placeholder,
   withFilter,
   className,
