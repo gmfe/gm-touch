@@ -85,7 +85,7 @@ const Tree = ({
   return (
     <Flex {...rest} column className={classNames('t-tree', className)}>
       {title && (
-        <div className='t-padding-5 t-text-center t-border-bottom'>{title}</div>
+        <div className='t-padding-5 t-text-center t-border-bottom t-bg-back'>{title}</div>
       )}
       {withFilter && (
         <div className='t-tree-filter'>
