@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { getLocale } from '../../locales'
+import { getLocale } from '@gm-touch/locales'
 import Tree from '../tree'
 import { filterGroupList } from '../tree/util'
 import Flex from '../flex'

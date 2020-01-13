@@ -7,7 +7,27 @@
   "scripts": {
     "start": "start-storybook",
     "build": "build-storybook -c .storybook -o docs",
-    "prebuild": "rm -rf docs; mkdir docs;"
+    "prebuild": "rm -rf docs; mkdir docs;",
+    "publish-latest": "lerna publish --force-publish",
+    "publish-beta": "lerna publish --force-publish --dist-tag beta"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "lint-staged": {
+    "./packages/**/*.js": [
+      "eslint --cache --fix",
+      "git add"
+    ],
+    "./packages/**/*.less": [
+      "stylelint --cache --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -46,13 +66,5 @@
     "react-window": "^1.8.5",
     "sortablejs": "^1.10.1",
     "style-loader": "^1.1.2"
-  },
-  "peerDependencies": {
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0",
-    "prop-types": "^15.7.2",
-    "react-window": "^1.8.5",
-    "sortablejs": "^1.10.1"
   }
 }

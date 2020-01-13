@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { observable } from 'mobx'
 import Sortable  from './sortable'
-import { Flex } from '../src/index'
+import { Flex } from '@gm-touch/react'
 import PropTypes from 'prop-types'
 
 const data1 = [
