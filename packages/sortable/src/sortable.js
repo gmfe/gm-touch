@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import SortableBase from './base'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '../src/index'
+import { Flex } from '@gm-touch/react'
 
 const Sortable = ({
                     data,

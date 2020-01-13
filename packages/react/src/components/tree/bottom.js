@@ -1,4 +1,4 @@
-import { getLocale } from '../../locales'
+import { getLocale } from '@gm-touch/locales'
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
