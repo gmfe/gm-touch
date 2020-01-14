@@ -1,0 +1,122 @@
+.t-calendar {
+  width: 230px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: white;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+
+  .t-calendar-head {
+    height: 32px;
+
+    .t-calendar-head-text {
+      font-weight: bold;
+      line-height: 30px;
+      height: 30px;
+      text-align: center;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .t-calendar-years-or-months {
+    position: absolute;
+    color: black;
+    top: 37px;
+    bottom: 5px;
+    background-color: white;
+  }
+
+  .t-calendar-year-or-month {
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    margin: 9px 7px;
+    cursor: pointer;
+    border: 1px solid white;
+
+    &.active {
+      border: 1px solid var(--color-primary);
+      background-color: white;
+      color: var(--color-primary);
+    }
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: white;
+    }
+  }
+
+  .t-calendar-year-or-month-change {
+    color: #8b92a3;
+  }
+
+  .t-calendar-week {
+    height: 24px;
+  }
+
+  .t-calendar-day {
+    color: black;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    width: 28px;
+    height: 27px;
+    margin: 1px 0;
+    border: 2px solid white;
+
+    &:hover:not(.t-calendar-day-disabled):not(.active):not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    &.t-calendar-day-old,
+    &.t-calendar-day-new {
+      color: #8b92a3;
+    }
+
+    &.t-calendar-day-now:not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      color: var(--color-primary);
+      outline: 1px solid var(--color-primary);
+      outline-offset: -3px;
+    }
+
+    &.t-calendar-day-will:not(.active) {
+      outline: 1px solid var(--color-primary);
+      outline-offset: -3px;
+    }
+
+    &.active:not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      background-color: #d7e8fc;
+      color: black;
+      border-left: none;
+      border-right: none;
+    }
+
+    &.t-calendar-day-hover:not(.t-calendar-day-old):not(.t-calendar-day-new):not(.t-calendar-day-disabled) {
+      background-color: #d7e8fc;
+      color: black;
+      border-left: none;
+      border-right: none;
+      transition: background-color 0.2s ease;
+    }
+
+    &.t-calendar-day-begin:not(.t-calendar-day-old):not(.t-calendar-day-new),
+    &.t-calendar-day-end:not(.t-calendar-day-old):not(.t-calendar-day-new),
+    &.t-calendar-day-hover-end:not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      background-color: var(--color-primary);
+      color: white;
+      border: 2px solid white;
+    }
+
+    &.t-calendar-day-disabled {
+      color: #8b92a3;
+      cursor: not-allowed;
+    }
+  }
+}
