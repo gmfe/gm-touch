@@ -24,8 +24,6 @@ const Two = props => {
       .toDate()
   }
 
-  console.log(_will_end)
-
   // 告诉 日历1 应该显示的月份
   const [will, setWill] = useState(_will)
   // 告诉 日历2 应该显示的月份
@@ -70,7 +68,7 @@ const Two = props => {
         hoverDay={hoverDay}
         onHoverDay={setHoverDay}
       />
-      <div className='t-date-range-picker-gap t-border-bottom' />
+      <div className='t-gap-30' />
       <RangeCalendar
         className='t-border-0 t-date-range-picker-overlay-calendar'
         begin={begin}

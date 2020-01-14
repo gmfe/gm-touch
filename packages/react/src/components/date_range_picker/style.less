@@ -1,4 +1,8 @@
 .t-date-range-picker-overlay {
+  width: calc(100vw - 2px);
+  height: calc(100vh - 60px);
+  border: 1px solid var(--color-primary);
+
   .t-date-range-picker-overlay-calendar {
     .t-calendar-day-will:not(.active) {
       // 要屏蔽 will
@@ -7,9 +11,11 @@
   }
 }
 
-.t-date-range-picker-bottom-text {
-  color: var(--color-primary);
-  text-align: center;
+.t-date-range-picker-header-box {
+  font-weight: bold;
+  font-size: 22px;
+  border: 1px solid var(--color-border);
+  padding: 10px;
 }
 
 .t-date-range-picker-bottom-time {

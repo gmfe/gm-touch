@@ -6,8 +6,8 @@ import Flex from '../flex'
 const Header = props => {
   const { begin, end } = props
 
-  let b = <span className='t-text-desc'>开始日期</span>
-  let e = <span className='t-text-desc'>结束日期</span>
+  let b = '开始日期'
+  let e = '结束日期'
 
   if (begin) {
     b = moment(begin).format('YYYY-MM-DD')
@@ -18,19 +18,14 @@ const Header = props => {
   }
 
   return (
-    <Flex
-      alignCenter
-      justifyBetween
-      className='t-border-top'
-      style={{
-        padding: ' 10px 10px 10px 70px'
-      }}
-    >
-      <div className='t-text-bold t-date-range-picker-bottom-text'>
-        <span>{b}</span>
-        &nbsp;~&nbsp;
-        <span>{e}</span>
-      </div>
+    <Flex alignCenter justifyBetween className='t-padding-10 t-text-bold'>
+      <Flex flex={1} justifyCenter className='t-date-range-picker-header-box'>
+        {b}
+      </Flex>
+      <div className='t-gap-30 t-text-center'>~</div>
+      <Flex flex={1} justifyCenter className='t-date-range-picker-header-box'>
+        {e}
+      </Flex>
     </Flex>
   )
 }

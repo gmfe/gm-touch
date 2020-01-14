@@ -39,17 +39,7 @@ const Overlay = props => {
   }
 
   return (
-    <div className='t-date-range-picker-overlay t-border-0'>
-      <Flex>
-        <Two
-          begin={_begin}
-          end={_end}
-          onSelect={handleSelect}
-          min={min}
-          max={max}
-          disabledDate={disabledDate}
-        />
-      </Flex>
+    <div className='t-date-range-picker-overlay'>
       <Header
         begin={_begin}
         end={_end}
@@ -59,6 +49,14 @@ const Overlay = props => {
         renderTime={renderTime}
         timeSpan={timeSpan}
         onSelectDateAndTime={handleSelectDateAndTime}
+      />
+      <Two
+        begin={_begin}
+        end={_end}
+        onSelect={handleSelect}
+        min={min}
+        max={max}
+        disabledDate={disabledDate}
       />
     </div>
   )
