@@ -1,39 +1,45 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import SortableBase from './base'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '@gm-touch/react'
 
 const Sortable = ({
-                    data,
-                    onChange,
-                    renderItem,
-                    tag,
-                    groupData,
-                    options = {},
-                    renderItemStyle,
-                    ...rest
-                  }) => {
+  data,
+  onChange,
+  groupValues,
+  renderItem,
+  tag,
+  options,
+  ...rest
+}) => {
   useEffect(() => {
-    if (options.group && !groupData) {
-      console.error('group必须提供groupData')
+    if (groupValues && !options.group) {
+      console.warn('groupValues need options.group')
     }
   }, [])
 
+  let filterData = data
+
+  if (groupValues) {
+    filterData = _.filter(data, v => groupValues.includes(v.value))
+  }
+
   const handleChange = order => {
     order = _.map(order, v => JSON.parse(v))
-    let newData = []
-    _.forEach(order, v => {
-      const sortItem = _.find((groupData || data).slice(), y => y.value === v)
-      if (sortItem) newData.push(sortItem)
+
+    // 打平
+    const map = {}
+    _.each(data, v => {
+      map[v.value] = v
     })
+
+    const newData = _.map(order, v => map[v])
     onChange(newData)
   }
 
-  const items = _.map(data, (v, index) => (
-    <Flex
-      style={renderItemStyle}
+  const items = _.map(filterData, (v, index) => (
+    <div
       key={v.value}
       data-id={JSON.stringify(v.value)}
       className={classNames({
@@ -41,7 +47,7 @@ const Sortable = ({
       })}
     >
       {renderItem(v, index)}
-    </Flex>
+    </div>
   ))
 
   return (
@@ -62,18 +68,18 @@ const Sortable = ({
 Sortable.propTypes = {
   /** [{value, text, ...}, {value, text, ...}] */
   data: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  // options.group 有值的时候要传。此时的 data 是 group 集合数据，groupValues 是当前组件的数据
+  groupValues: PropTypes.array,
   renderItem: PropTypes.func,
-  renderItemStyle: PropTypes.object,
   /** 支持 ref */
   tag: PropTypes.node,
-  options: PropTypes.object,
-  /** 如果是group，则必传 */
-  groupData: PropTypes.array
+  options: PropTypes.object
 }
 
 Sortable.defaultProps = {
-  renderItem: item => item.text
+  renderItem: item => item.text,
+  options: {}
 }
 
 export default Sortable

@@ -1,83 +1,72 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { storiesOf } from '@storybook/react'
 import { observable } from 'mobx'
-import Sortable  from './sortable'
-import { Flex } from '@gm-touch/react'
-import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import { Sortable, GroupSortable } from './index'
 
-const data1 = [
-  {
-    value: 1,
-    text: '大白菜1'
+const store = observable({
+  data: [
+    {
+      value: 0,
+      text: '大白菜'
+    },
+    {
+      value: 1,
+      text: '牛肉'
+    },
+    {
+      value: '2',
+      text: '鸡肉'
+    },
+    {
+      value: 3,
+      text: '鸭肉'
+    },
+    {
+      value: 4,
+      text: '大闸蟹'
+    }
+  ],
+  disabled: false,
+  setData(data) {
+    this.data = data
   },
-  {
-    value: 2,
-    text: '牛肉1'
-  },
-  {
-    value: 3,
-    text: '鸡肉1'
-  },
-  {
-    value: '04',
-    text: '鸭肉1'
-  },
-  {
-    value: 5,
-    text: '大闸蟹1'
-  }
-]
-const data2 = [
-  {
-    value: 6,
-    text: '大白菜2'
-  },
-  {
-    value: 7,
-    text: '牛肉2'
-  },
-  {
-    value: 8,
-    text: '鸡肉2'
-  },
-  {
-    value: 9,
-    text: '鸭肉2'
-  },
-  {
-    value: 10,
-    text: '大闸蟹2'
-  }
-]
-const data3 = [
-  {
-    value: 11,
-    text: '大白菜3'
-  },
-  {
-    value: 12,
-    text: '牛肉3'
-  },
-  {
-    value: 13,
-    text: '鸡肉3'
-  },
-  {
-    value: 14,
-    text: '鸭肉3'
-  },
-  {
-    value: 15,
-    text: '大闸蟹3'
-  }
-]
+  groupData: [
+    [
+      {
+        value: 0,
+        text: '大白菜'
+      },
+      {
+        value: 1,
+        text: '牛肉'
+      }
+    ],
+    [
+      {
+        value: '2',
+        text: '鸡肉'
+      }
+    ],
+    [
+      {
+        value: 3,
+        text: '鸭肉'
+      },
+      {
+        value: 4,
+        text: '大闸蟹'
+      }
+    ]
+  ]
+})
 
 const Wrap = React.forwardRef(({ className, ...rest }, ref) => (
-  <Flex
-    ref={ref}
+  <div
     {...rest}
-    wrap
-    className={className}
+    ref={ref}
+    className={classNames('gm-border gm-padding-10', className)}
   />
 ))
 
@@ -85,87 +74,106 @@ Wrap.propTypes = {
   className: PropTypes.string
 }
 
-const store = observable({
-  data1: data1,
-  data2: data2,
-  data3: data3,
-  disabled: false,
-  setData1(data) {
-    this.data1 = data
-  },
-  setData2(data) {
-    this.data2 = data
-  },
-  setData3(data) {
-    this.data3 = data
-  }
-})
+storiesOf('Sortable|Sortable', module)
+  .add('说明', () => <div />, {
+    info: {
+      text: `
+说明：
+- 很有必要看一遍 https://github.com/SortableJS/Sortable 的文档
+- 请使用封装的排序组件，不直接结存 JS 用法，如果有，请沟通。
 
-storiesOf('Sortable|Sortable', module).add('single', () => (
-  <Sortable
-    id='data1'
-    data={store.data1}
-    onChange={data => store.setData1(data)}
-  />
-)).add('group', () => (
-  <div>
+最佳实践：
+- 提供唯一标识 value
+- 排序单独UI，不要和太多业务逻辑耦合
+- 排序期间 data 最好不要变。拖拽期间数据变了，这不是很尴尬！
+
+
+原生用法局限(指 sortablejs 和 react-sortablejs)
+- 通过子元素 data-id 来标识，不方便
+- data-id 必须是字符串
+- react-sortable 不支持 disabled。所以 copy 过来改了。
+`
+    }
+  })
+  .add('default', () => (
+    <Sortable data={store.data} onChange={data => store.setData(data)} />
+  ))
+  .add('disabled', () => (
     <Sortable
-      id='data1'
-      options={{
-        group: "shared"
-      }}
-      data={store.data1}
-      groupData={[...data1, ...data2]}
-      onChange={data => store.setData1(data)}
+      disabled={store.disabled}
+      data={store.data}
+      onChange={data => store.setData(data)}
     />
-    =====================================
+  ))
+  .add('renderItem', () => (
     <Sortable
-      id='data2'
-      data={store.data2}
-      groupData={[...data1, ...data2]}
-      onChange={data => store.setData2(data)}
-      options={{
-        group: "shared"
+      data={store.data}
+      onChange={data => store.setData(data)}
+      renderItem={item => (
+        <div className='gm-border gm-padding-10'>{item.text}</div>
+      )}
+    />
+  ))
+  .add('限定高', () => (
+    <Sortable
+      data={store.data}
+      onChange={data => store.setData(data)}
+      renderItem={item => (
+        <div className='gm-border gm-padding-10'>{item.text}</div>
+      )}
+      style={{
+        height: '100px',
+        overflow: 'auto'
       }}
     />
-  </div>
-)).add('group & grid', () => (
-  <div>
+  ))
+  .add('指定拖动单元', () => (
     <Sortable
-      key='data1'
+      data={store.data}
+      onChange={data => store.setData(data)}
+      options={{
+        handle: '.b-sortable-handle'
+      }}
+      renderItem={item => (
+        <div className='gm-border gm-padding-10'>
+          <span className='b-sortable-handle gm-cursor-grab'>move</span>
+          &nbsp;&nbsp;
+          {item.text}
+        </div>
+      )}
+    />
+  ))
+  .add('tag', () => (
+    <Sortable
       tag={Wrap}
-      options={{
-        group: "shared"
-      }}
-      data={store.data1}
-      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
-      groupData={[...data1, ...data2, ...data3]}
-      onChange={data => store.setData1(data)}
+      data={store.data}
+      onChange={data => store.setData(data)}
     />
-    =====================================
-    <Sortable
-      key='data2'
-      tag={Wrap}
-      data={store.data2}
-      groupData={[...data1, ...data2, ...data3]}
-      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
-      onChange={data => store.setData2(data)}
-      options={{
-        group: "shared"
-      }}
-    />=====================================
-    <Sortable
-      key='data3'
-      tag={Wrap}
-      data={store.data3}
-      groupData={[...data1, ...data2, ...data3]}
-      renderItem={item => <Flex justifyCenter alignCenter className='t-margin-10' style={{ width: '100px', height: '60px', border: '1px solid #ccc' }}>{item.text}</Flex>}
-      onChange={data => store.setData3(data)}
-      options={{
-        group: "shared"
-      }}
-    />
-  </div>
+  ))
+
+storiesOf('Sortable|GroupSortable', module).add('default', () => (
+  <GroupSortable
+    data={store.groupData.slice()}
+    onChange={newData => {
+      console.log('onChange', newData)
+      store.groupData = newData
+    }}
+    renderItem={item => (
+      <div className='gm-border gm-margin-5 gm-padding-5'>
+        {item.text} {item.value}
+      </div>
+    )}
+    // tag={Wrap}
+  >
+    {items => (
+      <div>
+        {_.map(items, (item, i) => (
+          <div key={i}>
+            {item}
+            {i < items.length - 1 && <hr />}
+          </div>
+        ))}
+      </div>
+    )}
+  </GroupSortable>
 ))
-
-

@@ -7,6 +7,9 @@ const store = {
   activeComponent: null
 }
 
+// 修改
+// 增加 disabled
+
 class SortableBase extends Component {
   sortable = null
 
@@ -58,7 +61,7 @@ class SortableBase extends Component {
             }
 
             remote.props.onChange &&
-            remote.props.onChange(remoteItems, remote.sortable, evt)
+              remote.props.onChange(remoteItems, remote.sortable, evt)
           }
 
           this.props.onChange && this.props.onChange(items, this.sortable, evt)
