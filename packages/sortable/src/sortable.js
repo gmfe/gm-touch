@@ -9,6 +9,7 @@ const Sortable = ({
   onChange,
   groupValues,
   renderItem,
+  itemProps,
   tag,
   options,
   ...rest
@@ -42,9 +43,13 @@ const Sortable = ({
     <div
       key={v.value}
       data-id={JSON.stringify(v.value)}
-      className={classNames({
-        't-cursor-grab': !options.handle
-      })}
+      {...itemProps}
+      className={classNames(
+        {
+          't-cursor-grab': !options.handle
+        },
+        itemProps.className
+      )}
     >
       {renderItem(v, index)}
     </div>
@@ -72,14 +77,16 @@ Sortable.propTypes = {
   // options.group 有值的时候要传。此时的 data 是 group 集合数据，groupValues 是当前组件的数据
   groupValues: PropTypes.array,
   renderItem: PropTypes.func,
+  itemProps: PropTypes.object,
   /** 支持 ref */
-  tag: PropTypes.node,
+  tag: PropTypes.any,
   options: PropTypes.object
 }
 
 Sortable.defaultProps = {
   renderItem: item => item.text,
-  options: {}
+  options: {},
+  itemProps: {}
 }
 
 export default Sortable
