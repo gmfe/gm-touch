@@ -23,6 +23,7 @@ import Tree from './components/tree'
 import Transfer from './components/transfer'
 import NProgress from './components/nprogress'
 import { Col, Row } from './components/grid'
+import DateRangePicker from './components/date_range_picker'
 
 export {
   LayoutRoot,
@@ -50,5 +51,6 @@ export {
   Transfer,
   NProgress,
   Col,
-  Row
+  Row,
+  DateRangePicker
 }

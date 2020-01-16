@@ -53,36 +53,40 @@ const Two = props => {
   }
 
   return (
-    <Flex className='t-padding-lr-10 t-padding-tb-5'>
-      <RangeCalendar
-        className='t-border-0 t-date-range-picker-overlay-calendar'
-        begin={begin}
-        end={end}
-        willActiveSelected={will}
-        onWillActiveSelected={handleWillChange}
-        onSelect={onSelect}
-        min={min}
-        max={max}
-        disabledDate={disabledDate}
-        disabledYearAndMonth={disabledYearOrMonth() ? 'right' : undefined}
-        hoverDay={hoverDay}
-        onHoverDay={setHoverDay}
-      />
+    <Flex justifyBetween className='t-padding-10'>
+      <Flex flex={1}>
+        <RangeCalendar
+          className='t-border-0 t-date-range-picker-overlay-calendar'
+          begin={begin}
+          end={end}
+          willActiveSelected={will}
+          onWillActiveSelected={handleWillChange}
+          onSelect={onSelect}
+          min={min}
+          max={max}
+          disabledDate={disabledDate}
+          disabledYearAndMonth={disabledYearOrMonth() ? 'right' : undefined}
+          hoverDay={hoverDay}
+          onHoverDay={setHoverDay}
+        />
+      </Flex>
       <div className='t-gap-30' />
-      <RangeCalendar
-        className='t-border-0 t-date-range-picker-overlay-calendar'
-        begin={begin}
-        end={end}
-        willActiveSelected={will_end}
-        onWillActiveSelected={handleWillChangeByEnd}
-        onSelect={onSelect}
-        min={min}
-        max={max}
-        disabledDate={disabledDate}
-        disabledYearAndMonth={disabledYearOrMonth() ? 'left' : undefined}
-        hoverDay={hoverDay}
-        onHoverDay={setHoverDay}
-      />
+      <Flex flex={1}>
+        <RangeCalendar
+          className='t-border-0 t-date-range-picker-overlay-calendar'
+          begin={begin}
+          end={end}
+          willActiveSelected={will_end}
+          onWillActiveSelected={handleWillChangeByEnd}
+          onSelect={onSelect}
+          min={min}
+          max={max}
+          disabledDate={disabledDate}
+          disabledYearAndMonth={disabledYearOrMonth() ? 'left' : undefined}
+          hoverDay={hoverDay}
+          onHoverDay={setHoverDay}
+        />
+      </Flex>
     </Flex>
   )
 }
