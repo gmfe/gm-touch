@@ -53,7 +53,7 @@ const Two = props => {
   }
 
   return (
-    <Flex justifyBetween className='t-padding-10'>
+    <Flex justifyBetween className='t-padding-20'>
       <Flex flex={1}>
         <RangeCalendar
           className='t-border-0 t-date-range-picker-overlay-calendar'
