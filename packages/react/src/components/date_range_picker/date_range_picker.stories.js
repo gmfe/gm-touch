@@ -29,21 +29,21 @@ storiesOf('DateRangePicker', module)
     <DateRangePicker
       begin={storeNull.begin}
       end={storeNull.end}
-      onChange={(begin, end) => storeNull.changeDate(begin, end)}
+      onOK={(begin, end) => storeNull.changeDate(begin, end)}
     />
   ))
   .add('begin end', () => (
     <DateRangePicker
       begin={store.begin}
       end={store.end}
-      onChange={(begin, end) => store.changeDate(begin, end)}
+      onOK={(begin, end) => store.changeDate(begin, end)}
     />
   ))
   .add('disabledDate', () => (
     <DateRangePicker
       begin={store.begin}
       end={store.end}
-      onChange={(begin, end) => store.changeDate(begin, end)}
+      onOK={(begin, end) => store.changeDate(begin, end)}
       min={moment().toDate()}
       max={moment()
         .add(10, 'day')
@@ -56,7 +56,7 @@ storiesOf('DateRangePicker', module)
       <DateRangePicker
         begin={storeNull.begin}
         end={storeNull.end}
-        onChange={(begin, end) => storeNull.changeDate(begin, end)}
+        onOK={(begin, end) => storeNull.changeDate(begin, end)}
         disabledDate={(d, { begin, end }) => {
           if (begin) {
             if (+moment(d) > +moment(begin).add(1, 'month')) {
@@ -73,37 +73,3 @@ storiesOf('DateRangePicker', module)
       }
     }
   )
-  .add('disabled', () => <DateRangePicker disabled />)
-  .add('canClear', () => (
-    <DateRangePicker
-      begin={store.begin}
-      end={store.end}
-      onChange={(begin, end) => store.changeDate(begin, end)}
-      canClear
-    />
-  ))
-  .add('children 自定义', () => (
-    <DateRangePicker
-      begin={storeNull.begin}
-      end={storeNull.end}
-      onChange={(begin, end) => storeNull.changeDate(begin, end)}
-    >
-      <div>
-        开始
-        {storeNull.begin ? moment(storeNull.begin).format('YYYY-MM-DD') : ''}
-        结束{storeNull.end ? moment(storeNull.end).format('YYYY-MM-DD') : ''}
-      </div>
-    </DateRangePicker>
-  ))
-  .add('自定义日期展示格式', () => (
-    <DateRangePicker
-      begin={store.begin}
-      end={store.end}
-      onChange={(begin, end) => store.changeDate(begin, end)}
-      renderDate={(begin, end) =>
-        `${moment(begin).format('YYYY-MM-DD')} - ${moment(end).format(
-          'MM / DD'
-        )}`
-      }
-    />
-  ))
