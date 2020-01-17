@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import LayoutRoot from '../layout_root'
 import classNames from 'classnames'
+import SVGRemove from '../../../svg/remove.svg'
 
 const Modal = ({
   title,
@@ -42,7 +43,7 @@ const Modal = ({
           style={style}
         >
           <div className='t-modal-close' onClick={handleClose}>
-            X
+            <SVGRemove />
           </div>
           {title && <div className='t-modal-title'>{title}</div>}
           <div

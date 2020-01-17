@@ -128,11 +128,13 @@ const Dialog = ({
       <div className='t-gap-10' />
       <div className='t-text-right'>
         {type !== 'alert' && cancelBtn && (
-          <Button onClick={handleCancel}>{cancelBtn}</Button>
+          <Button onClick={handleCancel} style={{ width: '200px' }}>
+            {cancelBtn}
+          </Button>
         )}
         <span className='t-gap-30' />
         {OKBtn && (
-          <Button type='primary' onClick={handleOK}>
+          <Button type='primary' onClick={handleOK} style={{ width: '200px' }}>
             {OKBtn}
           </Button>
         )}
@@ -160,7 +162,7 @@ Dialog.defaultProps = {
   title: getLocale('提示'),
   onCancel: _.noop,
   onOK: _.noop,
-  size: 'sm',
+  size: 'md',
   cancelBtn: getLocale('取消'),
   OKBtn: getLocale('确定'),
   disableMaskClose: false

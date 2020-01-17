@@ -32,9 +32,9 @@
       height: var(--modal-size-title-height);
       line-height: var(--modal-size-title-height);
       width: var(--modal-size-title-height);
-      font-size: 18px;
-      top: 0;
-      right: 0;
+      font-size: 20px;
+      top: 4px;
+      right: 16px;
       z-index: 2;
       cursor: pointer;
     }
@@ -44,13 +44,14 @@
       height: var(--modal-size-title-height);
       line-height: var(--modal-size-title-height);
       border-bottom: 1px solid var(--color-border);
-      padding: 0 30px 0 20px;
+      padding: 0 30px 0 30px;
+      font-size: 18px;
 
       &::after {
         content: '';
         position: absolute;
         top: 10px;
-        left: 10px;
+        left: 20px;
         width: 3px;
         height: 1em;
         background: var(--color-primary);
@@ -59,7 +60,7 @@
 
     // 这里不能用overflow: auto. 不希望content出现滚动条
     .t-modal-content {
-      padding: 10px;
+      padding: 20px 30px;
     }
 
     &.t-modal-lg {
