@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import classNames from 'classnames'
-import SVGSuccessCircle from '../../../svg/success-circle.svg'
-import SVGCircle from '../../../svg/circle.svg'
+import SVGSuccessRadio from '../../../svg/radio.svg'
+import SVGRadio from '../../../svg/circle.svg'
 import Flex from '../flex'
 
 const Radio = ({
   checked,
   onChange,
-  size,
   disabled,
   className,
   children,
@@ -25,7 +24,6 @@ const Radio = ({
       className={classNames(
         't-radio',
         {
-          [`t-radio-${size}`]: size,
           disabled
         },
         className
@@ -33,9 +31,13 @@ const Radio = ({
       onClick={handleClick}
     >
       {checked ? (
-        <SVGSuccessCircle className='t-text-primary' />
+        <i className='t-radio-icon'>
+          <SVGSuccessRadio className='t-text-primary' />
+        </i>
       ) : (
-        <SVGCircle />
+        <i className='t-radio-icon'>
+          <SVGRadio />
+        </i>
       )}
       {children}
     </Flex>
@@ -46,7 +48,6 @@ Radio.propTypes = {
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  size: PropTypes.oneOf(['lg']),
   className: PropTypes.string,
   style: PropTypes.object,
   children: PropTypes.any

@@ -2,26 +2,26 @@
   cursor: pointer;
   font-size: var(--size-text);
 
-  svg {
-    font-size: calc(var(--size-text) + 4px);
+  .t-radio-icon {
+    color: #999999;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
     padding: var(--size-form-padding-top);
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  &.t-radio-lg {
-    font-size: var(--size-text-lg);
-
-    svg {
-      font-size: calc(var(--size-text) + 6px);
-      padding: calc(var(--size-form-padding-top-lg));
-      padding-left: 10px;
-      padding-right: 10px;
-    }
+  svg {
+    border-radius: 50%;
   }
 
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
+
+    svg {
+      background: #f8f8f8;
+    }
   }
 }
