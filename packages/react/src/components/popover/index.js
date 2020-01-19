@@ -143,7 +143,6 @@ class Popover extends React.Component {
 
   componentDidUpdate() {
     this.doRenderPopup(this.state.active)
-    console.log('componentDidUpdate')
   }
 
   doRenderPopup(active) {
