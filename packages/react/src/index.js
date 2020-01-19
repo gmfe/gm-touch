@@ -11,6 +11,7 @@ import InputNumber from './components/input_number'
 import Tip from './components/tip'
 import Storage from './components/storage'
 import Radio from './components/radio'
+import Checkbox from './components/checkbox'
 import Dialog from './components/dialog'
 import List from './components/list'
 import Modal from './components/modal'
@@ -46,6 +47,7 @@ export {
   RightSideModal,
   Dialog,
   Radio,
+  Checkbox,
   Input,
   Tree,
   Transfer,
