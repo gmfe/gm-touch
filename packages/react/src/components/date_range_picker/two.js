@@ -2,89 +2,54 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import Flex from '../flex'
+import SVGLeft from '../../../svg/btn-left.svg'
+import SVGRight from '../../../svg/btn-right.svg'
 import RangeCalendar from '../calendar/range_calendar'
 
 const Two = props => {
   const { begin, end, onSelect, min, max, disabledDate } = props
 
-  const _will = begin || moment().toDate()
-  let _will_end
+  const [curMoment, setCurMoment] = useState(() =>
+    begin ? moment(begin) : moment()
+  )
 
-  // 判断 begin && end 是否同月份，确定 日历2 应该显示的月份
-  if (begin && end) {
-    const isSameMonth = moment(begin).month() === moment(end).month()
-    _will_end = isSameMonth
-      ? moment(begin)
-          .add(1, 'month')
-          .toDate()
-      : end
-  } else {
-    _will_end = moment()
-      .add(1, 'month')
-      .toDate()
-  }
-
-  // 告诉 日历1 应该显示的月份
-  const [will, setWill] = useState(_will)
-  // 告诉 日历2 应该显示的月份
-  const [will_end, setWillEnd] = useState(_will_end)
-  // 告诉 此时hover的日期
-  const [hoverDay, setHoverDay] = useState(null)
-
-  const handleWillChange = date => {
-    setWill(date)
-  }
-
-  const handleWillChangeByEnd = date => {
-    setWillEnd(date)
-  }
-
-  const disabledYearOrMonth = () => {
-    // 两个日历显示为 同年相邻月份，disabled相应的 年 / 月 切换按钮
-    const _begin = moment(will)
-      .startOf('month')
-      .add(1, 'month')
-      .toDate()
-    const _end = moment(will_end)
-      .startOf('month')
-      .toDate()
-
-    return +_begin === +_end
+  const handleSetCurMoment = n => {
+    setCurMoment(moment(curMoment).add(n, 'months'))
   }
 
   return (
-    <Flex justifyBetween className='t-padding-20'>
-      <Flex flex={1}>
+    <Flex justifyBetween className='t-padding-lr-20'>
+      <Flex flex={1} style={{ position: 'relative' }}>
+        <SVGLeft
+          className='t-date-range-picker-left-btn'
+          onClick={() => handleSetCurMoment(-1)}
+        />
         <RangeCalendar
           className='t-border-0 t-date-range-picker-overlay-calendar'
           begin={begin}
           end={end}
-          willActiveSelected={will}
-          onWillActiveSelected={handleWillChange}
+          currentYearAndMonth={curMoment}
           onSelect={onSelect}
           min={min}
           max={max}
           disabledDate={disabledDate}
-          disabledYearAndMonth={disabledYearOrMonth() ? 'right' : undefined}
-          hoverDay={hoverDay}
-          onHoverDay={setHoverDay}
         />
       </Flex>
       <div className='t-gap-30' />
-      <Flex flex={1}>
+      <Flex flex={1} style={{ position: 'relative' }}>
+        <SVGRight
+          className='t-date-range-picker-right-btn'
+          onClick={() => handleSetCurMoment(1)}
+        />
         <RangeCalendar
           className='t-border-0 t-date-range-picker-overlay-calendar'
           begin={begin}
           end={end}
-          willActiveSelected={will_end}
-          onWillActiveSelected={handleWillChangeByEnd}
+          currentYearAndMonth={moment(curMoment).add(1, 'months')}
           onSelect={onSelect}
           min={min}
           max={max}
           disabledDate={disabledDate}
-          disabledYearAndMonth={disabledYearOrMonth() ? 'left' : undefined}
-          hoverDay={hoverDay}
-          onHoverDay={setHoverDay}
         />
       </Flex>
     </Flex>

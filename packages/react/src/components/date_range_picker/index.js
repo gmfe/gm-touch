@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Two from './two'
-import Bottom from './bottom'
 import Header from './header'
 
 const DateRangePicker = props => {
-  const { begin, end, onOK, onCancel, min, max, disabledDate } = props
+  const { begin, end, onChange, min, max, disabledDate } = props
 
   // 日期选择
   const [_begin, setBegin] = useState(begin)
@@ -14,16 +13,8 @@ const DateRangePicker = props => {
   const handleSelect = (begin, end) => {
     setBegin(begin)
     setEnd(end)
-  }
-
-  const handleOK = () => {
-    onOK(_begin, _end)
-  }
-
-  const handleCancel = () => {
-    setBegin(begin)
-    setEnd(end)
-    onCancel && onCancel()
+    // end有可能为null
+    onChange(begin, end)
   }
 
   return (
@@ -37,18 +28,22 @@ const DateRangePicker = props => {
         max={max}
         disabledDate={disabledDate}
       />
-      <Bottom onOK={handleOK} onCancel={handleCancel} />
     </div>
   )
 }
 
 DateRangePicker.propTypes = {
+  /** 开始日期, Date 对象 */
   begin: PropTypes.object,
+  /** 结束日期, Date 对象 */
   end: PropTypes.object,
-  onOK: PropTypes.func.isRequired,
-  onCancel: PropTypes.func,
+  /** 参数 begin, end */
+  onChange: PropTypes.func,
+  /** Date 对象，表示可选的最小日期 */
   min: PropTypes.object,
+  /** Date 对象，表示可选的最大日期 */
   max: PropTypes.object,
+  /** 自定义日期是否可选。传入参数为Date对象，返回true or false。 有此属性则min max无效。 */
   disabledDate: PropTypes.func
 }
 

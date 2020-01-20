@@ -1,11 +1,20 @@
 .t-date-range-picker-overlay {
   border: 1px solid var(--color-primary);
 
-  .t-date-range-picker-overlay-calendar {
-    .t-calendar-day-will:not(.active) {
-      // 要屏蔽 will
-      outline: none;
-    }
+  .t-date-range-picker-left-btn {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    z-index: 1;
+    font-size: 3em;
+  }
+
+  .t-date-range-picker-right-btn {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    z-index: 1;
+    font-size: 3em;
   }
 }
 
@@ -14,35 +23,4 @@
   font-size: 22px;
   border: 1px solid var(--color-border);
   padding: 10px;
-}
-
-.t-date-range-picker-bottom-time {
-  width: 60px;
-  height: 24px;
-  margin-left: 5px;
-  align-content: center;
-  border: 1px solid var(--color-border);
-  color: var(--color-primary);
-  outline: none;
-  background-color: #fff;
-  cursor: pointer;
-
-  &:focus {
-    border: 1px solid var(--color-primary);
-  }
-}
-
-.t-date-range-picker-gap {
-  width: 10px;
-  height: 32px;
-}
-
-.t-date-range-picker-left-item {
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-
-  &:hover {
-    background-color: #b2d5ff;
-  }
 }

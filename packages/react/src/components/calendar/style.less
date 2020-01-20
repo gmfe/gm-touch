@@ -1,6 +1,6 @@
 .t-calendar {
   --calendar-day-box-size: 80px;
-  --color-selected: #AABFB3;
+  --color-selected: #E2EED9;
 
   width: 100%;
   overflow: hidden;
@@ -16,26 +16,10 @@
     border: none;
   }
 
-  .t-calendar-head {
+  .t-calendar-header {
     height: 60px;
-
-    .t-calendar-head-text {
-      color: var(--color-primary);
-      border: 1px solid var(--color-primary);
-      font-weight: bold;
-      text-align: center;
-      padding: 10px;
-      border-radius: 2px;
-
-      &:hover {
-        color: #ffffff;
-        background-color: var(--color-bg-primary);
-      }
-      &.active {
-        color: #ffffff;
-        background-color: var(--color-bg-primary);
-      }
-    }
+    font-weight: bold;
+    font-size: 20px;
   }
 
   .t-calendar-years-or-months {
@@ -105,11 +89,6 @@
 
     &.t-calendar-day-now:not(.t-calendar-day-old):not(.t-calendar-day-new) {
       color: var(--color-primary);
-      outline: 1px solid var(--color-primary);
-      outline-offset: -3px;
-    }
-
-    &.t-calendar-day-will:not(.active) {
       outline: 1px solid var(--color-primary);
       outline-offset: -3px;
     }

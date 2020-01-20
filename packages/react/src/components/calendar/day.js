@@ -5,43 +5,15 @@ import moment from 'moment'
 import Flex from '../flex'
 
 const Day = props => {
-  const {
-    disabled,
-    onClick,
-    value,
-    will,
-    begin,
-    end,
-    hoverDay,
-    onHoverDay
-  } = props
-
+  const { disabled, onClick, value, currentYearAndMonth, begin, end } = props
   const handleClick = () => {
-    if (disabled) {
-      return
-    }
-    onClick(value)
-  }
-
-  const handleMouseOver = e => {
-    if (!onHoverDay) {
-      return
-    }
-    // 获取鼠标所在hover值
-    const day = e.target.innerText
-    if (day && ((begin && !end) || (!begin && end))) {
-      !disabled && onHoverDay(moment(value))
-    } else {
-      onHoverDay(null)
-    }
+    !disabled && onClick(value)
   }
 
   const nowStart = +moment().startOf('day')
   const valueStart = +value.startOf('day')
   const beginStart = begin ? +begin.startOf('day') : null
   const endStart = end ? +end.startOf('day') : null
-  const willStart = +will.startOf('day')
-  const hoverStart = hoverDay ? +hoverDay.startOf('day') : null
 
   const isActive = () => {
     if (begin && end) {
@@ -53,45 +25,23 @@ const Day = props => {
     }
   }
 
-  const isHover = () => {
-    if ((begin && end) || !hoverStart) {
-      return false
-    } else {
-      const date = +moment(begin || end).startOf('day')
-      const min = date < hoverStart ? date : hoverStart
-      const max = date > hoverStart ? date : hoverStart
-      return min < valueStart && valueStart < max
-    }
-  }
-
   const cn = classNames('t-calendar-day t-calendar-day-box', {
     // 无状态
-    't-calendar-day-old': will.month() > value.month(),
-    't-calendar-day-new': will.month() < value.month(),
+    't-calendar-day-old': currentYearAndMonth.month() > value.month(),
+    't-calendar-day-new': currentYearAndMonth.month() < value.month(),
     't-calendar-day-now': nowStart === valueStart,
-    // 键盘
-    't-calendar-day-will': willStart === valueStart,
     // 选中态
     active: isActive(),
+
     't-calendar-day-begin': beginStart === valueStart,
     't-calendar-day-end': endStart === valueStart,
-    // hover态
-    't-calendar-day-hover': isHover(),
-    't-calendar-day-hover-end':
-      ((begin && !end) || (!begin && end)) && hoverStart === valueStart,
+
     // 不可用
     't-calendar-day-disabled': disabled
   })
 
   return (
-    <Flex
-      flex
-      alignStart
-      justifyEnd
-      className={cn}
-      onClick={handleClick}
-      onMouseOver={handleMouseOver}
-    >
+    <Flex flex alignStart justifyEnd className={cn} onClick={handleClick}>
       {value.date()}
     </Flex>
   )
@@ -106,12 +56,8 @@ Day.propTypes = {
   end: PropTypes.object,
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
-  /** 键盘用 */
-  will: PropTypes.object.isRequired,
-
-  /** 当前鼠标hover日期 */
-  hoverDay: PropTypes.object,
-  onHoverDay: PropTypes.func
+  /** 当前月份moment对象 */
+  currentYearAndMonth: PropTypes.object.isRequired
 }
 
 export default Day

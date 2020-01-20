@@ -6,14 +6,12 @@ import _ from 'lodash'
 import Day from './day'
 
 const Content = props => {
-  const { will, begin, end, onSelect, hoverDay, onHoverDay } = props
+  const { currentYearAndMonth, begin, end, onSelect, hoverDay, onHoverDay } = props
 
-  const day = moment(will)
-    .startOf('month')
-    .day(0)
-    .add(-1, 'day')
-
-  const group = _.groupBy(_.range(42), v => parseInt(v / 7))
+  const group = React.useMemo(
+    () => _.groupBy(_.range(42), v => parseInt(v / 7)),
+    []
+  )
 
   const getDisabled = m => {
     let { min, max, disabledDate } = props
@@ -38,6 +36,11 @@ const Content = props => {
     return disabled
   }
 
+  const day = moment(currentYearAndMonth)
+    .startOf('month')
+    .day(0)
+    .add(-1, 'day')
+
   return (
     <div className='t-calendar-content'>
       {_.map(group, (v, i) => (
@@ -47,7 +50,7 @@ const Content = props => {
             return (
               <Day
                 key={index}
-                will={will}
+                currentYearAndMonth={currentYearAndMonth}
                 value={mm}
                 begin={begin}
                 end={end}
@@ -72,19 +75,15 @@ Content.propTypes = {
   /** 选中日期，参数 begin end */
   onSelect: PropTypes.func.isRequired,
 
-  will: PropTypes.object.isRequired,
+  /** 当前月份moment对象 */
+  currentYearAndMonth: PropTypes.object.isRequired,
 
   /** Date对象，表示可选的最小日期 */
   min: PropTypes.object,
   /** Date对象，表示可选的最大日期 */
   max: PropTypes.object,
   /** 自定义日期是否可选。传入参数为Date对象，返回true or false。 有此属性则min max无效。 */
-  disabledDate: PropTypes.func,
-
-  /** 当前鼠标hover日期 */
-  hoverDay: PropTypes.object,
-  /** 鼠标hover日期修改函数 */
-  onHoverDay: PropTypes.func
+  disabledDate: PropTypes.func
 }
 
 export default Content

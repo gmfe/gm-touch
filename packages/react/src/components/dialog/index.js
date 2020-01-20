@@ -105,13 +105,13 @@ const Dialog = ({
   return (
     <Modal
       {...modalProps}
-      className={classNames('gm-dialog', {
-        ['gm-dialog-' + type]: type
+      className={classNames('t-dialog', {
+        ['t-dialog-' + type]: type
       })}
       size={modalProps.size}
       title={title}
     >
-      <div>
+      <div className='t-dialog-content'>
         {children}
         {type === 'prompt' && (
           <input
@@ -132,7 +132,7 @@ const Dialog = ({
             {cancelBtn}
           </Button>
         )}
-        <span className='t-gap-30' />
+        <span className='t-gap-10' />
         {OKBtn && (
           <Button type='primary' onClick={handleOK} style={{ width: '200px' }}>
             {OKBtn}

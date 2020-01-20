@@ -16,7 +16,6 @@ const Calendar = props => {
       begin={selected}
       end={selected}
       onSelect={handleSelect}
-      disabledYearAndMonth={undefined}
     />
   )
 }
