@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Flex from '../flex'
-import Radio from '../radio'
+import Checkbox from '../checkbox'
 import SVGPlus from '../../../svg/plus.svg'
 import SVGMinus from '../../../svg/minus.svg'
 import { listToFlatFilterWithGroupSelected, getLeafValues, unSelectAll } from './util'
@@ -22,7 +22,7 @@ const Item = ({
     onGroup(data, !isGrouped)
   }
 
-  const handleRadio = () => {
+  const handleCheckbox = () => {
     onSelect(data, !isSelected)
   }
 
@@ -49,7 +49,7 @@ const Item = ({
         </div>
       )}
       {level > 0 && isLeaf && <div style={{ width: '3em' }} />}
-      <Radio checked={isSelected} onChange={handleRadio} />
+      <Checkbox checked={isSelected} onChange={handleCheckbox} type='square'/>
       <Flex flex column block onClick={handleName}>
         {data.text}
       </Flex>
