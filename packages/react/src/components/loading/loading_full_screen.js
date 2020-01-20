@@ -4,10 +4,15 @@ import Loading from './index'
 import LayoutRoot from '../layout_root'
 import { setBodyCanScroll } from '../../util'
 
-const LoadingFullScreen = ({ size, text }) => {
+const LoadingFullScreen = ({ size, text, secondReading }) => {
   return (
     <div className='t-loading-full-screen'>
-      <Loading size={size} text={text} className='t-loading-position' />
+      <Loading
+        size={size}
+        text={text}
+        secondReading={secondReading}
+        className='t-loading-position'
+      />
     </div>
   )
 }
@@ -29,7 +34,8 @@ LoadingFullScreen.hide = () => {
 
 LoadingFullScreen.propTypes = {
   text: PropTypes.string,
-  size: PropTypes.number
+  size: PropTypes.number,
+  secondReading: PropTypes.bool
 }
 
 LoadingFullScreen.defaultProps = {
