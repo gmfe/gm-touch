@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
-const Loading = ({ size, text, className, ...rest }) => {
+const SecondReading = () => {
+  const [time, setTime] = React.useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(time => time + 1)
+    }, 1000)
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+
+  return `${time}s`
+}
+
+const Loading = ({ size, text, secondReading, className, ...rest }) => {
   return (
     <div
       {...rest}
@@ -12,13 +28,17 @@ const Loading = ({ size, text, className, ...rest }) => {
       <svg className='t-loading-circular' viewBox='0 0 50 50'>
         <circle className='t-loading-path' cx='25' cy='25' r='20' fill='none' />
       </svg>
-      {text && <div className='t-loading-text'>{text}</div>}
+      <div className='t-loading-text'>
+        {text}
+        {secondReading && <SecondReading />}
+      </div>
     </div>
   )
 }
 
 Loading.propTypes = {
   text: PropTypes.string,
+  secondReading: PropTypes.bool,
   size: PropTypes.number,
   className: PropTypes.string,
   style: PropTypes.object

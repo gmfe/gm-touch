@@ -8,6 +8,9 @@ import Button from '../button'
 storiesOf('Loading', module)
   .add('default', () => <Loading />)
   .add('size', () => <Loading size={100} />)
+  .add('secondReading', () => {
+    return <Loading text='加载中...' secondReading />
+  })
   .add('LoadingChunk', () => (
     <LoadingChunk loading size={60}>
       <div
