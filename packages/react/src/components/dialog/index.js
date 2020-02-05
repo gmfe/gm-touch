@@ -128,13 +128,13 @@ const Dialog = ({
       <div className='t-gap-10' />
       <div className='t-text-right'>
         {type !== 'alert' && cancelBtn && (
-          <Button onClick={handleCancel} style={{ width: '200px' }}>
+          <Button onClick={handleCancel} style={{ minWidth: '200px' }} size='lg'>
             {cancelBtn}
           </Button>
         )}
-        <span className='t-gap-10' />
+        <span className='t-gap-20' />
         {OKBtn && (
-          <Button type='primary' onClick={handleOK} style={{ width: '200px' }}>
+          <Button type='primary' onClick={handleOK} style={{ minWidth: '200px' }} size='lg'>
             {OKBtn}
           </Button>
         )}
