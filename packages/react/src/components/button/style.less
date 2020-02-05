@@ -1,7 +1,4 @@
 .t-btn {
-  --t-btn-padding-md: 20px 25px;
-  --t-btn-padding-lg: 28px 32px;
-
   position: relative;
   display: inline-block;
   text-align: center;
@@ -10,7 +7,7 @@
   cursor: pointer;
 
   font-size: var(--size-text-default);
-  padding: var(--t-btn-padding-md);
+  padding: var(--size-form-padding);
 
   border: 1px solid var(--color-border);
   border-radius: 2px;
@@ -36,7 +33,7 @@
 
   &.t-btn-lg {
     font-size: var(--size-text-lg);
-    padding: var(--t-btn-padding-lg);
+    padding: var(--size-form-padding-lg);
   }
 
   &:disabled {
@@ -50,12 +47,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px !important;
+    height: var(--size-form-height) !important;
   }
 
   &.t-btn-lg {
     .t-loading {
-      height: 78px !important;
+      height: var(--size-form-height-lg) !important;
     }
   }
 }
