@@ -48,7 +48,8 @@ class Base extends React.Component {
       selected,
       multiple,
       onSelect,
-      isScrollTo, // eslint-disable-line
+      isScrollTo,
+      getItemProps,
       renderItem,
       className,
       ...rest
