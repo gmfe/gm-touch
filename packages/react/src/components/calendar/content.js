@@ -42,9 +42,9 @@ const Content = props => {
     .add(-1, 'day')
 
   return (
-    <div className='t-calendar-content'>
+    <div>
       {_.map(group, (v, i) => (
-        <Flex key={i} className='t-calendar-content-div' justifyBetween>
+        <Flex key={i}>
           {_.map(v, (value, index) => {
             const mm = moment(day.add(1, 'day'))
             return (

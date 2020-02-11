@@ -18,12 +18,14 @@ const Header = props => {
   }
 
   return (
-    <Flex alignCenter justifyBetween className='t-padding-20 t-text-bold'>
-      <Flex flex={1} justifyCenter className='t-date-range-picker-header-box'>
+    <Flex alignCenter justifyBetween className='t-padding-lr-30 t-padding-top-30 t-padding-bottom-20 t-text-bold'>
+      <Flex flex={1} justifyCenter alignCenter className='t-date-range-picker-header-box'>
         {b}
       </Flex>
-      <div className='t-gap-30 t-text-center'>~</div>
-      <Flex flex={1} justifyCenter className='t-date-range-picker-header-box'>
+      <Flex alignCenter justifyCenter style={{ width: '40px' }}>
+        ~
+      </Flex>
+      <Flex flex={1} justifyCenter alignCenter className='t-date-range-picker-header-box'>
         {e}
       </Flex>
     </Flex>

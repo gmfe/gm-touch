@@ -1,6 +1,7 @@
 .t-calendar {
-  --calendar-day-box-size: 80px;
-  --color-selected: #E2EED9;
+  --calendar-day-box-size: 70px;
+  --color-selected: #e2eed9;
+  --color-text-disabled: #999999;
 
   width: 100%;
   overflow: hidden;
@@ -9,17 +10,20 @@
   user-select: none;
   position: relative;
 
-  .t-calendar-day-box {
-    padding-top: 5px;
-    padding-right: 5px;
-    height: var(--calendar-day-box-size);
-    border: none;
+  .t-calendar-week {
+    height: 40px;
+    color: var(--color-text-disabled);
+    .t-calendar-week-content {
+      padding-right: 5px;
+      width: var(--calendar-day-box-size);
+    }
   }
 
   .t-calendar-header {
     height: 60px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
+    color: #333333;
   }
 
   .t-calendar-years-or-months {
@@ -33,86 +37,73 @@
     z-index: 1;
   }
 
-  .t-calendar-year-or-month {
-    border: 1px solid var(--color-border);
-    width: 21%;
-    height: 120px;
-    margin: 9px 2%;
-    text-align: center;
-    cursor: pointer;
-
-    &.active {
-      border: 1px solid var(--color-primary);
-      background-color: white;
-      color: var(--color-primary);
-    }
-
-    &:hover {
-      background-color: var(--color-primary);
-      color: white;
-    }
-  }
-
-  .t-calendar-year-or-month-change {
-    color: #8b92a3;
-  }
-
-  .t-calendar-week {
-    height: var(--calendar-day-box-size);
-    color: var(--color-desc);
-  }
-
   .t-calendar-day {
-    color: black;
+    color: #333333;
     font-weight: bold;
-    font-size: 22px;
-    position: relative;
+    font-size: 28px;
 
-    &::before {
-      position: absolute;
-      top: -1px;
-      left: 0;
-      content: '';
+    .t-calendar-day-content {
+      border-radius: 2px;
       border: 1px solid var(--color-border);
-      width: 80%;
+      border-color: var(--color-border) transparent transparent;
+      padding: 10px 5px 0 0;
+      height: var(--calendar-day-box-size);
+      width: var(--calendar-day-box-size);
+    }
+
+    .t-calendar-day-gap {
+      height: 100%;
     }
 
     &:hover:not(.t-calendar-day-disabled):not(.active):not(.t-calendar-day-old):not(.t-calendar-day-new) {
-      background-color: var(--color-primary);
-      color: white;
+      .t-calendar-day-content {
+        background-color: var(--color-primary);
+        color: white;
+      }
     }
 
     &.t-calendar-day-old,
     &.t-calendar-day-new {
-      color: #8b92a3;
+      color: var(--color-text-disabled);
     }
 
     &.t-calendar-day-now:not(.t-calendar-day-old):not(.t-calendar-day-new) {
-      color: var(--color-primary);
-      outline: 1px solid var(--color-primary);
-      outline-offset: -3px;
+      .t-calendar-day-content {
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
     }
 
     &.active:not(.t-calendar-day-old):not(.t-calendar-day-new) {
       background-color: var(--color-selected);
-      color: black;
     }
 
     &.t-calendar-day-hover:not(.t-calendar-day-old):not(.t-calendar-day-new):not(.t-calendar-day-disabled) {
       background-color: var(--color-selected);
-      color: black;
       transition: background-color 0.2s ease;
     }
 
-    &.t-calendar-day-begin:not(.t-calendar-day-old):not(.t-calendar-day-new),
-    &.t-calendar-day-end:not(.t-calendar-day-old):not(.t-calendar-day-new),
-    &.t-calendar-day-hover-end:not(.t-calendar-day-old):not(.t-calendar-day-new) {
-      background-color: var(--color-primary);
-      color: white;
+    &.t-calendar-day-begin:not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      .t-calendar-day-content {
+        color: white;
+        border-color: var(--color-primary);
+        background-color: var(--color-primary);
+      }
+    }
+
+    &.t-calendar-day-end:not(.t-calendar-day-old):not(.t-calendar-day-new) {
+      .t-calendar-day-content {
+        color: white;
+        border-color: var(--color-primary);
+        background-color: var(--color-primary);
+      }
+      .t-calendar-day-gap {
+        background-color: white;
+      }
     }
 
     &.t-calendar-day-disabled {
-      color: #8b92a3;
+      color: var(--color-text-disabled);
       cursor: not-allowed;
     }
   }

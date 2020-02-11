@@ -19,13 +19,11 @@ const Day = props => {
     if (begin && end) {
       return beginStart <= valueStart && valueStart <= endStart
     } else if (begin) {
-      return beginStart === valueStart
-    } else if (end) {
-      return endStart === valueStart
+      return false // 只有begin,不用active
     }
   }
 
-  const cn = classNames('t-calendar-day t-calendar-day-box', {
+  const cn = classNames('t-calendar-day', {
     // 无状态
     't-calendar-day-old': currentYearAndMonth.month() > value.month(),
     't-calendar-day-new': currentYearAndMonth.month() < value.month(),
@@ -42,7 +40,8 @@ const Day = props => {
 
   return (
     <Flex flex alignStart justifyEnd className={cn} onClick={handleClick}>
-      {value.date()}
+      <Flex className='t-calendar-day-content' justifyEnd>{value.date()}</Flex>
+      <Flex flex={1} className='t-calendar-day-gap' />
     </Flex>
   )
 }
