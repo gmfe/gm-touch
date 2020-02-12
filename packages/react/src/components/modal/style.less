@@ -29,31 +29,26 @@
     .t-modal-close {
       position: absolute;
       text-align: center;
-      height: var(--modal-size-title-height);
-      line-height: var(--modal-size-title-height);
-      width: var(--modal-size-title-height);
       font-size: 20px;
-      top: 4px;
-      right: 16px;
+      top: 20px;
+      right: 30px;
       z-index: 2;
       cursor: pointer;
     }
 
     .t-modal-title {
-      position: relative;
-      height: var(--modal-size-title-height);
-      line-height: var(--modal-size-title-height);
-      border-bottom: 1px solid var(--color-border);
-      padding: 0 30px 0 30px;
+      display: flex;
+      align-items: center;
+      padding: 20px 30px;
       font-size: 18px;
+      border-bottom: 1px solid var(--color-border);
 
-      &::after {
+      &::before {
         content: '';
-        position: absolute;
-        top: 10px;
-        left: 20px;
+        display: inline-block;
         width: 3px;
         height: 1em;
+        margin-right: 10px;
         background: var(--color-primary);
       }
     }
@@ -108,7 +103,7 @@
 
     .t-modal-dialog-has-title {
       .t-modal-content {
-        height: calc(100% - var(--modal-size-title-height));
+        height: calc(100% - 61px);
       }
     }
   }

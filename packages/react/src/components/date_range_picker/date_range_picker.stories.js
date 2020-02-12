@@ -52,15 +52,18 @@ storiesOf('DateRangePicker', module)
     />
   ))
   .add(
-    'disabledDate 限制一个月',
+    'disabledDate：限制选择范围：7天',
     () => (
       <DateRangePicker
         begin={storeNull.begin}
         end={storeNull.end}
         onChange={(begin, end) => storeNull.changeDate(begin, end)}
         disabledDate={(d, { begin, end }) => {
-          if (begin) {
-            if (+moment(d) > +moment(begin).add(1, 'month')) {
+          if (begin && !end) {
+            if (+moment(d) > +moment(begin).add(6, 'days')) {
+              return true
+            }
+            if (+moment(d) < +moment(begin).add(-6, 'days')) {
               return true
             }
           }
@@ -70,7 +73,7 @@ storiesOf('DateRangePicker', module)
     ),
     {
       info: {
-        text: 'DateRangePicker 只能通过 disabledDate 限制一个月'
+        text: 'DateRangePicker 通过disabledDate，限制选择范围：7天'
       }
     }
   )
