@@ -45,7 +45,7 @@ const Select = ({
   return (
     <Popover
       ref={refPopup}
-      type='focus'
+      type='click'
       popup={popup}
       disabled={disabled}
       isInPopup={isInPopup}
