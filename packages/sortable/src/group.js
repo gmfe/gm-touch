@@ -14,7 +14,7 @@ const GroupSortable = ({
 }) => {
   const refData = useRef([])
 
-  const flatData = _.flatten(data)
+  const flatData = _.uniqWith(_.flatten(data), _.isEqual)
   const items = _.map(data, (subData, i) => {
     const handleSubChange = newSubData => {
       // 变化的才会触发 change，
