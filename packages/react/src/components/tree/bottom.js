@@ -2,7 +2,7 @@ import { getLocale } from '@gm-touch/locales'
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
-import Radio from '../radio'
+import Checkbox from '../checkbox'
 import { getLeafValues } from './util'
 
 const Bottom = ({ list, selectedValues, onChange }) => {
@@ -15,9 +15,9 @@ const Bottom = ({ list, selectedValues, onChange }) => {
 
   return (
     <Flex justifyBetween alignCenter className='t-border-top t-padding-lr-5'>
-      <Radio checked={checkedAll} onChange={() => onChange(!checkedAll)}>
+      <Checkbox type='square' checked={checkedAll} onChange={() => onChange(!checkedAll)}>
         {getLocale('全选')}
-      </Radio>
+      </Checkbox>
       <div className='t-padding-lr-5 t-text-desc'>
         {selectedValues.length}/{leafValues.length}
       </div>

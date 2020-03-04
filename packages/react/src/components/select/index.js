@@ -35,7 +35,7 @@ const Select = ({
       data={newData}
       selected={value}
       onSelect={handleChange}
-      className={'t-border-0'}
+      className={'t-border-0 t-padding-tb-5'}
       style={{
         maxHeight: '250px'
       }}

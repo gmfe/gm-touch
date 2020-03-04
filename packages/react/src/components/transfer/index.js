@@ -87,12 +87,12 @@ const Transfer = ({
       <Flex column justifyCenter className='t-padding-10'>
         <SVGRight
           onClick={handleToRight}
-          className='t-padding-10 t-border t-cursor'
+          className={classNames('t-padding-10 t-border t-cursor', { 't-bg-primary t-text-white': lefts.length > 0 })}
         />
         <div className='t-padding-10' />
         <SVGLeft
           onClick={handleToLeft}
-          className='t-padding-10 t-border t-cursor'
+          className={classNames('t-padding-10 t-border t-cursor', { 't-bg-primary t-text-white': rights.length > 0 })}
         />
       </Flex>
       <Tree
