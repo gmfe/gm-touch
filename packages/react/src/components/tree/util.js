@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { textFilter } from '../../util'
+import { pinYinFilter } from '@gm-common/tool'
 
 // 过滤整个 list 的 leaf，predicate 提供断言
 function filterGroupListLeaf(list, predicate) {

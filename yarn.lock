@@ -1846,6 +1846,13 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
+"@gm-common/tool@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.4.1.tgz#3c7010f91364bbd0ee8dd38f64137adc2019588a"
+  integrity sha512-WIb15kzx3BiAnsMW6a/cdB17zxi9Xc4P1GaXHg8ssaW1o5myxohCY+dSZhygRkk7Cm/5RaeWPR6iH5IBuduVvQ==
+  dependencies:
+    lodash "^4.17.15"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npmjs.org/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
