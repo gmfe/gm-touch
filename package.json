@@ -40,14 +40,13 @@
   },
   "homepage": "https://github.com/gmfe/gm-touch#readme",
   "devDependencies": {
-    "@babel/core": "^7.7.7",
-    "@storybook/addon-info": "^5.2.8",
-    "@storybook/addon-notes": "^5.2.8",
-    "@storybook/addon-storysource": "^5.2.8",
-    "@storybook/react": "^5.2.8",
-    "@svgr/webpack": "^5.0.1",
-    "babel-loader": "^8.0.6",
-    "babel-preset-gmfe": "^2.0.0",
+    "@babel/core": "^7.10.5",
+    "@storybook/addon-info": "^5.3.19",
+    "@storybook/addon-notes": "^5.3.19",
+    "@storybook/addon-storysource": "^5.3.19",
+    "@storybook/react": "^5.3.19",
+    "@svgr/webpack": "^5.4.0",
+    "babel-loader": "^8.1.0",
     "big.js": "^5.2.2",
     "classnames": "^2.2.6",
     "css-loader": "^3.4.0",
@@ -66,5 +65,10 @@
     "react-window": "^1.8.5",
     "sortablejs": "^1.10.1",
     "style-loader": "^1.1.2"
+  },
+  "dependencies": {
+    "babel-preset-gm-react-app": "^3.2.4",
+    "eslint-plugin-gm-react-app": "^3.2.4",
+    "file-loader": "^6.0.0"
   }
 }
