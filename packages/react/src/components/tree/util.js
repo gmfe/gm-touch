@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { textFilter } from '../../util'
 import { pinYinFilter } from '@gm-common/tool'
 
 // 过滤整个 list 的 leaf，predicate 提供断言
@@ -21,18 +20,11 @@ function filterGroupList(list, predicate) {
   return filterGroupListLeaf(_.cloneDeep(list), predicate)
 }
 
-// 这里做一层 cache
-const _cache = []
 const filterWithQuery = (list, query, withFilter) => {
   let processList
   if (withFilter === true) {
     processList = filterGroupList(list, v => {
-      const field = `${query}______${v.text}`
-      if (_cache[field] === undefined) {
-        _cache[field] = textFilter([v], query, v => v.text).length > 0
-      }
-
-      return _cache[field]
+      return pinYinFilter([v], query, v => v.text).length > 0
     })
   } else if (withFilter) {
     processList = withFilter(list, query)
