@@ -25,6 +25,7 @@ import Transfer from './components/transfer'
 import NProgress from './components/nprogress'
 import { Col, Row } from './components/grid'
 import DateRangePicker from './components/date_range_picker'
+import Drawer from './components/drawer'
 
 export {
   LayoutRoot,
@@ -54,5 +55,6 @@ export {
   NProgress,
   Col,
   Row,
-  DateRangePicker
+  DateRangePicker,
+  Drawer,
 }

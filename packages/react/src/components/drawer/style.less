@@ -1,0 +1,33 @@
+.t-drawer-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1020;
+  background-color: rgba(0, 0, 0, 0.7);
+
+  &.t-drawer-mask-opacity {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.t-drawer {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  outline: 0;
+
+  .t-drawer-content {
+    background-color: white;
+    width: auto;
+    margin: 0 0 0 auto;
+    height: 100%;
+    overflow: auto;
+  }
+}
