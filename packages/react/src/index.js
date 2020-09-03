@@ -26,6 +26,7 @@ import NProgress from './components/nprogress'
 import { Col, Row } from './components/grid'
 import DateRangePicker from './components/date_range_picker'
 import Drawer from './components/drawer'
+import Tabs from './components/tabs'
 
 export {
   LayoutRoot,
@@ -57,4 +58,5 @@ export {
   Row,
   DateRangePicker,
   Drawer,
+  Tabs
 }
