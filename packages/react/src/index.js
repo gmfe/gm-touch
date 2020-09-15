@@ -10,7 +10,7 @@ import Switch from './components/switch'
 import InputNumber from './components/input_number'
 import Tip from './components/tip'
 import Storage from './components/storage'
-import Radio from './components/radio'
+import { Radio, RadioGroup } from './components/radio'
 import Checkbox from './components/checkbox'
 import Dialog from './components/dialog'
 import List from './components/list'
@@ -49,6 +49,7 @@ export {
   RightSideModal,
   Dialog,
   Radio,
+  RadioGroup,
   Checkbox,
   Input,
   Tree,
