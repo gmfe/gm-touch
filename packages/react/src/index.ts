@@ -28,6 +28,7 @@ import DateRangePicker from './components/date_range_picker'
 import Drawer from './components/drawer'
 import Tabs from './components/tabs'
 import CSSVariable from './css_variable'
+export * from './components/progress'
 
 export {
   LayoutRoot,
