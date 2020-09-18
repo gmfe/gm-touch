@@ -8,8 +8,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
