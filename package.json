@@ -20,7 +20,7 @@
     "parser": "babel-eslint"
   },
   "lint-staged": {
-    "./packages/**/*.{ts,tsx,js,json}": [
+    "./packages/**/*.{ts,tsx,js}": [
       "eslint --cache --fix"
     ],
     "./packages/**/*.less": [
@@ -58,7 +58,9 @@
     "react-hot-loader": "^4.12.18",
     "react-window": "^1.8.5",
     "sortablejs": "^1.10.1",
-    "style-loader": "^1.1.2"
+    "style-loader": "^1.1.2",
+    "stylelint": "^13.7.1",
+    "stylelint-config-standard": "^20.0.0"
   },
   "dependencies": {
     "@gm-common/tool": "^2.4.1",

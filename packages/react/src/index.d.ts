@@ -1,5 +1,4 @@
 import { Component, FC, HTMLAttributes } from 'react'
-import { CircleProgressProps } from './components/progress'
 
 export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   flex?: boolean
@@ -8,4 +7,12 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
 
 export class Flex extends Component<FlexProps> {}
 
-export const CircleProgress: FC<CircleProgressProps>
+export interface ProgressCircleProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number
+  percentage?: number
+  lineWidth?: number
+  disabledText?: boolean
+  type?: 'success' | 'danger'
+}
+
+export const ProgressCircle: FC<ProgressCircleProps>

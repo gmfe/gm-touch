@@ -1,3 +1,3 @@
 import CircleProgress from './circle'
 
-export { CircleProgress }
+export default CircleProgress

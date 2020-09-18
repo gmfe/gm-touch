@@ -2,9 +2,9 @@ import React from 'react'
 import CircleProgress from './circle'
 
 export const Default = () => {
-  return <CircleProgress width={100} height={100} />
+  return <CircleProgress size={100} percentage={25} disabledText />
 }
 
 export default {
-  title: 'Progress'
+  title: 'ProgressCircle'
 }

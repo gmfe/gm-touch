@@ -1,0 +1,21 @@
+.t-progress-circle {
+  circle {
+    stroke: #e4e8f1;
+  }
+
+  .t-progress-circle-color {
+    stroke: var(--color-primary);
+  }
+
+  &.t-progress-circle-success {
+    .t-progress-circle-color {
+      stroke: var(--color-success);
+    }
+  }
+
+  &.t-progress-circle-danger {
+    .t-progress-circle-color {
+      stroke: var(--color-danger);
+    }
+  }
+}
