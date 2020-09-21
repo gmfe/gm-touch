@@ -88,7 +88,7 @@ ProgressCircle.propTypes = {
   percentage: PropTyeps.number,
   lineWidth: PropTyeps.number,
   disabledText: PropTyeps.bool,
-  type: PropTyeps.oneOf(['success', 'danger']),
+  type: PropTyeps.oneOf(['success', 'danger', 'accent']),
   className: PropTyeps.string,
   bgColor: PropTyeps.string,
   progressColor: PropTyeps.string
