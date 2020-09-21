@@ -15,6 +15,8 @@ const ProgressCircle = ({
   lineWidth = 60,
   disabledText,
   className,
+  bgColor,
+  progressColor,
   ...rest
 }) => {
   const { centerColor, animate, animationDuration, roundedStroke } = {
@@ -49,6 +51,7 @@ const ProgressCircle = ({
           r={radius}
           strokeWidth={lineWidth}
           fill={centerColor}
+          style={{ stroke: bgColor }}
         />
         <circle
           className='t-progress-circle-color'
@@ -61,7 +64,7 @@ const ProgressCircle = ({
           strokeDashoffset={diameter}
           strokeLinecap={strokeLinecap}
           fill='none'
-          style={{ strokeDashoffset, transition }}
+          style={{ strokeDashoffset, transition, stroke: progressColor }}
         />
         {!disabledText && (
           <text
@@ -86,7 +89,9 @@ ProgressCircle.propTypes = {
   lineWidth: PropTyeps.number,
   disabledText: PropTyeps.bool,
   type: PropTyeps.oneOf(['success', 'danger']),
-  className: PropTyeps.string
+  className: PropTyeps.string,
+  bgColor: PropTyeps.string,
+  progressColor: PropTyeps.string
 }
 
 ProgressCircle.defaultProps = {
