@@ -1,18 +1,44 @@
 .t-tabs {
-  background-color: var(--color-bg-back);
-  padding-top: 10px;
+  flex: 1;
+  overflow: hidden;
 
-  .t-tabs-item {
-    padding: 15px;
-    cursor: pointer;
+  .t-tabs-head {
+    height: 50px;
+    box-sizing: content-box;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    overflow: hidden;
     border-bottom: 1px solid var(--color-border);
 
-    &.active {
-      font-weight: bold;
-      background-color: var(--color-bg);
-      color: var(--color-primary);
-      border: 1px solid var(--color-border);
-      border-bottom: none;
+    .t-tabs-head-item {
+      font-size: 18px;
+      line-height: 50px;
+      position: relative;
+      cursor: pointer;
+      background: var(--color-white);
+
+      .t-tabs-text {
+        display: inline-block;
+        position: relative;
+      }
+
+      &.active {
+        .t-tabs-text::after {
+          content: '';
+          height: 3px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          transform: scaleX(1.5);
+          background: var(--color-primary);
+        }
+      }
     }
+  }
+
+  .t-tabs-content {
+    height: 0;
+    overflow-y: scroll;
   }
 }

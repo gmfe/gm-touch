@@ -15,4 +15,21 @@ export interface ProgressCircleProps extends HTMLAttributes<HTMLDivElement> {
   type?: 'success' | 'danger'
 }
 
+interface TabsItem {
+  text: string
+  value: string
+  children: ReactNode
+}
+export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
+  tabs: TabsItem[]
+  defaultActive?: string
+  active?: string
+  onChange?(value: string): void
+  keep?: boolean
+  className?: string
+  style?: CSSProperties
+  headBorder?: boolean
+}
+
 export const ProgressCircle: FC<ProgressCircleProps>
+export const Tabs: FC<TabsProps>

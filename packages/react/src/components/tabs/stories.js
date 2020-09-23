@@ -4,8 +4,8 @@ import Tabs from './index'
 export const Default = () => {
   const [active, setActive] = useState(1)
   const tabs = [
-    { text: 'tab1', value: 1 },
-    { text: 'tab2', value: 2 }
+    { text: '包装指导', value: 1, children: <div>tab1 内容</div> },
+    { text: '关联商户', value: 2, children: <div>tab2 内容</div> }
   ]
 
   const handleChange = value => {
