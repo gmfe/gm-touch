@@ -84,11 +84,13 @@ const Tabs = props => {
 }
 
 Tabs.propTypes = {
-  tabs: PropTypes.shape({
-    text: PropTypes.string,
-    value: PropTypes.any,
-    children: PropTypes.element
-  }),
+  tabs: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string,
+      value: PropTypes.any,
+      children: PropTypes.element
+    })
+  ),
   active: PropTypes.any,
   defaultActive: PropTypes.any,
   keep: PropTypes.bool,
