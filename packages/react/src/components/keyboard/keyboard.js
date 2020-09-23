@@ -44,7 +44,7 @@ const Keyboard = ({
           <KeyItem
             keyInfo={k}
             className='t-margin-top-20'
-            onKeyClick={onKeyClick}
+            onKeyClick={handleKeyClick}
           />
         ))}
         <Flex className='t-keyboard-func-area'>
