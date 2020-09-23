@@ -24,10 +24,7 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   tabs: TabsItem[]
   defaultActive?: string
   active?: string
-  onChange?(value: string): void
   keep?: boolean
-  className?: string
-  style?: CSSProperties
   headBorder?: boolean
 }
 
