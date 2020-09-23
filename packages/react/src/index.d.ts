@@ -42,7 +42,11 @@ export interface KeyInfo {
 }
 export interface KeyboardProps {
   customFuncArea?: ReactNode
-  onChange?: (key: KeyInfo) => void
+  onKeyClick: (key: KeyInfo) => void
+  onBackSpace: () => void
+  onCancel: () => void
+  onClear: () => void
+  onConfirm: () => void
 }
 
 export const Keyboard: FC<KeyboardProps>

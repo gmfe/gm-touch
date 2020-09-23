@@ -9,9 +9,32 @@ import KeyItem from './key_item'
 import { getLocale } from '@gm-touch/locales'
 import Button from '../button'
 
-const Keyboard = ({ customFuncArea, onChange }) => {
+const Keyboard = ({
+  customFuncArea,
+  onKeyClick,
+  onConfirm,
+  onCancel,
+  onClear,
+  onBackSpace
+}) => {
   const handleKeyClick = keyInfo => {
-    onChange(keyInfo)
+    switch (keyInfo.type) {
+      case TYPE.FUNC.BACK:
+        onBackSpace()
+        break
+      case TYPE.FUNC.CLEAR:
+        onClear()
+        break
+      case TYPE.FUNC.CANCEL:
+        onCancel()
+        break
+      case TYPE.FUNC.ENTER:
+        onConfirm()
+        break
+      default:
+        onKeyClick(keyInfo)
+        break
+    }
   }
 
   return (
@@ -21,7 +44,7 @@ const Keyboard = ({ customFuncArea, onChange }) => {
           <KeyItem
             keyInfo={k}
             className='t-margin-top-20'
-            onKeyClick={handleKeyClick}
+            onKeyClick={onKeyClick}
           />
         ))}
         <Flex className='t-keyboard-func-area'>
@@ -67,7 +90,11 @@ Keyboard.TYPE = TYPE
 
 Keyboard.propTypes = {
   customFuncArea: Proptypes.element,
-  onChange: Proptypes.func
+  onKeyClick: Proptypes.func.isRequired,
+  onBackSpace: Proptypes.func.isRequired,
+  onCancel: Proptypes.func.isRequired,
+  onClear: Proptypes.func.isRequired,
+  onConfirm: Proptypes.func.isRequired
 }
 
 export default Keyboard
