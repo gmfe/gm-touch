@@ -1,4 +1,4 @@
-import { Component, FC, HTMLAttributes } from 'react'
+import { Component, FC, HTMLAttributes, ReactNode } from 'react'
 
 export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   flex?: boolean
@@ -33,3 +33,16 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
 
 export const ProgressCircle: FC<ProgressCircleProps>
 export const Tabs: FC<TabsProps>
+
+export type KeyType = 'dot' | 'number' | 'enter' | 'back' | 'cancel' | 'clear'
+
+export interface KeyInfo {
+  value: string
+  type: KeyType
+}
+export interface KeyboardProps {
+  customFuncArea?: ReactNode
+  onChange?: (key: KeyInfo) => void
+}
+
+export const Keyboard: FC<KeyboardProps>

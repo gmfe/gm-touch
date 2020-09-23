@@ -29,6 +29,7 @@ import Drawer from './components/drawer'
 import Tabs from './components/tabs'
 import CSSVariable from './css_variable'
 import ProgressCircle from './components/progress_circle'
+import Keyboard from './components/keyboard'
 
 export {
   LayoutRoot,
@@ -63,5 +64,6 @@ export {
   Drawer,
   Tabs,
   CSSVariable,
-  ProgressCircle
+  ProgressCircle,
+  Keyboard
 }

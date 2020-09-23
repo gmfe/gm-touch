@@ -5,6 +5,7 @@ const TYPE = {
   DRAWER: 'drawer',
   _POPUP: '_popup',
   MODAL: 'modal',
+  KEYBOARD: 'keyboard',
   TIPS: 'tips',
   FULL_LOADING: 'full_loading',
   N_PROGRESS: 'n_progress'
@@ -18,6 +19,7 @@ class LayerRoot extends React.Component {
     this.state = {
       _popup: null,
       modal: null,
+      keyboard: null,
       tips: null,
       full_loading: null,
       n_progress: null,
@@ -38,7 +40,15 @@ class LayerRoot extends React.Component {
   }
 
   render() {
-    const { drawer, _popup, modal, tips, full_loading, n_progress } = this.state
+    const {
+      drawer,
+      _popup,
+      modal,
+      keyboard,
+      tips,
+      full_loading,
+      n_progress
+    } = this.state
     // 有层级关系
     return (
       <div className='t-layout-root'>
@@ -60,6 +70,7 @@ class LayerRoot extends React.Component {
 
         {drawer && <div>{drawer}</div>}
         {modal && <div>{modal}</div>}
+        {keyboard && <div>{keyboard}</div>}
 
         {tips && tips.length > 0 && (
           <div className='t-tips'>
