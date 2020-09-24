@@ -42,6 +42,7 @@ const Keyboard = ({
       <Flex wrap justifyBetween alignCenter className='t-keyboard'>
         {_.map(KEYS, k => (
           <KeyItem
+            key={k.value}
             keyInfo={k}
             className='t-margin-top-20'
             onKeyClick={handleKeyClick}

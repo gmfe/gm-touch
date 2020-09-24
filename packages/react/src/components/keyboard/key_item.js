@@ -9,8 +9,6 @@ const KeyItem = ({ keyInfo, onKeyClick, className }) => (
   <Button
     key={keyInfo.value}
     className={classNames('t-keyboard-key', className)}
-    alignCenter
-    justifyCenter
     onClick={() => onKeyClick(keyInfo)}
   >
     <Flex
