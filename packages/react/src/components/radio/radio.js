@@ -13,6 +13,7 @@ const Radio = ({
   className,
   children,
   inline,
+  desc,
   ...rest
 }) => {
   const handleClick = () => {
@@ -43,6 +44,7 @@ const Radio = ({
         )}
         {children}
       </Flex>
+      {desc && <div className='t-margin-top-10'>{desc}</div>}
     </div>
   )
 }
@@ -51,6 +53,8 @@ Radio.propTypes = {
   inline: PropTypes.bool,
   value: PropTypes.number,
   checked: PropTypes.bool,
+  /** 描述信息 */
+  desc: PropTypes.any,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
   className: PropTypes.string,
