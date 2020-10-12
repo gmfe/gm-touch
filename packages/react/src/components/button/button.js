@@ -53,7 +53,7 @@ const Button = ({
 
 Button.propTypes = {
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['primary', 'plain']),
+  type: PropTypes.oneOf(['primary', 'accent', 'plain']),
   size: PropTypes.oneOf(['lg']),
   htmlType: PropTypes.oneOf(['submit', 'reset', 'button']),
   block: PropTypes.bool,
