@@ -39,8 +39,8 @@ const Day = props => {
   })
 
   return (
-    <Flex flex alignStart justifyEnd className={cn} onClick={handleClick}>
-      <Flex className='t-calendar-day-content' justifyEnd>{value.date()}</Flex>
+    <Flex flex alignStart justifyCenter className={cn} onClick={handleClick}>
+      <Flex className='t-calendar-day-content' justifyCenter>{value.date()}</Flex>
       <Flex flex={1} className='t-calendar-day-gap' />
     </Flex>
   )

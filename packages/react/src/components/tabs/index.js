@@ -86,7 +86,7 @@ const Tabs = props => {
 Tabs.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string,
+      text: PropTypes.element,
       value: PropTypes.any,
       children: PropTypes.element
     })
