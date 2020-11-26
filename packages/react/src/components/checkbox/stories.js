@@ -38,6 +38,7 @@ export const Default = () => (
   <>
     <Checkbox
       checked={store.checked}
+      bgWhite
       onChange={() => store.setChecked(!store.checked)}
     >
       圆形

@@ -8,30 +8,44 @@ import SVGSuccessSquare from '../../../svg/success-square.svg'
 import SVGSquare from '../../../svg/square.svg'
 import Flex from '../flex'
 
-const icon = {
-  circle: {
-    checked: (
-      <i className='t-checkbox-icon'>
-        <SVGSuccessCircle className='t-text-primary t-checkbox-icon-circle' />
-      </i>
-    ),
-    unchecked: (
-      <i className='t-checkbox-icon'>
-        <SVGCircle className='t-checkbox-icon-circle' />
-      </i>
-    )
-  },
-  square: {
-    checked: (
-      <i className='t-checkbox-icon'>
-        <SVGSuccessSquare className='t-text-primary t-checkbox-icon-square' />
-      </i>
-    ),
-    unchecked: (
-      <i className='t-checkbox-icon'>
-        <SVGSquare className='t-checkbox-icon-square' />
-      </i>
-    )
+const icon = (type, bgWhite) => {
+  switch (type) {
+    case 'circle':
+      return {
+        checked: (
+          <i
+            className={classNames('t-checkbox-icon', {
+              't-checkbox-icon-bg-white': bgWhite
+            })}
+          >
+            <SVGSuccessCircle
+              className={classNames('t-text-primary t-checkbox-icon-circle')}
+            />
+          </i>
+        ),
+        unchecked: (
+          <i
+            className={classNames('t-checkbox-icon', {
+              't-checkbox-icon-bg-white': bgWhite
+            })}
+          >
+            <SVGCircle className={classNames('t-checkbox-icon-circle')} />
+          </i>
+        )
+      }
+    case 'square':
+      return {
+        checked: (
+          <i className='t-checkbox-icon'>
+            <SVGSuccessSquare className='t-text-primary t-checkbox-icon-square' />
+          </i>
+        ),
+        unchecked: (
+          <i className='t-checkbox-icon'>
+            <SVGSquare className='t-checkbox-icon-square' />
+          </i>
+        )
+      }
   }
 }
 
@@ -42,13 +56,14 @@ const Checkbox = ({
   className,
   children,
   type,
+  bgWhite,
   ...rest
 }) => {
   const handleClick = () => {
     !disabled && onChange(!checked)
   }
 
-  const Icon = React.useMemo(() => icon[type], [type])
+  const Icon = React.useMemo(() => icon(type, bgWhite), [type, bgWhite])
 
   return (
     <Flex
@@ -71,6 +86,7 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   type: PropTypes.oneOf(['circle', 'square']),
+  bgWhite: PropTypes.bool,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,

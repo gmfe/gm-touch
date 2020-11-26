@@ -1,5 +1,5 @@
 import React from 'react'
-import Radio from './'
+import Radio from './radio'
 import { observable } from 'mobx'
 
 const store = observable({
