@@ -15,7 +15,7 @@
     &.t-checkbox-icon-bg-white {
       &::after {
         content: '';
-        z-index: -1;
+        z-index: 1;
         display: block;
         position: absolute;
         left: 0;
@@ -23,13 +23,15 @@
         right: 0;
         top: 0;
         border-radius: 50%;
-        transform: scale(0.55);
+        transform: scale(0.53);
         background: #fff;
       }
     }
 
     .t-checkbox-icon-circle {
       border-radius: 50%;
+      position: relative;
+      z-index: 2;
     }
 
     .t-checkbox-icon-square {
