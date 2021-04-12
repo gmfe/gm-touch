@@ -29,6 +29,7 @@ import Drawer from './components/drawer'
 import Tabs from './components/tabs'
 import CSSVariable from './css_variable'
 import ProgressCircle from './components/progress_circle'
+import Progress from './components/progress'
 import Keyboard from './components/keyboard'
 import { Calendar, RangeCalendar } from './components/calendar'
 import DatePicker from './components/date_picker'
@@ -67,6 +68,7 @@ export {
   Tabs,
   CSSVariable,
   ProgressCircle,
+  Progress,
   Keyboard,
   Calendar,
   RangeCalendar,
