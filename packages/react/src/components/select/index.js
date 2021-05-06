@@ -35,7 +35,7 @@ const Select = ({
       data={newData}
       selected={value}
       onSelect={handleChange}
-      className={'t-border-0 t-padding-tb-5'}
+      className='t-border-0 t-padding-tb-5'
       style={{
         maxHeight: '250px'
       }}
@@ -55,7 +55,7 @@ const Select = ({
         selected={selected}
         onSelect={onChange}
         disabled={disabled}
-        className={classNames(`t-select t-bg t-inline-block`, className)}
+        className={classNames(`t-select t-bg `, className)}
       />
     </Popover>
   )
