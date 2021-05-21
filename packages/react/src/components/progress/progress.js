@@ -3,14 +3,20 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import Flex from '../flex'
 
-const Progress = ({ percentage, height, className, ...rest }) => {
+const Progress = ({
+  percentage,
+  height,
+  className,
+  progressColor,
+  ...rest
+}) => {
   return (
     <Flex alignCenter {...rest} className={classNames('t-progress', className)}>
       <Flex flex block className='t-progress-bar'>
         <div className='t-progress-bar-outer' style={{ height }}>
           <div
             className={classNames('t-progress-bar-inner')}
-            style={{ width: `${percentage}%` }}
+            style={{ width: `${percentage}%`, background: progressColor }}
           />
         </div>
       </Flex>
@@ -22,7 +28,8 @@ const Progress = ({ percentage, height, className, ...rest }) => {
 Progress.propTypes = {
   percentage: PropTypes.string,
   className: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
+  progressColor: PropTypes.string
 }
 
 export default Progress
