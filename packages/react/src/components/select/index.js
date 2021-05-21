@@ -13,6 +13,7 @@ const Select = ({
   children,
   disabled,
   className,
+  listName,
   isInPopup,
   ...rest
 }) => {
@@ -35,7 +36,7 @@ const Select = ({
       data={newData}
       selected={value}
       onSelect={handleChange}
-      className='t-border-0 t-padding-tb-5'
+      className={classNames(`t-border-0 t-padding-tb-5 `, listName)}
       style={{
         maxHeight: '250px'
       }}
@@ -70,6 +71,7 @@ Select.propTypes = {
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   className: PropTypes.string,
+  listName: PropTypes.string,
   style: PropTypes.object,
   isInPopup: PropTypes.bool
 }
