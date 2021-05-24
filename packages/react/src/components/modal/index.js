@@ -13,7 +13,8 @@ const Modal = ({
   disableMaskClose,
   onHide,
   className,
-  children
+  children,
+  haveOverFlow
 }) => {
   const handleMask = () => {
     if (!disableMaskClose) {
@@ -48,7 +49,8 @@ const Modal = ({
           {title && <div className='t-modal-title'>{title}</div>}
           <div
             className={classNames('t-modal-content', {
-              't-padding-0': noContentPadding
+              't-padding-0': noContentPadding,
+              't-modal-overflow': haveOverFlow
             })}
           >
             {children}
@@ -74,6 +76,7 @@ Modal.propTypes = {
   opacityMask: PropTypes.bool,
   size: PropTypes.string, // lg md sm
   noContentPadding: PropTypes.bool,
+  haveOverFlow: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object
 }
