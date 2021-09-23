@@ -1,6 +1,6 @@
 {
   "name": "@gm-touch/react",
-  "version": "2.1.2-alpha.2",
+  "version": "2.1.2-alpha.3",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-touch#readme",
@@ -31,7 +31,7 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@gm-touch/locales": "^2.1.2-alpha.2"
+    "@gm-touch/locales": "^2.1.2-alpha.3"
   },
-  "gitHead": "8409d552ab261ec1d5f113c92e50f6d3d75b33ca"
+  "gitHead": "c79f578e5d23519d8324c3f83ee145a324c06498"
 }

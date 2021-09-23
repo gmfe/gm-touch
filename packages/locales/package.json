@@ -1,6 +1,6 @@
 {
   "name": "@gm-touch/locales",
-  "version": "2.1.2-alpha.2",
+  "version": "2.1.2-alpha.3",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-touch#readme",
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/gmfe/gm-touch/issues"
   },
-  "gitHead": "8409d552ab261ec1d5f113c92e50f6d3d75b33ca"
+  "gitHead": "c79f578e5d23519d8324c3f83ee145a324c06498"
 }
