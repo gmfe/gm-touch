@@ -5,14 +5,33 @@
   .t-checkbox-icon {
     width: 30px;
     height: 30px;
-    color: #999999;
+    color: #999;
     font-size: 30px;
     padding: var(--size-form-padding-top);
     padding-left: 10px;
     padding-right: 10px;
+    position: relative;
+
+    &.t-checkbox-icon-bg-white {
+      &::after {
+        content: '';
+        z-index: 1;
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        border-radius: 50%;
+        transform: scale(0.53);
+        background: #fff;
+      }
+    }
 
     .t-checkbox-icon-circle {
       border-radius: 50%;
+      position: relative;
+      z-index: 2;
     }
 
     .t-checkbox-icon-square {
@@ -26,7 +45,7 @@
 
     .t-checkbox-icon-square,
     .t-checkbox-icon-circle {
-      background: #eaeaea;
+      background: #f8f8f8;
     }
   }
 }

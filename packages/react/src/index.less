@@ -1,11 +1,25 @@
 @import './normalize.css';
 @import './less/variable';
 
+//theme
+@import './theme/blue.less';
+
 html,
 body {
-  font-family: 'Segoe UI', 'Lucida Grande', Helvetica, Arial, 'Microsoft YaHei',
-    FreeSans, Arimo, 'Droid Sans', 'wenquanyi micro hei', 'Hiragino Sans GB',
-    'Hiragino Sans GB W3', FontAwesome, sans-serif;
+  font-family:
+    'Segoe UI',
+    'Lucida Grande',
+    Helvetica,
+    Arial,
+    'Microsoft YaHei',
+    FreeSans,
+    Arimo,
+    'Droid Sans',
+    'wenquanyi micro hei',
+    'Hiragino Sans GB',
+    'Hiragino Sans GB W3',
+    FontAwesome,
+    sans-serif;
   font-size: var(--size-text);
   color: var(--color-first);
   font-weight: 400;
@@ -32,10 +46,9 @@ body {
 @import 'less/img';
 @import 'less/cursor';
 @import 'less/clearfix';
-
 @import './components/selection/style';
-
 @import './components/nprogress/style';
+@import './components/progress/style';
 @import './components/button/style';
 @import './components/loading/style';
 @import './components/flex/style';
@@ -55,7 +68,10 @@ body {
 @import './components/checkbox/style';
 @import './components/dialog/style';
 @import './components/drawer/style';
-
+@import './components/tabs/style';
+@import './components/progress_circle/style';
+@import './components/keyboard//style';
+@import './components/date_picker/style';
 
 .t-box-shadow-bottom {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;

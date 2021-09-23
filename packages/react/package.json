@@ -1,6 +1,6 @@
 {
   "name": "@gm-touch/react",
-  "version": "1.0.10",
+  "version": "2.1.1",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-touch#readme",
@@ -10,6 +10,7 @@
   },
   "main": "src/index.js",
   "module": "src/index.js",
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gmfe/gm-touch.git"
@@ -31,6 +32,6 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
-    "@gm-touch/locales": "^1.0.10"
+    "@gm-touch/locales": "^2.1.1"
   }
 }

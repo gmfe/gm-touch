@@ -17,7 +17,7 @@ const Week = () => {
     <Flex className='t-calendar-week t-margin-top-20'>
       {_.map(weekDays, (v, i) => (
         <Flex key={i} flex alignStart justifyEnd>
-          <Flex justifyEnd className='t-calendar-week-content'>{v}</Flex>
+          <Flex justifyCenter className='t-calendar-week-content'>{v}</Flex>
           <Flex flex={1}/>
         </Flex>
       ))}

@@ -1,0 +1,47 @@
+.t-keyboard {
+  width: 100%;
+  background-color: var(--color-bg);
+
+  .t-keyboard-key {
+    width: 120px;
+    cursor: pointer;
+    height: 120px;
+    font-size: 30px;
+    font-weight: bold;
+
+    .t-keyboard-num {
+      font-size: 80px;
+      font-weight: normal;
+    }
+  }
+
+  .t-keyboard-func-area {
+    height: 120px;
+    margin-top: 20px;
+    width: 260px;
+  }
+
+  .t-keyboard-enter {
+    font-size: 30px;
+    font-weight: bold;
+    background-color: rgb(136, 164, 187);
+  }
+}
+
+@media (max-width: 1024px) {
+  .height-80 {
+    height: 80px !important;
+  }
+
+  .t-keyboard-key {
+    .height-80();
+  }
+
+  .t-keyboard-num {
+    font-size: 40px !important;
+  }
+
+  .t-keyboard-func-area {
+    .height-80();
+  }
+}

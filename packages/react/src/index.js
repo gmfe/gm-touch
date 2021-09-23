@@ -10,7 +10,7 @@ import Switch from './components/switch'
 import InputNumber from './components/input_number'
 import Tip from './components/tip'
 import Storage from './components/storage'
-import Radio from './components/radio'
+import { Radio, RadioGroup } from './components/radio'
 import Checkbox from './components/checkbox'
 import Dialog from './components/dialog'
 import List from './components/list'
@@ -26,6 +26,13 @@ import NProgress from './components/nprogress'
 import { Col, Row } from './components/grid'
 import DateRangePicker from './components/date_range_picker'
 import Drawer from './components/drawer'
+import Tabs from './components/tabs'
+import CSSVariable from './css_variable'
+import ProgressCircle from './components/progress_circle'
+import Progress from './components/progress'
+import Keyboard from './components/keyboard'
+import { Calendar, RangeCalendar } from './components/calendar'
+import DatePicker from './components/date_picker'
 
 export {
   LayoutRoot,
@@ -48,6 +55,7 @@ export {
   RightSideModal,
   Dialog,
   Radio,
+  RadioGroup,
   Checkbox,
   Input,
   Tree,
@@ -57,4 +65,12 @@ export {
   Row,
   DateRangePicker,
   Drawer,
+  Tabs,
+  CSSVariable,
+  ProgressCircle,
+  Progress,
+  Keyboard,
+  Calendar,
+  RangeCalendar,
+  DatePicker
 }

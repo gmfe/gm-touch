@@ -5,15 +5,23 @@
 --btn 具体业务
 */
 
+// 会通过主题改变
+:root {
+  // color
+  --color-primary: #3caa41;
+  --color-primary-light: #65c869;
+}
+
 :root {
   // 有层级关系，所以 first second
-  --color-first: #000923;
+  --color-first: #333333;
   --color-second: #798294;
+  --color-third: #999999;
 
   // 颜色相关
-  --color-primary: #3caa41;
   --color-success: #3caa41;
   --color-info: #5bc0de;
+  --color-accent: #f66401;
   --color-warning: #f0ad4e;
   --color-danger: #fc887f;
 
@@ -22,14 +30,17 @@
   --color-red: red;
   --color-white: white;
   --color-black: black;
-  --color-placeholder: var(--color-second);
+  --color-placeholder: var(--color-third);
+
+  // 按钮辅色
+  --color-btn-accent: #538245;
 
   --color-bg: white;
   --color-bg-back: #f8f8f8;
   --color-bg-second: var(--color-second);
   --color-bg-primary: var(--color-primary);
 
-  --color-bg-mask: rgba(61,72,93, 0.3);
+  --color-bg-mask: rgba(0, 0, 0, 0.85);
   --color-bg-mask-white: rgba(255, 255, 255, 0.8);
 
   --color-border: #d4d8d8;
@@ -40,9 +51,12 @@
 
   /* ------------ 字体尺寸 -------------- */
   --size-text-14: 14px;
+  --size-text-12: 12px;
   --size-text-16: 16px;
   --size-text-18: 18px;
   --size-text-20: 20px;
+  --size-text-24: 24px;
+  --size-text-26: 26px;
   --size-text-28: 28px;
   --size-text-38: 38px;
 
@@ -74,7 +88,7 @@
   // tree
   --tree-size-list-item-height: var(--size-form-height);
 
-    // zIndex
+  // zIndex
   --t-z-index-drawer: 1030;
   --t-z-index-modal: 1050;
   --t-z-index-popup: 2000;
