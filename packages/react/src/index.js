@@ -31,6 +31,7 @@ import CSSVariable from './css_variable'
 import ProgressCircle from './components/progress_circle'
 import Progress from './components/progress'
 import Keyboard from './components/keyboard'
+import KeyBoardOption from './components/key_board_option'
 import { Calendar, RangeCalendar } from './components/calendar'
 import DatePicker from './components/date_picker'
 
@@ -70,6 +71,7 @@ export {
   ProgressCircle,
   Progress,
   Keyboard,
+  KeyBoardOption,
   Calendar,
   RangeCalendar,
   DatePicker
