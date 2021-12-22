@@ -34,6 +34,7 @@ import Keyboard from './components/keyboard'
 import KeyBoardOption from './components/key_board_option'
 import { Calendar, RangeCalendar } from './components/calendar'
 import DatePicker from './components/date_picker'
+import DateOneMonthPicker from './components/date_one_month_picker'
 
 export {
   LayoutRoot,
@@ -74,5 +75,6 @@ export {
   KeyBoardOption,
   Calendar,
   RangeCalendar,
-  DatePicker
+  DatePicker,
+  DateOneMonthPicker
 }
