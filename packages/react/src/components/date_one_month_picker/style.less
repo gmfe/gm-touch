@@ -5,6 +5,38 @@
   .t-date-head {
     height: 100px;
     background: #fff;
+
+    .t-head-text {
+      font-size: 32px;
+      margin: 0 75px;
+    }
+
+    .t-head-button {
+      justify-content: center;
+      align-items: center;
+      width: 56px;
+      height: 56px;
+      background: #2b54c5;
+      border-radius: 10px;
+
+      & > span {
+        width: 13px;
+        height: 15px;
+        border-right: 15px solid white;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+      }
+    }
+
+    .t-head-button-left {
+      .t-head-button();
+    }
+
+    .t-head-button-right {
+      .t-head-button();
+
+      transform: rotateZ(180deg);
+    }
   }
 
   .t-date-week {
@@ -24,9 +56,9 @@
     padding: 20px 0 0 51px;
 
     .t-date-item-chose {
-      background: #3d6cec;
-      border: 2px solid #3d6cec;
-      color: white;
+      background: #3d6cec !important;
+      border: 2px solid #3d6cec !important;
+      color: white !important;
     }
 
     .t-date-item {

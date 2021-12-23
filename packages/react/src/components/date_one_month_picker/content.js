@@ -5,26 +5,30 @@ import moment from 'moment'
 import Day from './day'
 import PropTypes from 'prop-types'
 
-const Content = ({ value }) => {
+const Content = ({ selected, day, onSelect }) => {
   const array = new Array(42)
-  const now = moment()
-  const monthFirstDay = moment(value)
+  const nowTime = moment()
+  const nowMonth = moment(day).startOf('month')
+  const monthFirstDay = moment(day)
     .startOf('month')
     .day(0)
     .add(-1, 'day')
-  const nowMonth = moment(value).startOf('month')
+
   return (
     <Flex className='t-date-content' wrap>
       {_.map(array, (__, index) => {
-        const day = moment(monthFirstDay.add(1, 'day'))
-        const isSameMonth = moment(day).isSame(nowMonth, 'month')
-        const isNow = moment(day).isSame(now, 'day')
+        const value = moment(monthFirstDay.add(1, 'day'))
+        const isSameMonth = value.isSame(nowMonth, 'month')
+        const isNow = value.isSame(nowTime, 'day')
+        const isActive = value.isSame(selected, 'day')
         return (
           <Day
             index={index}
-            value={day.date()}
+            value={value}
             disabled={!isSameMonth}
             isNow={isNow}
+            active={isActive}
+            onSelect={onSelect}
           />
         )
       })}
@@ -34,7 +38,11 @@ const Content = ({ value }) => {
 
 Content.propTypes = {
   /** 日期值 */
-  value: PropTypes.object.isRequired
+  day: PropTypes.object.isRequired,
+  /** 选择值 */
+  selected: PropTypes.object.isRequired,
+  /** 选择回调 */
+  onSelect: PropTypes.func.isRequired
 }
 
 export default Content

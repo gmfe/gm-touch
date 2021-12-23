@@ -3,20 +3,28 @@ import Content from './content'
 import Week from './week'
 import Header from './head'
 import moment from 'moment'
+import PropTypes from 'prop-types'
 import './style.less'
 
-const DateOneMonthPicker = () => {
-  const [time, setTime] = useState(moment())
+const DateOneMonthPicker = ({ selected = new Date(), onSelect }) => {
+  const [time, setTime] = useState(moment(selected))
   return (
     <div className='t-date-one-month'>
       <Header
-        value={time}
+        month={time}
         onChange={number => setTime(v => moment(v).add(number, 'month'))}
       />
       <Week />
-      <Content value={time} />
+      <Content selected={selected} day={time} onSelect={onSelect} />
     </div>
   )
+}
+
+DateOneMonthPicker.propTypes = {
+  /** 日期值 */
+  selected: PropTypes.object.isRequired,
+  /** 选择回调 */
+  onSelect: PropTypes.func.isRequired
 }
 
 export default DateOneMonthPicker
