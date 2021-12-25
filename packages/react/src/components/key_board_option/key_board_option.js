@@ -10,7 +10,7 @@ import _ from 'lodash'
 const KeyBoardOption = ({
   onKeyClick,
   onConfirm,
-  onCancel,
+  onBack,
   onClear,
   onWidth,
   isNoWidth = false
@@ -20,8 +20,8 @@ const KeyBoardOption = ({
       case TYPE.FUNC.CLEAR:
         onClear()
         break
-      case TYPE.FUNC.CANCEL:
-        onCancel()
+      case TYPE.FUNC.BACK:
+        onBack()
         break
       case TYPE.FUNC.ENTER:
         onConfirm()
@@ -30,7 +30,7 @@ const KeyBoardOption = ({
         onWidth()
         break
       default:
-        onKeyClick(keyInfo)
+        onKeyClick(keyInfo.value)
         break
     }
   }
@@ -54,7 +54,7 @@ const KeyBoardOption = ({
                   't-keyBoard-zero ': v.value === '0' && isNoWidth,
                   't-keyBoard-text': v.type !== TYPE.NUMBER
                 })}
-                onClick={handleKeyClick}
+                onClick={() => handleKeyClick(v)}
               >
                 {v.value}
               </Flex>
@@ -70,7 +70,7 @@ const KeyBoardOption = ({
                 't-keyBoard-enter t-text-white': v.type === TYPE.FUNC.ENTER,
                 't-keyBoard-text': v.type === TYPE.FUNC.CLEAR
               })}
-              onClick={handleKeyClick}
+              onClick={() => handleKeyClick(v)}
             >
               {v.value}
             </Flex>
@@ -83,7 +83,7 @@ const KeyBoardOption = ({
 
 KeyBoardOption.propTypes = {
   onKeyClick: Proptypes.func.isRequired,
-  onCancel: Proptypes.func.isRequired,
+  onBack: Proptypes.func.isRequired,
   onClear: Proptypes.func.isRequired,
   onConfirm: Proptypes.func.isRequired,
   onWidth: Proptypes.func.isRequired,
