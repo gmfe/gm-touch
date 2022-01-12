@@ -7,7 +7,7 @@ const TYPE = {
     BACK: 'back',
     CLEAR: 'clear',
     ENTER: 'enter',
-    WiDTH: 'width'
+    WEIGH: 'weigh'
   }
 }
 
@@ -21,9 +21,9 @@ const NUMBER_KEYS = [
   { type: TYPE.NUMBER, value: '1' },
   { type: TYPE.NUMBER, value: '2' },
   { type: TYPE.NUMBER, value: '3' },
-  { type: TYPE.DOT, value: '.', isNoWidth: true },
+  { type: TYPE.DOT, value: '.', decimal: true },
   { type: TYPE.NUMBER, value: '0' },
-  { type: TYPE.FUNC.WiDTH, value: getLocale('称重'), isNoWidth: true }
+  { type: TYPE.FUNC.WEIGH, value: getLocale('称重'), weigh: true }
 ]
 
 const OPTIONS_KEYS = [

@@ -1,19 +1,19 @@
-import React from 'react'
-import { NUMBER_KEYS, OPTIONS_KEYS, TYPE } from './enum'
-import Flex from '../flex'
-import './style.less'
 import classNames from 'classnames'
-import Proptypes from 'prop-types'
-
 import _ from 'lodash'
+import Proptypes from 'prop-types'
+import React from 'react'
+import Flex from '../flex'
+import { NUMBER_KEYS, OPTIONS_KEYS, TYPE } from './enum'
+import './style.less'
 
-const KeyBoardOption = ({
+const NumberKeyboard = ({
   onKeyClick,
   onConfirm,
   onBack,
   onClear,
-  onWidth,
-  isNoWidth = false
+  onWeigh,
+  decimal,
+  weigh
 }) => {
   const handleKeyClick = keyInfo => {
     switch (keyInfo.type) {
@@ -26,8 +26,8 @@ const KeyBoardOption = ({
       case TYPE.FUNC.ENTER:
         onConfirm()
         break
-      case TYPE.FUNC.WiDTH:
-        onWidth()
+      case TYPE.FUNC.WEIGH:
+        onWeigh()
         break
       default:
         onKeyClick(keyInfo.value)
@@ -36,23 +36,23 @@ const KeyBoardOption = ({
   }
   return (
     <>
-      <Flex className='t-new-keyBoard t-text-bold'>
-        <Flex
-          wrap
-          justifyBetween
-          alignContentBetween
-          className='t-new-keyBoard-right'
-        >
+      <Flex className='t-number-keyboard t-text-bold' justifyCenter>
+        <Flex className='t-number-keyboard-number' wrap>
           {_.map(
-            _.filter(NUMBER_KEYS, item => item.isNoWidth !== isNoWidth),
+            _.filter(
+              NUMBER_KEYS,
+              item =>
+                (!item.decimal || item.decimal === decimal) &&
+                (!item.weigh || item.weigh === weigh)
+            ),
             v => (
               <Flex
                 wrap
                 justifyCenter
                 alignCenter
-                className={classNames('t-keyBoard-item', {
-                  't-keyBoard-zero ': v.value === '0' && isNoWidth,
-                  't-keyBoard-text': v.type !== TYPE.NUMBER
+                className={classNames('t-number-keyboard-number-item', {
+                  zero: v.value === '0',
+                  weigh: v.type === TYPE.FUNC.WEIGH
                 })}
                 onClick={() => handleKeyClick(v)}
               >
@@ -61,15 +61,15 @@ const KeyBoardOption = ({
             )
           )}
         </Flex>
-        <Flex column justifyBetween className='t-margin-left-20'>
+        <Flex className='t-number-keyboard-action' column justifyBetween>
           {_.map(OPTIONS_KEYS, v => (
             <Flex
               justifyCenter
               alignCenter
-              className={classNames('t-keyBoard-item', {
-                't-keyBoard-enter t-text-white': v.type === TYPE.FUNC.ENTER,
-                't-keyBoard-text': v.type === TYPE.FUNC.CLEAR
+              className={classNames('t-number-keyboard-action-item', {
+                enter: v.type === TYPE.FUNC.ENTER
               })}
+              column
               onClick={() => handleKeyClick(v)}
             >
               {v.value}
@@ -81,13 +81,14 @@ const KeyBoardOption = ({
   )
 }
 
-KeyBoardOption.propTypes = {
+NumberKeyboard.propTypes = {
   onKeyClick: Proptypes.func.isRequired,
   onBack: Proptypes.func.isRequired,
   onClear: Proptypes.func.isRequired,
   onConfirm: Proptypes.func.isRequired,
-  onWidth: Proptypes.func.isRequired,
-  isNoWidth: Proptypes.bool
+  onWeigh: Proptypes.func.isRequired,
+  decimal: Proptypes.bool,
+  weigh: Proptypes.bool
 }
 
-export default KeyBoardOption
+export default NumberKeyboard
