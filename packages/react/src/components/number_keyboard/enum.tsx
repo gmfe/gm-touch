@@ -1,4 +1,6 @@
 import { getLocale } from '@gm-touch/locales'
+import React from 'react'
+import SVGDeleteBack from '../../../svg/deleteBack.svg'
 
 const TYPE = {
   DOT: 'dot',
@@ -27,7 +29,10 @@ const NUMBER_KEYS = [
 ]
 
 const OPTIONS_KEYS = [
-  { type: TYPE.FUNC.BACK, value: '←' },
+  {
+    type: TYPE.FUNC.BACK,
+    value: <SVGDeleteBack style={{ fontSize: '44px' }} />
+  },
   { type: TYPE.FUNC.CLEAR, value: getLocale('清零') },
   { type: TYPE.FUNC.ENTER, value: getLocale('确定') }
 ]

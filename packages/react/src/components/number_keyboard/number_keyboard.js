@@ -3,7 +3,7 @@ import _ from 'lodash'
 import Proptypes from 'prop-types'
 import React from 'react'
 import Flex from '../flex'
-import { NUMBER_KEYS, OPTIONS_KEYS, TYPE } from './enum'
+import { NUMBER_KEYS, OPTIONS_KEYS, TYPE } from './enum.tsx'
 import './style.less'
 
 const NumberKeyboard = ({
