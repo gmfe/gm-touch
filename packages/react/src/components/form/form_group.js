@@ -1,4 +1,4 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-touch/locales'
 import React, { useEffect, useState, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import Affix from '../affix'

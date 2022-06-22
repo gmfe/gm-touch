@@ -16,7 +16,7 @@ import {
   Radio,
   CheckboxGroup,
   Checkbox,
-  InputNumberV2,
+  // InputNumberV2,
   Flex,
   Button
 } from '../../index'
@@ -83,7 +83,7 @@ const Tets = observer(() => {
       <FormItem
         label='描述'
         required
-        validate={Validator.create([], store.desc)}
+        // validate={Validator.create([], store.desc)}
       >
         <textarea
           value={store.desc}
@@ -102,9 +102,9 @@ storiesOf('Form', module)
         Switch,
         RadioGroup,
         Radio,
-        CheckboxGroup,
+        // CheckboxGroup,
         Checkbox,
-        InputNumberV2
+        // InputNumberV2
       ]
     }
   })
@@ -145,7 +145,7 @@ storiesOf('Form', module)
         <FormItem
           label='描述'
           required
-          validate={Validator.create([], store.desc)}
+          // validate={Validator.create([], store.desc)}
         >
           <textarea
             value={store.desc}
@@ -177,7 +177,7 @@ storiesOf('Form', module)
           </RadioGroup>
         </FormItem>
         <FormItem label='兴趣'>
-          <CheckboxGroup
+          {/* <CheckboxGroup
             name='taste'
             inline
             value={store.taste}
@@ -187,7 +187,7 @@ storiesOf('Form', module)
             <Checkbox value={1}>打篮球</Checkbox>
             <Checkbox value={2}>美食</Checkbox>
             <Checkbox value={3}>旅游</Checkbox>
-          </CheckboxGroup>
+          </CheckboxGroup> */}
         </FormItem>
         <FormItem label='自定义' unLabelTop>
           <div>
@@ -196,10 +196,10 @@ storiesOf('Form', module)
           </div>
         </FormItem>
         <FormItem label='身高'>
-          <InputNumberV2
+          {/* <InputNumberV2
             value={store.height}
             onChange={value => store.setData('height', value)}
-          />
+          /> */}
           <div className='gm-text-desc gm-margin-top-5'>要填写升高，升高</div>
           <div>（这里演示多个 children 的情况）</div>
         </FormItem>
@@ -249,10 +249,10 @@ FormItem 包住表单元素
             />
           </FormItem>
           <FormItem label='身高'>
-            <InputNumberV2
+            {/* <InputNumberV2
               value={store.height}
               onChange={value => store.setData('height', value)}
-            />
+            /> */}
             <div className='gm-text-desc gm-margin-top-5'>要填写升高，升高</div>
             <div>（这里演示多个 children 的情况）</div>
           </FormItem>
@@ -268,7 +268,7 @@ FormItem 包住表单元素
             </RadioGroup>
           </FormItem>
           <FormItem label='兴趣'>
-            <CheckboxGroup
+            {/* <CheckboxGroup
               name='taste'
               inline
               value={store.taste}
@@ -278,14 +278,14 @@ FormItem 包住表单元素
               <Checkbox value={1}>打篮球</Checkbox>
               <Checkbox value={2}>美食</Checkbox>
               <Checkbox value={3}>旅游</Checkbox>
-            </CheckboxGroup>
+            </CheckboxGroup> */}
           </FormItem>
         </FormBlock>
         <FormItem
           col={2}
           label='描述'
           required
-          validate={Validator.create([], store.desc)}
+          // validate={Validator.create([], store.desc)}
         >
           <textarea
             value={store.desc}
@@ -340,7 +340,7 @@ FormItem 包住表单元素
             <FormItem
               label='描述'
               required
-              validate={Validator.create([], store.desc)}
+              // validate={Validator.create([], store.desc)}
             >
               <textarea
                 value={store.desc}
@@ -466,7 +466,7 @@ FormItem 包住表单元素
               <FormItem
                 label='描述'
                 required
-                validate={Validator.create([], store.desc)}
+                // validate={Validator.create([], store.desc)}
               >
                 <textarea
                   value={store.desc}
@@ -474,7 +474,7 @@ FormItem 包住表单元素
                 />
               </FormItem>
               <FormItem label='兴趣'>
-                <CheckboxGroup
+                {/* <CheckboxGroup
                   style={{ width: '400px' }}
                   name='taste'
                   inline
@@ -487,7 +487,7 @@ FormItem 包住表单元素
                   <Checkbox value={0}>阅读</Checkbox>
                   <Checkbox value={1}>打篮球</Checkbox>
                   <Checkbox value={2}>美食</Checkbox>
-                </CheckboxGroup>
+                </CheckboxGroup> */}
               </FormItem>
             </FormBlock>
             <FormPanel.More>
