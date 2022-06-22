@@ -33,6 +33,14 @@ import Progress from './components/progress'
 import Keyboard from './components/keyboard'
 import { Calendar, RangeCalendar } from './components/calendar'
 import DatePicker from './components/date_picker'
+import {
+  Form,
+  FormItem,
+  FormButton,
+  FormBlock,
+  FormGroup,
+  FormPanel
+} from './components/form'
 
 export {
   LayoutRoot,
@@ -72,5 +80,11 @@ export {
   Keyboard,
   Calendar,
   RangeCalendar,
-  DatePicker
+  DatePicker,
+  Form,
+  FormItem,
+  FormButton,
+  FormBlock,
+  FormGroup,
+  FormPanel
 }
