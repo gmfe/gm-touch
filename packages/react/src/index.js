@@ -33,6 +33,7 @@ import Progress from './components/progress'
 import Keyboard from './components/keyboard'
 import { Calendar, RangeCalendar } from './components/calendar'
 import DatePicker from './components/date_picker'
+import MoreSelect from './components/more_select'
 
 export {
   LayoutRoot,
@@ -43,6 +44,7 @@ export {
   Flex,
   Collapse,
   IconDownUp,
+  MoreSelect,
   Switch,
   InputNumber,
   Tip,

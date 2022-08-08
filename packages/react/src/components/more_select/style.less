@@ -1,0 +1,134 @@
+.gm-more-select {
+  .gm-more-select-selected {
+    width: 100%;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #d4d8d8;
+    background-color: white;
+    min-height: 30px;
+    padding: 5px 25px 5px 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+
+    .gm-more-select-selected-item {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    &.gm-popover-active {
+      border-color: #8b92a3;
+    }
+  }
+
+  .gm-more-select-clear-btn {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    cursor: pointer;
+    color: #8b92a3;
+  }
+
+  &:hover {
+    .gm-more-select-clear-btn {
+      display: block;
+    }
+  }
+
+  &.gm-more-select-disabled {
+    cursor: not-allowed;
+
+    .gm-more-select-selected {
+      .gm-disabled {
+        cursor: not-allowed;
+        color: #8b92a3;
+        background: #f5f5f5;
+      }
+    }
+
+    input {
+      cursor: not-allowed;
+    }
+
+    .gm-more-select-clear-btn {
+      cursor: not-allowed;
+    }
+  }
+
+  &.gm-more-select-multiple {
+    .gm-more-select-selected-item {
+      position: relative;
+      padding: 0 16px 0 5px;
+      background-color: #edf3f9;
+      margin-right: 5px;
+      border-radius: 4px;
+
+      .gm-more-select-clear-btn {
+        top: 2px;
+        right: 0;
+      }
+    }
+  }
+}
+
+.gm-more-select-popup {
+  background: white;
+
+  .gm-more-select-popup-input {
+    padding: 5px 10px;
+
+    input {
+      padding: 0 5px;
+      height: 28px;
+      box-shadow: none;
+      min-width: 50px;
+      width: 100%;
+      outline: none;
+    }
+  }
+
+  .list-group {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    margin-bottom: 0;
+
+    .list-group-item {
+      cursor: pointer;
+      border: none;
+      padding: 5px 10px;
+
+      &.active {
+        z-index: inherit;
+        color: #1087ff;
+      }
+
+      &:first-child {
+        border-top: none;
+      }
+
+      &.active.line-selected {
+        background-color: #d7e8fc;
+      }
+
+      &.line-selected {
+        background-color: #d7e8fc;
+      }
+    }
+
+    .list-group-label {
+      .list-group-label-item {
+        padding: 5px 10px;
+        border-top: 1px solid #d4d8d8;
+        color: #999;
+      }
+
+      .list-group-item {
+        padding: 5px 22px;
+      }
+    }
+  }
+}
