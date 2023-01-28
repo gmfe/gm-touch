@@ -1,0 +1,45 @@
+.t-number-keyboard {
+  width: 600px;
+  height: 450px;
+  padding: 48px 32px;
+  background: #cdd4e1;
+  gap: 16px;
+
+  .t-number-keyboard-number {
+    gap: 16px;
+    flex: 0 1 calc((100% - 48px) / 4 * 3 + 32px);
+
+    .t-number-keyboard-number-item {
+      background: #fff;
+      border-radius: 8px;
+      font-size: 48px;
+      flex: 0 1 calc((100% - 32px) / 3);
+    }
+
+    .t-number-keyboard-number-item.zero {
+      flex: 1;
+    }
+
+    .t-number-keyboard-number-item.weigh {
+      font-size: 36px;
+    }
+  }
+
+  .t-number-keyboard-action {
+    gap: 16px;
+    flex: 0 1 calc((100% - 48px) / 4);
+
+    .t-number-keyboard-action-item {
+      background: #fff;
+      border-radius: 8px;
+      font-size: 36px;
+      flex: 0 1 calc((100% - 48px) / 4);
+    }
+
+    .t-number-keyboard-action-item.enter {
+      flex: 1;
+      background: #3d6cec;
+      color: white;
+    }
+  }
+}

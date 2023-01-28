@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>delete-back</title>
+    <g id="切图-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="delete-back-2-fill">
+            <polygon id="Path" points="0 0 48 0 48 48 0 48"></polygon>
+            <path d="M13.07,5.99999998 L42,5.99999998 C43.1045695,5.99999998 44,6.8954305 44,7.99999998 L44,40 C44,41.1045695 43.1045695,42 42,42 L13.07,42 C12.4014429,42 11.7770492,41.6661394 11.406,41.11 L0.74,25.11 C0.291600926,24.4379263 0.291600926,23.5620737 0.74,22.89 L11.406,6.89 C11.7770492,6.33386056 12.4014429,5.99999998 13.07,5.99999998 Z M26,21.172 L20.344,15.514 L17.514,18.344 L23.172,24 L17.514,29.656 L20.344,32.486 L26,26.828 L31.656,32.486 L34.486,29.656 L28.828,24 L34.486,18.344 L31.656,15.514 L26,21.172 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

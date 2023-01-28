@@ -15,6 +15,7 @@ const Select = ({
   className,
   listName,
   isInPopup,
+  renderItem,
   ...rest
 }) => {
   const refPopup = useRef(null)
@@ -40,6 +41,7 @@ const Select = ({
       style={{
         maxHeight: '250px'
       }}
+      renderItem={renderItem}
     />
   )
 
@@ -73,7 +75,8 @@ Select.propTypes = {
   className: PropTypes.string,
   listName: PropTypes.string,
   style: PropTypes.object,
-  isInPopup: PropTypes.bool
+  isInPopup: PropTypes.bool,
+  renderItem: PropTypes.func
 }
 
 export default Select
