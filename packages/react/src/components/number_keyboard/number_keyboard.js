@@ -84,7 +84,9 @@ const NumberKeyboard = ({
                 column
                 onClick={() => !disable && handleKeyClick(v)}
               >
-                {v.value}
+                {disable && v.type === TYPE.FUNC.BACK
+                  ? v.disableValue
+                  : v.value}
               </Flex>
             )
           })}
