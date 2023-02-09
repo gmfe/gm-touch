@@ -13,7 +13,9 @@ const NumberKeyboard = ({
   onClear,
   onWeigh,
   decimal,
-  weigh
+  weigh,
+  weightDisable,
+  inputDisable
 }) => {
   const handleKeyClick = keyInfo => {
     switch (keyInfo.type) {
@@ -45,36 +47,49 @@ const NumberKeyboard = ({
                 (!item.decimal || item.decimal === decimal) &&
                 (!item.weigh || item.weigh === weigh)
             ),
-            v => (
-              <Flex
-                wrap
-                justifyCenter
-                alignCenter
-                className={classNames('t-number-keyboard-number-item', {
-                  zero: v.value === '0',
-                  weigh: v.type === TYPE.FUNC.WEIGH
-                })}
-                onClick={() => handleKeyClick(v)}
-              >
-                {v.value}
-              </Flex>
-            )
+            v => {
+              const disable =
+                (inputDisable && [TYPE.NUMBER, TYPE.DOT].includes(v.type)) ||
+                (weightDisable && [TYPE.FUNC.WEIGH].includes(v.type))
+              return (
+                <Flex
+                  wrap
+                  justifyCenter
+                  alignCenter
+                  className={classNames('t-number-keyboard-number-item', {
+                    zero: v.value === '0',
+                    weigh: v.type === TYPE.FUNC.WEIGH,
+                    disable
+                  })}
+                  onClick={() => !disable && handleKeyClick(v)}
+                >
+                  {v.value}
+                </Flex>
+              )
+            }
           )}
         </Flex>
         <Flex className='t-number-keyboard-action' column justifyBetween>
-          {_.map(OPTIONS_KEYS, v => (
-            <Flex
-              justifyCenter
-              alignCenter
-              className={classNames('t-number-keyboard-action-item', {
-                enter: v.type === TYPE.FUNC.ENTER
-              })}
-              column
-              onClick={() => handleKeyClick(v)}
-            >
-              {v.value}
-            </Flex>
-          ))}
+          {_.map(OPTIONS_KEYS, v => {
+            const disable =
+              inputDisable && [TYPE.FUNC.BACK, TYPE.FUNC.CLEAR].includes(v.type)
+            return (
+              <Flex
+                justifyCenter
+                alignCenter
+                className={classNames('t-number-keyboard-action-item', {
+                  enter: v.type === TYPE.FUNC.ENTER,
+                  disable
+                })}
+                column
+                onClick={() => !disable && handleKeyClick(v)}
+              >
+                {disable && v.type === TYPE.FUNC.BACK
+                  ? v.disableValue
+                  : v.value}
+              </Flex>
+            )
+          })}
         </Flex>
       </Flex>
     </>
@@ -88,7 +103,9 @@ NumberKeyboard.propTypes = {
   onConfirm: Proptypes.func.isRequired,
   onWeigh: Proptypes.func.isRequired,
   decimal: Proptypes.bool,
-  weigh: Proptypes.bool
+  weigh: Proptypes.bool,
+  weightDisable: Proptypes.bool,
+  inputDisable: Proptypes.bool
 }
 
 export default NumberKeyboard
