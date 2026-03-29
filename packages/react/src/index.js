@@ -23,6 +23,7 @@ import CleanModal from './components/modal/clean_modal'
 import RightSideModal from './components/modal/right_side_modal'
 import NProgress from './components/nprogress'
 import NumberKeyboard from './components/number_keyboard'
+import { Popup, PopupContentConfirm } from './components/popup'
 import Popover from './components/popover'
 import Progress from './components/progress'
 import ProgressCircle from './components/progress_circle'
@@ -75,6 +76,9 @@ export {
   Progress,
   Keyboard,
   NumberKeyboard,
+  Popup,
+  PopupContentConfirm,
+  Popover,
   Calendar,
   RangeCalendar,
   DatePicker,
