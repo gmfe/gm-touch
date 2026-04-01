@@ -49,6 +49,7 @@
     "css-loader": "^3.4.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
+    "lerna": "^9.0.7",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "lint-staged": "^10.4.0",
