@@ -78,7 +78,6 @@ export {
   NumberKeyboard,
   Popup,
   PopupContentConfirm,
-  Popover,
   Calendar,
   RangeCalendar,
   DatePicker,
