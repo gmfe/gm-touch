@@ -46,40 +46,42 @@ gm-touch是一个UI组件库，用于运行在触屏设备的项目中，包括�
 
 ## 版本发布
 
-由于该项目是一个为其他项目服务的库，所以需要发布版本来更好地维护
+该项目是一个为其他项目服务的库，需要持续发布版本。发布由 GitHub Actions 自动完成（配置见 `.github/workflows/release.yml`），**本地不需要登录 npm，也不用手动执行发布命令**。
 
-1. 首先确保当前分支的所有代码已commit并推到的远程分支
+> CI 用的是 `lerna publish from-package`：它只会把各子包 `package.json` 里写明、但 npm 上还不存在的版本发出去。所以发版 = 「在本地把版本号改对 → push 到 master → CI 负责发布」。
 
-2. 在项目中打开终端，建议使用VSCode
+### 发版步骤
 
-3. 在`npm`上登录，如果曾经登录过可以忽略此步骤
+1. 确保当前分支代码已 commit 并 push 到远程
+
+2. 修改 `lerna.json` 的 `version` 为新版本号（例如 `2.3.7`）。这是整个仓库唯一的版本源头
+
+3. 运行同步脚本，自动把所有子包的 `version`，以及它们之间互相引用的 `dependencies` / `devDependencies`，全部对齐到新版本号：
     ```sh
-    npm login
+    yarn sync-versions
     ```
-    之后输入用户名密码邮箱进行登录
-    可以通过
+    脚本会逐条列出改动并写入。`peerDependencies` 不会被改动（原因见下文）
+
+4. 检查改动无误后，提交并推送：
     ```sh
-    npm whoami
+    git add -A
+    git commit -m "v2.3.7"
+    git push origin master
     ```
-    查看登录状态和账户，需要使用特定账号才可以登录，否则无法发布版本
 
-4. gm-touch使用的是lerna而非npm进行发版的操作，其他UI组件库大多也是使用lerna，它们的操作十分类似
-    ```sh
-    yarn publish-beta
-    或
-    yarn publish-latest
-    ```
-    前者为测试版，后者为最终版，根据需要执行对应的指令
+5. 推送到 master 后会自动触发 Release workflow。CI 完成依赖安装后，会把几个子包发布到 npm。到 GitHub → Actions 页面查看执行结果（绿勾即成功）
 
-5. 选择`Custom Version`并输入自定义的版本号
+### 关于内部包之间的版本引用
 
-6. 输入`y`继续并等待版本发布完成
+- 子包之间互相引用（如 `@gm-touch/react` 引用 `@gm-touch/locales`）写的是普通 `dependencies` / `devDependencies`，由 `yarn sync-versions` 自动跟随主版本号，无需手动维护。
+- `peerDependencies` 不会被脚本改动。peer 应当保持宽松范围（如 `^2.3.5` 表示兼容所有 2.x 版本），平时不需要动；只有跨大版本升级（如整体升到 `3.0.0`）时，才需要手动把 `^2.x` 改成 `^3.0.0`。
 
-7. 发布完成后可以看到项目中`package.json`中的`version`并没有改变，那是因为实际上并不是发这个项目的版本，而是它下面的几个子项目
+### 版本号约定
 
-8. 进入`/package/任意文件夹/package.json`，可以看到里面的`version`已经变成了刚刚发布的版本
+- 正式版：`2.3.7`
+- 预发布版：在版本号末尾加 prerelease 标识，例如 `2.3.7-beta.0`。`.0` 表示第几个 beta，修补发布新的 beta 时递增为 `beta.1`、`beta.2`，以此类推
 
-9. 注意：在你的版本末尾添加 beta.0 非常重要。.0 表示它是哪个版本。当我们对 beta 版进行修补发布新的 beta 版本时，我们会将 .0 递增到 .1，以此类推
+> 注意：当前 CI 只配置了正式版（latest）的自动发布。若要发布 beta / alpha 版本（带对应 dist-tag），需要额外配置 workflow，或参考根目录 `package.json` 中的 `publish-beta` / `publish-alpha` 脚本。
 
 ## 样式
 
