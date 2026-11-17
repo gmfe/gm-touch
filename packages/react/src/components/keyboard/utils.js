@@ -15,7 +15,7 @@ const KEYS = [
   { type: TYPE.NUMBER, value: '1' },
   { type: TYPE.NUMBER, value: '2' },
   { type: TYPE.NUMBER, value: '3' },
-  { type: TYPE.FUNC.BACK, value: '←' },
+  { type: TYPE.FUNC.BACK, value: '←', shortcut: 'Backspace' },
   { type: TYPE.NUMBER, value: '4' },
   { type: TYPE.NUMBER, value: '5' },
   { type: TYPE.NUMBER, value: '6' },
@@ -23,7 +23,7 @@ const KEYS = [
   { type: TYPE.NUMBER, value: '7' },
   { type: TYPE.NUMBER, value: '8' },
   { type: TYPE.NUMBER, value: '9' },
-  { type: TYPE.FUNC.CLEAR, value: getLocale('清空') },
+  { type: TYPE.FUNC.CLEAR, value: getLocale('清空'), shortcut: 'Esc' },
   { type: TYPE.FUNC.CANCEL, value: getLocale('取消') },
   { type: TYPE.NUMBER, value: '0' }
 ]

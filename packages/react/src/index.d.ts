@@ -44,6 +44,8 @@ export interface KeyboardProps {
   onCancel: () => void
   onClear: () => void
   onConfirm: () => void
+  showShortcuts?: boolean
+  showFooterTip?: boolean
 }
 
 export const Keyboard: FC<KeyboardProps>

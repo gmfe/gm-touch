@@ -15,7 +15,9 @@ const Keyboard = ({
   onConfirm,
   onCancel,
   onClear,
-  onBackSpace
+  onBackSpace,
+  showShortcuts,
+  showFooterTip
 }) => {
   const handleKeyClick = keyInfo => {
     switch (keyInfo.type) {
@@ -46,6 +48,7 @@ const Keyboard = ({
             keyInfo={k}
             className='t-margin-top-20'
             onKeyClick={handleKeyClick}
+            showShortcuts={showShortcuts}
           />
         ))}
         <Flex className='t-keyboard-func-area'>
@@ -61,10 +64,18 @@ const Keyboard = ({
               }
             >
               {getLocale('确定')}
+              {showShortcuts && (
+                <div className="t-keyboard-shortcut">Enter</div>
+              )}
             </Button>
           )}
         </Flex>
       </Flex>
+      {showFooterTip && (
+        <div className="t-keyboard-footer">
+          {getLocale('已支持键盘数字录入')}
+        </div>
+      )}
     </Flex>
   )
 }
@@ -95,7 +106,9 @@ Keyboard.propTypes = {
   onBackSpace: Proptypes.func.isRequired,
   onCancel: Proptypes.func.isRequired,
   onClear: Proptypes.func.isRequired,
-  onConfirm: Proptypes.func.isRequired
+  onConfirm: Proptypes.func.isRequired,
+  showShortcuts: Proptypes.bool,
+  showFooterTip: Proptypes.bool
 }
 
 export default Keyboard

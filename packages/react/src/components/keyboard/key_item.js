@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import Button from '../button'
 import Proptypes from 'prop-types'
 
-const KeyItem = ({ keyInfo, onKeyClick, className }) => (
+const KeyItem = ({ keyInfo, onKeyClick, className, showShortcuts }) => (
   <Button
     key={keyInfo.value}
     className={classNames('t-keyboard-key', className)}
@@ -21,13 +21,17 @@ const KeyItem = ({ keyInfo, onKeyClick, className }) => (
     >
       {keyInfo.value}
     </Flex>
+    {showShortcuts && keyInfo.shortcut && (
+      <div className="t-keyboard-shortcut">{keyInfo.shortcut}</div>
+    )}
   </Button>
 )
 
 KeyItem.propTypes = {
   keyInfo: Proptypes.object.isRequired,
   className: Proptypes.string,
-  onKeyClick: Proptypes.func
+  onKeyClick: Proptypes.func,
+  showShortcuts: Proptypes.bool
 }
 
 export default KeyItem
