@@ -1,0 +1,54 @@
+name: Release Prerelease
+
+# 推预发布 tag（v*-alpha.* / v*-beta.*）触发发包。
+# 正式版仍走 release.yml（push master），tag 模式只匹配预发布，避免与 master 流程重复触发。
+# dist-tag 由 tag 名推导：alpha.* → alpha，beta.* → beta，latest 不受影响。
+
+permissions:
+  contents: read
+
+on:
+  push:
+    tags:
+      - 'v*-alpha.*'
+      - 'v*-beta.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+
+      - name: Install
+        run: |
+          node -v
+          yarn config set python python3
+          yarn install --frozen-lockfile --ignore-engines
+        env:
+          PYTHON: python3
+
+      - name: Publish prerelease
+        run: |
+          # 确保在发布前代码状态是干净的
+          git checkout .
+          TAG="${GITHUB_REF_NAME}"
+          if [[ "$TAG" == *alpha* ]]; then
+            DIST_TAG=alpha
+          else
+            DIST_TAG=beta
+          fi
+          echo "publishing ${TAG} with dist-tag ${DIST_TAG}"
+          yarn lerna publish from-package --force-publish --no-git-tag-version --no-push --yes --dist-tag "$DIST_TAG" --registry https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PYTHON: python3
