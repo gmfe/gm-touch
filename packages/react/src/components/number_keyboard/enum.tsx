@@ -33,10 +33,11 @@ const OPTIONS_KEYS = [
   {
     type: TYPE.FUNC.BACK,
     value: <SVGDeleteBLack style={{ fontSize: '44px' }} />,
-    disableValue: <SVGDeleteGray style={{ fontSize: '44px' }} />
+    disableValue: <SVGDeleteGray style={{ fontSize: '44px' }} />,
+    shortcut: 'Backspace'
   },
-  { type: TYPE.FUNC.CLEAR, value: getLocale('清零') },
-  { type: TYPE.FUNC.ENTER, value: getLocale('确定') }
+  { type: TYPE.FUNC.CLEAR, value: getLocale('清零'), shortcut: 'Esc' },
+  { type: TYPE.FUNC.ENTER, value: getLocale('确定'), shortcut: 'Enter' }
 ]
 
 export { TYPE, NUMBER_KEYS, OPTIONS_KEYS }

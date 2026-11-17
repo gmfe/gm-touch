@@ -47,3 +47,19 @@ export interface KeyboardProps {
 }
 
 export const Keyboard: FC<KeyboardProps>
+
+export interface NumberKeyboardProps {
+  onKeyClick: (value: string) => void
+  onBack: () => void
+  onClear: () => void
+  onConfirm: () => void
+  onWeigh: () => void
+  decimal?: boolean
+  weigh?: boolean
+  weightDisable?: boolean
+  inputDisable?: boolean
+  showShortcuts?: boolean
+  showFooterTip?: boolean
+}
+
+export const NumberKeyboard: FC<NumberKeyboardProps>

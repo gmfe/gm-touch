@@ -39,3 +39,44 @@ storiesOf('Number Keyboard', module)
       />
     )
   })
+  .add('with shortcut hints', () => {
+    return (
+      <NumberKeyboard
+        onKeyClick={() => { }}
+        onBack={() => { }}
+        onClear={() => { }}
+        onConfirm={() => { }}
+        onWeigh={() => { }}
+        decimal
+        showShortcuts
+      />
+    )
+  })
+  .add('disabled with hints', () => {
+    return (
+      <NumberKeyboard
+        onKeyClick={() => { }}
+        onBack={() => { }}
+        onClear={() => { }}
+        onConfirm={() => { }}
+        onWeigh={() => { }}
+        decimal
+        weigh
+        weightDisable
+        inputDisable
+        showShortcuts
+      />
+    )
+  })
+  .add('with footer tip', () => {
+    return (
+      <NumberKeyboard
+        onKeyClick={() => { }}
+        onBack={() => { }}
+        onClear={() => { }}
+        onConfirm={() => { }}
+        onWeigh={() => { }}
+        showFooterTip
+      />
+    )
+  })

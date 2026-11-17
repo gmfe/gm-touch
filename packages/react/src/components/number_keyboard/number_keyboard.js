@@ -1,3 +1,4 @@
+import { getLocale } from '@gm-touch/locales'
 import classNames from 'classnames'
 import _ from 'lodash'
 import Proptypes from 'prop-types'
@@ -15,7 +16,9 @@ const NumberKeyboard = ({
   decimal,
   weigh,
   weightDisable,
-  inputDisable
+  inputDisable,
+  showShortcuts,
+  showFooterTip
 }) => {
   const handleKeyClick = keyInfo => {
     switch (keyInfo.type) {
@@ -53,6 +56,7 @@ const NumberKeyboard = ({
                 (weightDisable && [TYPE.FUNC.WEIGH].includes(v.type))
               return (
                 <Flex
+                  key={v.value}
                   wrap
                   justifyCenter
                   alignCenter
@@ -75,6 +79,7 @@ const NumberKeyboard = ({
               inputDisable && [TYPE.FUNC.BACK, TYPE.FUNC.CLEAR].includes(v.type)
             return (
               <Flex
+                key={v.type}
                 justifyCenter
                 alignCenter
                 className={classNames('t-number-keyboard-action-item', {
@@ -87,11 +92,19 @@ const NumberKeyboard = ({
                 {disable && v.type === TYPE.FUNC.BACK
                   ? v.disableValue
                   : v.value}
+                {showShortcuts && v.shortcut && !disable && (
+                  <div className="t-number-keyboard-shortcut">{v.shortcut}</div>
+                )}
               </Flex>
             )
           })}
         </Flex>
       </Flex>
+      {showFooterTip && (
+        <div className="t-number-keyboard-footer">
+          {getLocale('已支持键盘数字录入')}
+        </div>
+      )}
     </>
   )
 }
@@ -105,7 +118,9 @@ NumberKeyboard.propTypes = {
   decimal: Proptypes.bool,
   weigh: Proptypes.bool,
   weightDisable: Proptypes.bool,
-  inputDisable: Proptypes.bool
+  inputDisable: Proptypes.bool,
+  showShortcuts: Proptypes.bool,
+  showFooterTip: Proptypes.bool
 }
 
 export default NumberKeyboard
