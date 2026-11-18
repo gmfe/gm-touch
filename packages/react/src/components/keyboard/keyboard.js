@@ -70,12 +70,12 @@ const Keyboard = ({
             </Button>
           )}
         </Flex>
+        {showFooterTip && (
+          <div className="t-keyboard-footer">
+            {getLocale('已支持键盘数字录入')}
+          </div>
+        )}
       </Flex>
-      {showFooterTip && (
-        <div className="t-keyboard-footer">
-          {getLocale('已支持键盘数字录入')}
-        </div>
-      )}
     </Flex>
   )
 }

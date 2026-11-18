@@ -41,7 +41,12 @@ const NumberKeyboard = ({
   }
   return (
     <>
-      <Flex className='t-number-keyboard t-text-bold' justifyCenter>
+      <Flex
+        className={classNames('t-number-keyboard t-text-bold', {
+          't-number-keyboard-with-footer': showFooterTip
+        })}
+        justifyCenter
+      >
         <Flex className='t-number-keyboard-number' wrap>
           {_.map(
             _.filter(
@@ -89,9 +94,13 @@ const NumberKeyboard = ({
                 column
                 onClick={() => !disable && handleKeyClick(v)}
               >
-                {disable && v.type === TYPE.FUNC.BACK
-                  ? v.disableValue
-                  : v.value}
+                {showShortcuts && v.shortcut && !disable ? (
+                  <div className="t-number-keyboard-action-label">{v.value}</div>
+                ) : (
+                  disable && v.type === TYPE.FUNC.BACK
+                    ? v.disableValue
+                    : v.value
+                )}
                 {showShortcuts && v.shortcut && !disable && (
                   <div className="t-number-keyboard-shortcut">{v.shortcut}</div>
                 )}
@@ -99,12 +108,12 @@ const NumberKeyboard = ({
             )
           })}
         </Flex>
+        {showFooterTip && (
+          <div className="t-number-keyboard-footer">
+            {getLocale('已支持键盘数字录入')}
+          </div>
+        )}
       </Flex>
-      {showFooterTip && (
-        <div className="t-number-keyboard-footer">
-          {getLocale('已支持键盘数字录入')}
-        </div>
-      )}
     </>
   )
 }
